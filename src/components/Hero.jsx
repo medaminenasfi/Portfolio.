@@ -159,7 +159,7 @@ const Hero = () => {
               {/* Profile Image */}
               <div className="absolute inset-4 rounded-full overflow-hidden border-2 border-secondary/30 bg-primary/90">
                 <img
-                  src="/your-photo.jpg" // Replace with your photo path
+                  src="./assets/profile.png" // Replace with your photo path
                   alt="Mohamed Amine Nasfi"
                   className="w-full h-full object-cover rounded-full filter brightness-90 hover:brightness-100 transition-all duration-300"
                 />
