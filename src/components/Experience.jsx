@@ -1,71 +1,164 @@
-import React from 'react';
-
-const ExperienceCard = ({ title, company, date, location, descriptions }) => (
-  <div className="bg-primary/30 p-6 rounded-lg border border-secondary/20 hover:border-secondary/50 transition-colors">
-    <h3 className="text-xl font-semibold text-textPrimary">{title}</h3>
-    <h4 className="text-secondary mb-2">{company}</h4>
-    <div className="flex justify-between text-textSecondary mb-4">
-      <span>{date}</span>
-      <span>{location}</span>
-    </div>
-    <ul className="space-y-2">
-      {descriptions.map((desc, index) => (
-        <li key={index} className="flex items-start">
-          <span className="text-secondary mr-2">▹</span>
-          <span className="text-textSecondary">{desc}</span>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const Experience = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
   const experiences = [
     {
-      title: "Web Developer",
       company: "Tunisian Chemical Group",
+      title: "Web Developer",
       date: "07/2024 - 08/2024",
       location: "Tunisia",
-      descriptions: [
+      duties: [
         "Developed a modern e-commerce platform using React.js",
         "Designed a user-friendly interface with intuitive navigation",
-        "Implemented dynamic features enhancing user engagement"
+        "Implemented dynamic features enhancing user engagement",
+        "Collaborated with the design team on UI/UX improvements"
       ]
     },
     {
-      title: "Designer Intern",
       company: "AYPRINT",
+      title: "Designer Intern",
       date: "06/2023 - 09/2023",
       location: "Tunisia",
-      descriptions: [
+      duties: [
         "Collaborated with the design team on creative concepts",
-        "Contributed to the development of visual content for print materials",
-        "Managed communication with customers and partners"
+        "Contributed to visual content for print materials",
+        "Managed communication with customers and partners",
+        "Developed brand identity materials"
       ]
     },
     {
-      title: "Web Development Training",
       company: "IDEAL CLUB ESSAT",
+      title: "Web Development Training",
       date: "02/2023 - 02/2024",
       location: "Gabes, Tunisia",
-      descriptions: [
+      duties: [
         "Participated in hands-on web development projects",
         "Improved communication and teamwork skills",
-        "Engaged in leadership development activities"
+        "Engaged in leadership development activities",
+        "Learned modern web development practices"
       ]
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { x: -20, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <section id="experience" className="section-padding">
-      <div className="container mx-auto">
-        <h2 className="heading">Experience</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {experiences.map((exp, index) => (
-            <ExperienceCard key={index} {...exp} />
-          ))}
+    <section id="experience" className="section-padding relative">
+      <motion.div
+        className="container mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <motion.h2 
+          className="heading text-center mb-12"
+          variants={itemVariants}
+        >
+          Where I've Worked
+        </motion.h2>
+
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Tab Buttons */}
+            <motion.div 
+              className="md:w-48 flex md:flex-col overflow-x-auto md:overflow-x-visible scrollbar-hide"
+              variants={itemVariants}
+            >
+              {experiences.map((exp, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveTab(index)}
+                  className={`px-4 py-3 text-sm font-medium text-left border-b-2 md:border-b-0 md:border-l-2 
+                    whitespace-nowrap transition-all duration-300 ${
+                    activeTab === index
+                      ? 'text-secondary border-secondary bg-secondary/10'
+                      : 'text-textSecondary border-textSecondary/20 hover:text-secondary hover:border-secondary'
+                  }`}
+                >
+                  {exp.company}
+                </button>
+              ))}
+            </motion.div>
+
+            {/* Tab Content */}
+            <motion.div 
+              className="flex-1"
+              variants={itemVariants}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                key={activeTab}
+                className="space-y-4"
+              >
+                <h3 className="text-xl font-semibold text-textPrimary">
+                  {experiences[activeTab].title}{' '}
+                  <span className="text-secondary">@ {experiences[activeTab].company}</span>
+                </h3>
+                <p className="text-textSecondary">
+                  {experiences[activeTab].date} | {experiences[activeTab].location}
+                </p>
+                <ul className="space-y-4">
+                  {experiences[activeTab].duties.map((duty, index) => (
+                    <motion.li
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="flex items-start space-x-2 text-textSecondary"
+                    >
+                      <svg className="w-5 h-5 mt-1 text-secondary flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                      </svg>
+                      <span>{duty}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
-      </div>
+
+        {/* Decorative Background Elements */}
+        <div className="absolute top-1/2 left-0 -z-10">
+          <motion.div
+            className="w-96 h-96 bg-secondary/5 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          />
+        </div>
+      </motion.div>
     </section>
   );
 };
