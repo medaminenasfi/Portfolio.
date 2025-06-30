@@ -27,7 +27,7 @@ const Education = () => {
       school: "Higher School of Applied Sciences and Technology",
       location: "Gabes, Tunisia",
       period: "2022 - 2025",
-      description: "Currently in third year, focusing on business intelligence and software development."
+      description: "Graduated with a degree in Business Information Systems, specialized in full-stack development."
     },
     {
       degree: "Scientific Baccalaureate",

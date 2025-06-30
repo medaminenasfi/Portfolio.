@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import profileImg from '../assets/profile.png'; //
-//  Add this import
+import profileImg from '../assets/profile.png'; 
 const ScrollDownButton = () => {
   const scrollToNextSection = () => {
     const heroHeight = window.innerHeight;
@@ -109,8 +108,7 @@ const Hero = () => {
               className="max-w-xl text-textSecondary mb-8"
             >
               I'm a full-stack developer specializing in the MERN stack. Currently, I'm focused on
-              building responsive and user-friendly web applications while pursuing my bachelor's
-              degree in Business Intelligence.
+              building responsive and user-friendly web applications .
             </motion.p>
             
             <motion.div 

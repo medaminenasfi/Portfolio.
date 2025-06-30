@@ -32,6 +32,20 @@ const ProjectCard = ({ title, description, technologies, link, image }) => (
 
 const Projects = () => {
   const projects = [
+        {
+      title: "Ecotourisme TN",
+      description: "Application for converting Excel files and SQL queries to XML format",
+      technologies: ["React.js", "Node.js", "Express.js"],
+      link: "#",
+      image: "/xml-preview.jpg"
+    },
+    {
+      title: "XML Generator",
+      description: "Application for converting Excel files and SQL queries to XML format",
+      technologies: ["React.js", "Node.js", "Excel API"],
+      link: "#",
+      image: "/xml-preview.jpg"
+    },
     {
       title: "Glooms E-Commerce",
       description: "A modern e-commerce platform for clothing across all age groups",
@@ -45,13 +59,6 @@ const Projects = () => {
       technologies: ["HTML", "CSS", "JavaScript"],
       link: "#",
       image: "/traducode-preview.jpg"
-    },
-    {
-      title: "XML Generator",
-      description: "Application for converting Excel files and SQL queries to XML format",
-      technologies: ["React.js", "Node.js", "Excel API"],
-      link: "#",
-      image: "/xml-preview.jpg"
     }
   ];
 

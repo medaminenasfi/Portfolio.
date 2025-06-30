@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import ScrollDown from './ScrollDown';
+import React from "react";
+import { motion } from "framer-motion";
+import ScrollDown from "./ScrollDown";
 
 const About = () => {
   const containerVariants = {
@@ -34,37 +34,39 @@ const About = () => {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <motion.h2 
-          className="heading text-center"
-          variants={itemVariants}
-        >
+        <motion.h2 className="heading text-center" variants={itemVariants}>
           About Me
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
-          <motion.div 
-            className="space-y-6"
-            variants={itemVariants}
-          >
+          <motion.div className="space-y-6" variants={itemVariants}>
             <p className="text-textSecondary leading-relaxed">
-              Hello! I'm Mohamed Amine, a passionate full-stack developer currently pursuing my bachelor's degree in Business Intelligence. My journey in web development started with a curiosity about how websites work, and that curiosity has grown into a professional pursuit.
+              Hello! I'm Mohamed Amine, a passionate Full-Stack Developer with a
+              bachelor's degree in Business Information Systems, specialized in
+              Business Intelligence. My journey in web development began with a
+              deep curiosity about how websites work a curiosity that has
+              evolved into a focused and professional career.{" "}
             </p>
             <p className="text-textSecondary leading-relaxed">
-              I specialize in building exceptional digital experiences using the MERN stack (MongoDB, Express.js, React, Node.js). My focus is on creating efficient, scalable, and user-friendly applications that solve real-world problems.
+              I specialize in building exceptional digital experiences using the
+              MERN stack (MongoDB, Express.js, React, Node.js). I’m committed to
+              creating efficient, scalable, and user-friendly applications that
+              address real-world challenges.
             </p>
             <p className="text-textSecondary leading-relaxed">
-              Currently, I'm looking for opportunities to apply my skills in a dynamic professional environment, whether it's in front-end, back-end, or full-stack development roles.
+              I'm currently seeking opportunities to contribute my skills in a
+              dynamic professional environment  whether in front-end, back-end,
+              or full-stack development roles.
             </p>
           </motion.div>
 
           {/* Image/Skills Section */}
-          <motion.div 
-            variants={itemVariants}
-            className="relative"
-          >
+          <motion.div variants={itemVariants} className="relative">
             <div className="bg-primary/30 p-6 rounded-lg border border-secondary/20">
-              <h3 className="text-xl font-semibold text-secondary mb-6">Key Technologies</h3>
+              <h3 className="text-xl font-semibold text-secondary mb-6">
+                Key Technologies
+              </h3>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   "JavaScript (ES6+)",
@@ -74,7 +76,7 @@ const About = () => {
                   "Express.js",
                   "TypeScript",
                   "Tailwind CSS",
-                  "Git & GitHub"
+                  "Git & GitHub",
                 ].map((tech, index) => (
                   <motion.div
                     key={index}
@@ -83,8 +85,16 @@ const About = () => {
                     transition={{ delay: index * 0.1 }}
                     className="flex items-center space-x-2"
                   >
-                    <svg className="w-4 h-4 text-secondary" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                    <svg
+                      className="w-4 h-4 text-secondary"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     <span className="text-textSecondary">{tech}</span>
                   </motion.div>
