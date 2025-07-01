@@ -34,7 +34,7 @@ const Projects = () => {
   const projects = [
         {
       title: "Ecotourisme TN",
-      description: "Application for converting Excel files and SQL queries to XML format",
+      description: "A Digital Platform for Eco-Tourism and Sustainable Travel in Tunisia",
       technologies: ["React.js", "Node.js", "Express.js"],
       link: "#",
       image: "/xml-preview.jpg"
@@ -51,7 +51,7 @@ const Projects = () => {
       description: "A modern e-commerce platform for clothing across all age groups",
       technologies: ["React.js", "Node.js", "MongoDB", "Express.js"],
       link: "#",
-      image: "/glooms-preview.jpg" // You'll need to add project images
+      image: "/glooms-preview.jpg" 
     },
     {
       title: "TraduCode",
