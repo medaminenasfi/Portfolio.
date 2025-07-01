@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import ScrollDown from "./ScrollDown";
 
 const EducationCard = ({ degree, school, period, location, description }) => (
   <motion.div
@@ -114,6 +115,10 @@ const Education = () => {
           />
         </div>
       </motion.div>
+      <br/>      <br/>
+
+            <ScrollDown targetId="contact" />
+
     </section>
   );
 };

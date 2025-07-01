@@ -91,7 +91,7 @@ const Hero = () => {
             
             <motion.h1 
               variants={itemVariants}
-              className="text-4xl sm:text-6xl font-bold mb-4"
+              className="text-white text-4xl sm:text-6xl font-bold mb-4"
             >
               Mohamed Amine Nasfi
             </motion.h1>
