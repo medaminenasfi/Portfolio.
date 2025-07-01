@@ -93,7 +93,7 @@ const Skills = () => {
         {
           title: "TypeScript",
           icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
-          level: 80,
+          level: 60,
         },
 
         {
@@ -108,8 +108,8 @@ const Skills = () => {
         },
         {
           title: "Leafler.js",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-original.svg",
-          level: 90,
+icon: "https://leafletjs.com/docs/images/logo-ua.png"
+,          level: 90,
         },
       ],
     },
@@ -183,8 +183,8 @@ const Skills = () => {
         },
         {
           title: "XAMPP",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg",
-          level: 90,
+icon: "https://www.svgrepo.com/download/306995/xampp.svg"
+,          level: 90,
         },
       ],
     },

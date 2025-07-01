@@ -36,7 +36,7 @@ const Projects = () => {
       title: "Ecotourisme TN",
       description: "A Digital Platform for Eco-Tourism and Sustainable Travel in Tunisia",
       technologies: ["React.js", "Node.js", "Express.js"],
-      link: "#",
+      link: "https://ecotourisme.laghazala.tn/",
       image: "/xml-preview.jpg"
     },
     {
@@ -58,7 +58,7 @@ const Projects = () => {
       description: "Web application for converting algorithms into code seamlessly",
       technologies: ["HTML", "CSS", "JavaScript"],
       link: "#",
-      image: "/traducode-preview.jpg"
+      image: "/assets/profile.jpg"
     }
   ];
 
