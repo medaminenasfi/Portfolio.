@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,20 +12,61 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Initialize EmailJS with your Public Key
+  useEffect(() => {
+    emailjs.init('eh9UFCWRNwttWzRvD');
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate form fields
+    if (!formData.name || !formData.email || !formData.message) {
+      setSubmitStatus('error');
+      setErrorMessage('Please fill in all required fields');
+      setTimeout(() => {
+        setSubmitStatus(null);
+        setErrorMessage('');
+      }, 3000);
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitStatus('success');
-      setIsSubmitting(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
+    try {
+      const response = await emailjs.send(
+        'service_wr6y4b9', // Your EmailJS Service ID
+        'template_jg0pwsf', // Your Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject || 'No Subject Provided',
+          message: formData.message
+        }
+      );
+
+      console.log('EmailJS Response:', response);
       
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus(null), 3000);
-    }, 1500);
+      if (response.status === 200) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setSubmitStatus('error');
+      setErrorMessage('Server error. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => {
+        setSubmitStatus(null);
+        setErrorMessage('');
+      }, 3000);
+    }
   };
 
   const handleChange = (e) => {
@@ -126,7 +168,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-textSecondary mb-2">Name</label>
+                  <label htmlFor="name" className="block text-textSecondary mb-2">Name *</label>
                   <input
                     type="text"
                     id="name"
@@ -139,7 +181,7 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-textSecondary mb-2">Email</label>
+                  <label htmlFor="email" className="block text-textSecondary mb-2">Email *</label>
                   <input
                     type="email"
                     id="email"
@@ -162,11 +204,10 @@ const Contact = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-primary/50 border border-secondary/20 rounded-lg 
                            focus:outline-none focus:border-secondary text-textPrimary transition-colors"
-                  required
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-textSecondary mb-2">Message</label>
+                <label htmlFor="message" className="block text-textSecondary mb-2">Message *</label>
                 <textarea
                   id="message"
                   name="message"
@@ -195,14 +236,23 @@ const Contact = () => {
               </motion.button>
             </form>
 
-            {/* Success Message */}
+            {/* Status Messages */}
             {submitStatus === 'success' && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-4 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400 text-center"
               >
-                Message sent successfully!
+                Message sent successfully! I'll get back to you soon.
+              </motion.div>
+            )}
+            {submitStatus === 'error' && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-center"
+              >
+                {errorMessage}
               </motion.div>
             )}
           </motion.div>
