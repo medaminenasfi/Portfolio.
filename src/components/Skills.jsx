@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ScrollDown from "./ScrollDown";
 
@@ -65,6 +65,8 @@ const SkillSection = ({ category, skills, index }) => (
 );
 
 const Skills = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
   const skillCategories = [
     {
       category: "Frontend",
@@ -190,6 +192,14 @@ icon: "https://www.svgrepo.com/download/306995/xampp.svg"
     },
   ];
 
+  const categories = ["All", ...skillCategories.map((cat) => cat.category)];
+
+  // Filter logic
+  const filteredCategories =
+    selectedCategory === "All"
+      ? skillCategories
+      : skillCategories.filter((cat) => cat.category === selectedCategory);
+
   return (
     <section
       id="skills"
@@ -216,9 +226,28 @@ icon: "https://www.svgrepo.com/download/306995/xampp.svg"
             </p>
           </motion.div>
 
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-6 py-2 rounded-full border transition-all font-semibold text-sm shadow-sm
+                  ${
+                    selectedCategory === cat
+                      ? "bg-secondary text-primary border-secondary shadow-lg"
+                      : "bg-primary/30 text-secondary border-secondary/30 hover:bg-secondary/10 hover:text-secondary"
+                  }
+                `}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
           {/* Skills Categories */}
           <div className="space-y-16">
-            {skillCategories.map((category, index) => (
+            {filteredCategories.map((category, index) => (
               <SkillSection key={index} {...category} index={index} />
             ))}
           </div>
