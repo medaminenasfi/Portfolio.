@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ScrollDown from "./ScrollDown";
+import { FaCode, FaServer, FaDatabase, FaTools } from "react-icons/fa";
 
 const SkillCard = ({ title, icon, level }) => (
   <motion.div
@@ -41,31 +42,49 @@ const SkillCard = ({ title, icon, level }) => (
   </motion.div>
 );
 
-const SkillSection = ({ category, skills, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: index * 0.2 }}
-    className="space-y-6"
-  >
+const categoryMeta = [
+  {
+    icon: <FaCode className="w-5 h-5 mr-2" />,
+    label: "Frontend",
+    description: "Building beautiful, interactive user interfaces."
+  },
+  {
+    icon: <FaServer className="w-5 h-5 mr-2" />,
+    label: "Backend",
+    description: "Server-side logic, APIs, and business rules."
+  },
+  {
+    icon: <FaDatabase className="w-5 h-5 mr-2" />,
+    label: "Database",
+    description: "Data modeling, storage, and management."
+  },
+  {
+    icon: <FaTools className="w-5 h-5 mr-2" />,
+    label: "Tools & Design",
+    description: "Development tools and design systems."
+  },
+];
+
+const SkillSection = ({ category, skills, description }) => (
+  <div className="space-y-6">
     <div className="flex items-center space-x-4">
-      <h3 className="text-xl font-semibold text-secondary">
-        <span className="text-sm opacity-50 mr-2">0{index + 1}.</span>
+      <h3 className="text-xl font-semibold text-secondary flex items-center">
+        {categoryMeta.find((c) => c.label === category)?.icon}
         {category}
       </h3>
       <div className="h-px flex-grow bg-secondary/20"></div>
     </div>
+    <p className="text-textSecondary mb-2 text-sm">{description}</p>
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       {skills.map((skill, skillIndex) => (
         <SkillCard key={skillIndex} {...skill} />
       ))}
     </div>
-  </motion.div>
+  </div>
 );
 
 const Skills = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [activeTab, setActiveTab] = useState(0);
 
   const skillCategories = [
     {
@@ -91,13 +110,11 @@ const Skills = () => {
           icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
           level: 90,
         },
-
         {
           title: "TypeScript",
           icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
           level: 60,
         },
-
         {
           title: "Tailwind",
           icon: "https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/tailwindcss/tailwindcss-original.svg",
@@ -110,8 +127,8 @@ const Skills = () => {
         },
         {
           title: "Leafler.js",
-icon: "https://leafletjs.com/docs/images/logo-ua.png"
-,          level: 90,
+          icon: "https://leafletjs.com/docs/images/logo-ua.png",
+          level: 90,
         },
       ],
     },
@@ -185,119 +202,95 @@ icon: "https://leafletjs.com/docs/images/logo-ua.png"
         },
         {
           title: "XAMPP",
-icon: "https://www.svgrepo.com/download/306995/xampp.svg"
-,          level: 90,
+          icon: "https://www.svgrepo.com/download/306995/xampp.svg",
+          level: 90,
         },
       ],
     },
   ];
 
-  const categories = ["All", ...skillCategories.map((cat) => cat.category)];
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
-  // Filter logic
-  const filteredCategories =
-    selectedCategory === "All"
-      ? skillCategories
-      : skillCategories.filter((cat) => cat.category === selectedCategory);
+  const itemVariants = {
+    hidden: { x: -20, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
 
   return (
-    <section
-      id="skills"
-      className="min-h-screen flex items-center section-padding relative"
-    >
-      <div className="container mx-auto">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="space-y-16"
+    <section id="skills" className="section-padding relative w-full">
+      <motion.div
+        className="w-full px-4 md:px-8 lg:px-16"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <motion.h2
+          className="heading text-center mb-12"
+          variants={itemVariants}
         >
-          {/* Section Title */}
-          <motion.div
-            initial={{ y: -20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center space-y-4"
-          >
-            <h2 className="heading">Skills & Technologies</h2>
-            <p className="text-textSecondary max-w-2xl mx-auto">
-              A comprehensive overview of my technical skills and proficiency
-              levels across different domains.
-            </p>
-          </motion.div>
-
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-6 py-2 rounded-full border transition-all font-semibold text-sm shadow-sm
-                  ${
-                    selectedCategory === cat
-                      ? "bg-secondary text-primary border-secondary shadow-lg"
-                      : "bg-primary/30 text-secondary border-secondary/30 hover:bg-secondary/10 hover:text-secondary"
-                  }
-                `}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Skills Categories */}
-          <div className="space-y-16">
-            {filteredCategories.map((category, index) => (
-              <SkillSection key={index} {...category} index={index} />
-            ))}
-          </div>
-
-          {/* Additional Skills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-primary/30 p-8 rounded-lg border border-secondary/20"
-          >
-            <h3 className="text-xl font-semibold text-secondary mb-6">
-              Other Skills
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {[
-                  "Frontend",
-                "Backend",
-                "Full Stack",
-                "RESTful APIs",
-                "Responsive Design",
-                "UI/UX Design",
-                "Agile/Scrum",
-                "Problem Solving",
-                "Team Collaboration",
-                "Clean Code",
-                "Testing",
-                "CI/CD",
-                "Performance Optimization",
-                "Cross-Browser Compatibility",
-                "Mobile-First Design",
-              
-              ].map((skill, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="px-4 py-2 bg-secondary/10 rounded-full text-sm text-textSecondary
-                           border border-secondary/20 hover:border-secondary/50 transition-all
-                           hover:text-secondary cursor-default"
+          Skills & Technologies
+        </motion.h2>
+        <div className="w-full">
+          <div className="flex flex-col md:flex-row gap-8 w-full">
+            {/* Tab Buttons */}
+            <motion.div
+              className="md:w-56 flex md:flex-col overflow-x-auto md:overflow-x-visible scrollbar-hide"
+              variants={itemVariants}
+            >
+              {skillCategories.map((cat, index) => (
+                <button
+                  key={cat.category}
+                  onClick={() => setActiveTab(index)}
+                  className={`relative flex items-center px-4 py-3 text-sm font-medium text-left border-b-2 md:border-b-0 md:border-l-4 whitespace-nowrap transition-all duration-300 rounded-lg mb-2 md:mb-0 md:mr-0 mr-2
+                    ${
+                      activeTab === index
+                        ? "text-secondary border-secondary bg-secondary/10 shadow-md"
+                        : "text-textSecondary border-transparent hover:text-secondary hover:bg-secondary/5"
+                    }`}
+                  style={{ minWidth: "160px" }}
                 >
-                  {skill}
-                </motion.span>
+                  {/* Accent bar for active tab */}
+                  {activeTab === index && (
+                    <span className="absolute left-0 top-0 h-full w-1 bg-secondary rounded-r-lg md:block hidden transition-all duration-300" />
+                  )}
+                  {categoryMeta[index].icon}
+                  {cat.category}
+                </button>
               ))}
-            </div>
-          </motion.div>
-        </motion.div>
-
+            </motion.div>
+            {/* Tab Content */}
+            <motion.div className="flex-1" variants={itemVariants}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                key={activeTab}
+                className="space-y-4"
+              >
+                <SkillSection
+                  category={skillCategories[activeTab].category}
+                  skills={skillCategories[activeTab].skills}
+                  description={categoryMeta[activeTab].description}
+                />
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
         {/* Decorative Elements */}
         <div className="absolute top-1/2 right-0 -z-10">
           <motion.div
@@ -313,8 +306,7 @@ icon: "https://www.svgrepo.com/download/306995/xampp.svg"
             }}
           />
         </div>
-      </div>
-
+      </motion.div>
       {/* Scroll Down Button */}
       <ScrollDown targetId="education" />
     </section>
