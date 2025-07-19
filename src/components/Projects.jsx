@@ -1,10 +1,18 @@
 import React from 'react';
+import profileImg from '../assets/Screenshot from 2025-07-19 18-44-01.png';
 
 const ProjectCard = ({ title, description, technologies, link, image }) => (
-  <div className="group relative rounded-lg overflow-hidden">
-    <div className="absolute inset-0 bg-secondary/10 group-hover:bg-secondary/20 transition-colors z-10"></div>
-    <img src={image} alt={title} className="w-full h-64 object-cover" />
-    <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
+  <div className="group relative rounded-2xl overflow-hidden bg-primary/90 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-secondary/10 hover:-translate-y-2 hover:scale-[1.025] transform flex flex-col">
+    {/* Project Image */}
+    <div className="w-full h-56 overflow-hidden rounded-t-2xl">
+      <img 
+        src={image} 
+        alt={title} 
+        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
+      />
+    </div>
+    {/* Card Content */}
+    <div className="flex flex-col flex-1 justify-between p-6">
       <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
       <p className="text-textPrimary mb-4">{description}</p>
       <div className="flex flex-wrap gap-2 mb-4">
@@ -21,8 +29,7 @@ const ProjectCard = ({ title, description, technologies, link, image }) => (
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-block px-6 py-2 bg-secondary text-primary rounded-lg
-        hover:bg-secondary/90 transition-colors text-center"
+        className="inline-block px-6 py-2 bg-secondary text-primary rounded-lg hover:bg-secondary/90 transition-colors text-center font-semibold shadow-md"
       >
         View Project
       </a>
@@ -37,28 +44,28 @@ const Projects = () => {
       description: "A Digital Platform for Eco-Tourism and Sustainable Travel in Tunisia",
       technologies: ["React.js", "Node.js", "Express.js"],
       link: "https://ecotourisme.laghazala.tn/",
-      image: "/xml-preview.jpg"
+      image: profileImg
     },
     {
       title: "XML Generator",
       description: "Application for converting Excel files and SQL queries to XML format",
       technologies: ["React.js", "Node.js", "Excel API"],
       link: "#",
-      image: "/xml-preview.jpg"
+      image: profileImg
     },
     {
       title: "Glooms E-Commerce",
       description: "A modern e-commerce platform for clothing across all age groups",
       technologies: ["React.js", "Node.js", "MongoDB", "Express.js"],
       link: "#",
-      image: "/glooms-preview.jpg" 
+      image: profileImg
     },
     {
       title: "TraduCode",
       description: "Web application for converting algorithms into code seamlessly",
       technologies: ["HTML", "CSS", "JavaScript"],
       link: "#",
-      image: "/assets/profile.jpg"
+      image: profileImg
     }
   ];
 

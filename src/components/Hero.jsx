@@ -72,10 +72,64 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center section-padding relative" id="home">
-      <div className="container mx-auto">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          {/* Text Content */}
+    <section className="min-h-screen flex flex-col md:flex-row items-center justify-center section-padding relative bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] overflow-hidden w-full" id="home">
+      {/* Animated Coding Background */}
+      <div className="absolute inset-0 -z-10 pointer-events-none flex items-center justify-center w-full">
+        <motion.pre
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: [0.12, 0.18, 0.12], y: [40, 0, 40] }}
+          transition={{ duration: 12, repeat: Infinity, repeatType: 'reverse' }}
+          className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-mono text-secondary/70 whitespace-pre leading-snug select-none max-w-4xl mx-auto px-2 opacity-20"
+          style={{ userSelect: 'none' }}
+        >{`
+const hero = {
+  name: "Mohamed Amine Nasfi",
+  role: "Full-Stack Developer",
+  stack: ["MongoDB", "Express.js", "React", "Node.js"],
+  focus: "Building responsive and user-friendly web applications",
+  contact: "#contact",
+  projects: "#projects"
+};
+
+function buildWeb() {
+  return hero.stack.map(tech => \`Building with \${tech}\`);
+}
+`}</motion.pre>
+      </div>
+      <div className="flex flex-col md:flex-row-reverse items-center justify-center w-full gap-10 md:gap-20 px-4 z-10">
+        {/* Premium Professional Photo Design - Right Side, Larger */}
+        <div className="relative flex flex-col items-center justify-center mb-8 md:mb-0 md:mt-0 mt-8">
+          {/* Animated Blurred Gradient Accent */}
+          <motion.div
+            className="absolute -z-10 top-1/2 left-1/2 w-96 h-96 md:w-[32rem] md:h-[32rem] rounded-full blur-2xl bg-gradient-to-br from-secondary/30 via-primary/30 to-secondary/10"
+            style={{ transform: 'translate(-50%, -50%)' }}
+            animate={{ scale: [1, 1.08, 1], opacity: [0.3, 0.5, 0.3] }}
+            transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
+          />
+          {/* Animated Gradient Border Ring */}
+          <motion.div
+            className="relative w-72 h-72 md:w-96 md:h-96 rounded-full p-1 bg-gradient-to-tr from-secondary via-primary to-secondary shadow-2xl"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 6, repeat: Infinity, repeatType: 'reverse' }}
+          >
+            <div className="w-full h-full rounded-full overflow-hidden bg-primary/80 flex items-center justify-center">
+              <img
+                src={require('../assets/Remove-bg.ai_1726185260494-removebg-preview.png')}
+                alt="Mohamed Amine Nasfi"
+                className="w-full h-full object-cover rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_32px_8px_rgba(236,72,153,0.3)]"
+                style={{ background: 'transparent' }}
+              />
+            </div>
+            {/* Animated Glow Effect */}
+            <motion.div
+              className="absolute inset-0 rounded-full border-2 border-secondary/30 pointer-events-none"
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2.5, repeat: Infinity, repeatType: 'reverse' }}
+            />
+          </motion.div>
+        </div>
+        {/* Hero Text Content - Left Side */}
+        <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left w-full max-w-2xl">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -84,117 +138,54 @@ const Hero = () => {
           >
             <motion.p 
               variants={itemVariants}
-              className="text-secondary mb-4"
+              className="text-secondary text-lg sm:text-xl tracking-widest font-semibold mb-2 font-mono"
             >
               Hi, my name is
             </motion.p>
-            
             <motion.h1 
               variants={itemVariants}
-              className="text-white text-4xl sm:text-6xl font-bold mb-4"
+              className="text-white text-4xl sm:text-6xl font-extrabold mb-2 drop-shadow-lg font-mono"
             >
               Mohamed Amine Nasfi
             </motion.h1>
-            
             <motion.h2 
               variants={itemVariants}
-              className="text-3xl sm:text-5xl font-bold text-textSecondary mb-6"
+              className="text-2xl sm:text-4xl font-bold text-textSecondary mb-4 font-mono"
             >
               I build things for the web.
             </motion.h2>
-            
             <motion.p 
               variants={itemVariants}
-              className="max-w-xl text-textSecondary mb-8"
+              className="max-w-xl text-textSecondary text-lg sm:text-xl mb-8 leading-relaxed font-mono"
             >
-              I'm a full-stack developer specializing in the MERN stack. Currently, I'm focused on
-              building responsive and user-friendly web applications .
+              I'm a full-stack developer specializing in the <span className="text-secondary font-semibold">MERN stack</span>. Currently, I'm focused on building <span className="text-secondary font-semibold">responsive</span> and <span className="text-secondary font-semibold">user-friendly</span> web applications.
             </motion.p>
-            
             <motion.div 
               variants={itemVariants}
-              className="flex space-x-4"
+              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
             >
               <a
                 href="#contact"
-                className="px-8 py-3 border-2 border-secondary text-secondary
-                hover:bg-secondary/10 transition-colors rounded group relative overflow-hidden"
+                className="relative px-8 py-3 border-2 border-secondary text-secondary font-semibold rounded-lg overflow-hidden group transition-colors shadow-lg font-mono hover:bg-secondary/10 hover:text-primary hover:border-secondary/80 focus:outline-none focus:ring-2 focus:ring-secondary/50"
+                style={{ boxShadow: '0 0 16px 0 #f472b6, 0 0 32px 0 #f472b6' }}
               >
                 <span className="relative z-10">Get In Touch</span>
-                <div className="absolute inset-0 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left opacity-10"></div>
+                <span className="absolute inset-0 bg-secondary opacity-10 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
               </a>
               <a
                 href="#projects"
-                className="px-8 py-3 bg-secondary text-primary hover:bg-secondary/90
-                transition-colors rounded group relative overflow-hidden"
+                className="relative px-8 py-3 bg-secondary text-primary font-semibold rounded-lg overflow-hidden group transition-colors shadow-lg font-mono hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary/50"
+                style={{ boxShadow: '0 0 16px 0 #f472b6, 0 0 32px 0 #f472b6' }}
               >
                 <span className="relative z-10">View Projects</span>
-                <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left opacity-10"></div>
+                <span className="absolute inset-0 bg-primary opacity-10 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
               </a>
             </motion.div>
           </motion.div>
-
-          {/* Image Section */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="relative w-64 h-64 mx-auto md:w-80 md:h-80 lg:w-96 lg:h-96">
-              {/* Decorative Elements */}
-              <motion.div
-                animate={{
-                  rotate: 360,
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                className="absolute inset-0 border-2 border-secondary rounded-full"
-              ></motion.div>
-              
-              {/* Profile Image */}
-              <div className="absolute inset-4 rounded-full overflow-hidden border-2 border-secondary/30 bg-primary/90">
-                <img
-                          src={profileImg}  // Update this line
-                  // Replace with your photo path
-                  alt="Mohamed Amine Nasfi"
-                  className="w-full h-full object-cover rounded-full filter brightness-90 hover:brightness-100 transition-all duration-300"
-                />
-                
-                {/* Overlay Effect */}
-                <div className="absolute inset-0 bg-secondary/10 hover:bg-transparent transition-colors duration-300"></div>
-              </div>
-
-              {/* Floating Dots */}
-              {[...Array(3)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  animate={{
-                    y: [0, -10, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.2,
-                  }}
-                  className="absolute w-3 h-3 bg-secondary rounded-full"
-                  style={{
-                    left: `${20 + i * 30}%`,
-                    top: `${80 + i * 5}%`,
-                  }}
-                ></motion.div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </div>
-
       {/* Scroll Down Button */}
       <ScrollDownButton />
-
       {/* Social Links */}
       <motion.div
         initial={{ opacity: 0 }}
