@@ -23,7 +23,7 @@ const Footer = () => {
           </a>
         </div>
         <p className="text-textSecondary text-sm">
-          Built with React & Tailwind CSS by Mohamed Amine Nasfi
+  © 2025 Mohamed Amine Nasfi. Built with React & Tailwind CSS.
         </p>
       </div>
     </footer>
