@@ -306,8 +306,10 @@ const Skills = () => {
             }}
           />
         </div>
+        
       </motion.div>
-      {/* Scroll Down Button */}
+      {/* Scroll Down Button */} 
+      <br /><br />
       <ScrollDown targetId="education" />
     </section>
   );

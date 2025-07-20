@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import ScrollDown from "./ScrollDown";
 
 const About = () => {
   const containerVariants = {

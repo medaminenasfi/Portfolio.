@@ -1,5 +1,9 @@
 import React from 'react';
 import profileImg from '../assets/Screenshot from 2025-07-19 18-44-01.png';
+import Eco from '../assets/ec.png';
+import xml from '../assets/xml.webp';
+import comme from '../assets/ecommerce-online-shopping-vector-illustration_677179-93.webp';
+
 
 const ProjectCard = ({ title, description, technologies, link, image }) => (
   <div className="group relative rounded-2xl overflow-hidden bg-primary/90 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-secondary/10 hover:-translate-y-2 hover:scale-[1.025] transform flex flex-col">
@@ -44,21 +48,21 @@ const Projects = () => {
       description: "A Digital Platform for Eco-Tourism and Sustainable Travel in Tunisia",
       technologies: ["React.js", "Node.js", "Express.js"],
       link: "https://ecotourisme.laghazala.tn/",
-      image: profileImg
+      image: Eco
     },
     {
       title: "XML Generator",
       description: "Application for converting Excel files and SQL queries to XML format",
       technologies: ["React.js", "Node.js", "Excel API"],
       link: "#",
-      image: profileImg
+      image: xml
     },
     {
       title: "Glooms E-Commerce",
       description: "A modern e-commerce platform for clothing across all age groups",
       technologies: ["React.js", "Node.js", "MongoDB", "Express.js"],
       link: "#",
-      image: profileImg
+      image: comme
     },
     {
       title: "TraduCode",
