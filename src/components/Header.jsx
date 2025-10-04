@@ -9,7 +9,7 @@ const Header = () => {
     <header className="fixed w-full bg-primary/90 backdrop-blur-sm z-50">
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          
+
           <a href="#" className="text-secondary font-bold text-xl">
             Mohamed Amine
           </a>
