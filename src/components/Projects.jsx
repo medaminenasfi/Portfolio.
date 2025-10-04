@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import ScrollDown from './ScrollDown';
 import profileImg from '../assets/Screenshot from 2025-07-19 18-44-01.png';
 import Eco from '../assets/ec.png';
 import xml from '../assets/xml.webp';
@@ -73,16 +75,70 @@ const Projects = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <section id="projects" className="section-padding">
-      <div className="container mx-auto">
-        <h2 className="heading">Featured Projects</h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <section id="projects" className="section-padding relative">
+      <motion.div
+        className="container mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <motion.h2 className="heading" variants={itemVariants}>
+          Featured Projects
+        </motion.h2>
+        <motion.div 
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+        >
           {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+            <motion.div key={index} variants={itemVariants}>
+              <ProjectCard {...project} />
+            </motion.div>
           ))}
+        </motion.div>
+        
+        {/* Decorative Background Elements */}
+        <div className="absolute top-1/2 right-0 -z-10">
+          <motion.div
+            className="w-96 h-96 bg-secondary/5 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          />
         </div>
-      </div>
+      </motion.div>
+      
+      {/* Scroll Down Button */}
+      <br/><br/>
+      <ScrollDown targetId="skills" />
     </section>
   );
 };

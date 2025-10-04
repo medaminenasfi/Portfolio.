@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import ScrollDown from "./ScrollDown";
 const About = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -132,7 +133,10 @@ const About = () => {
           />
         </div>
       </motion.div>
-
+      
+      {/* Scroll Down Button */}
+      <br/><br/>
+      <ScrollDown targetId="experience" />
     </section>
   );
 };

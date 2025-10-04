@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import ScrollDown from "./ScrollDown";
 
 const Experience = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -166,6 +167,10 @@ const Experience = () => {
           />
         </div>
       </motion.div>
+      
+      {/* Scroll Down Button */}
+      <br/><br/>
+      <ScrollDown targetId="projects" />
     </section>
   );
 };
