@@ -114,7 +114,7 @@ function buildWeb() {
           >
             <div className="w-full h-full rounded-full overflow-hidden bg-primary/80 flex items-center justify-center">
               <img
-                src={require('../assets/Remove-bg.ai_1726185260494-removebg-preview.png')}
+                src={require('../assets/photo.png')}
                 alt="Mohamed Amine Nasfi"
                 className="w-full h-full object-cover rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_32px_8px_rgba(236,72,153,0.3)]"
                 style={{ background: 'transparent' }}
@@ -164,22 +164,110 @@ function buildWeb() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
             >
-              <a
+              {/* Enhanced Get In Touch Button */}
+              <motion.a
                 href="#contact"
-                className="relative px-8 py-3 border-2 border-secondary text-secondary font-semibold rounded-lg overflow-hidden group transition-colors shadow-lg font-mono hover:bg-secondary/10 hover:text-primary hover:border-secondary/80 focus:outline-none focus:ring-2 focus:ring-secondary/50"
-                style={{ boxShadow: '0 0 16px 0 #f472b6, 0 0 32px 0 #f472b6' }}
+                className="group relative px-8 py-3 bg-gradient-to-r from-transparent to-transparent border-2 border-secondary text-secondary font-bold rounded-xl overflow-hidden transition-all duration-300 font-mono shadow-[0_0_20px_rgba(244,114,182,0.3)] hover:shadow-[0_0_30px_rgba(244,114,182,0.6)] hover:scale-105 focus:outline-none focus:ring-4 focus:ring-secondary/40"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <span className="relative z-10">Get In Touch</span>
-                <span className="absolute inset-0 bg-secondary opacity-10 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-              </a>
-              <a
+                {/* Animated background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-r from-secondary/10 via-secondary/5 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                
+                {/* Button text with icon */}
+                <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+                  <svg className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  Get In Touch
+                </span>
+                
+                {/* Corner accents */}
+                <div className="absolute top-2 right-2 w-2 h-2 border-t-2 border-r-2 border-secondary/60 group-hover:border-white transition-colors duration-300" />
+                <div className="absolute bottom-2 left-2 w-2 h-2 border-b-2 border-l-2 border-secondary/60 group-hover:border-white transition-colors duration-300" />
+              </motion.a>
+
+              {/* Enhanced View Projects Button */}
+              <motion.a
                 href="#projects"
-                className="relative px-8 py-3 bg-secondary text-primary font-semibold rounded-lg overflow-hidden group transition-colors shadow-lg font-mono hover:bg-secondary/90 focus:outline-none focus:ring-2 focus:ring-secondary/50"
-                style={{ boxShadow: '0 0 16px 0 #f472b6, 0 0 32px 0 #f472b6' }}
+                className="group relative px-8 py-3 bg-gradient-to-r from-secondary via-secondary to-secondary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 font-mono shadow-[0_0_20px_rgba(244,114,182,0.4)] hover:shadow-[0_0_40px_rgba(244,114,182,0.8)] hover:scale-105 focus:outline-none focus:ring-4 focus:ring-secondary/40"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <span className="relative z-10">View Projects</span>
-                <span className="absolute inset-0 bg-primary opacity-10 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-              </a>
+                {/* Animated background overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Pulse effect */}
+                <div className="absolute inset-0 bg-white/10 rounded-xl scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                
+                {/* Button text with icon */}
+                <span className="relative z-10 flex items-center gap-2 group-hover:text-primary transition-colors duration-300">
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0l-4 4m4-4l-4-4" />
+                  </svg>
+                  View Projects
+                </span>
+                
+                {/* Geometric decorations */}
+                <div className="absolute top-1 left-1 w-6 h-6 border-2 border-white/30 rounded-full group-hover:border-primary/60 group-hover:rotate-180 transition-all duration-500" />
+                <div className="absolute bottom-1 right-1 w-4 h-4 bg-white/20 rounded group-hover:bg-primary/40 group-hover:rotate-45 transition-all duration-500" />
+              </motion.a>
+
+              {/* Premium Upwork Hire Me Button */}
+              <motion.a
+                href="https://www.upwork.com/freelancers/~017cad0a2a355873b2?mp_source=share"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative px-8 py-3 bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 text-white font-bold rounded-xl overflow-hidden transition-all duration-500 font-mono shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.7)] hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-400/40"
+                whileHover={{ scale: 1.1, rotate: 1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {/* Animated background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Pulsing ring effect */}
+                <div className="absolute inset-0 rounded-xl border-2 border-green-400/50 scale-100 group-hover:scale-110 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                
+                {/* Button text with icon */}
+                <span className="relative z-10 flex items-center gap-2 text-white">
+                  <svg className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3.002-2.439-5.453-5.439-5.453z"/>
+                  </svg>
+                  Hire Me
+                </span>
+                
+                {/* Sparkle effects */}
+                <div className="absolute top-1 right-1 w-2 h-2 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300" />
+                <div className="absolute bottom-1 left-1 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-300" />
+                
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+              </motion.a>
+            </motion.div>
+            
+            {/* Freelance Availability Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+              className="flex items-center justify-center md:justify-start gap-2 mt-6"
+            >
+              <motion.div 
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-3 h-3 bg-green-400 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.6)]"
+              />
+              <span className="text-green-400 font-semibold text-sm font-mono">Available for Freelance Projects</span>
+              <motion.span
+                animate={{ rotate: 360 }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                className="text-green-400"
+              >
+                ⚡
+              </motion.span>
             </motion.div>
           </motion.div>
         </div>

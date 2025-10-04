@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-
 const About = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -133,7 +132,7 @@ const About = () => {
           />
         </div>
       </motion.div>
-    
+
     </section>
   );
 };
