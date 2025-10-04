@@ -43,5 +43,13 @@
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17"
+<<<<<<< HEAD
   }
+=======
+  },
+  "description": "[View Live Portfolio](https://portfolio-5s6c.onrender.com)",
+  "main": "postcss.config.js",
+  "author": "",
+  "license": "ISC"
+>>>>>>> f74db7b (feat: add main components for portfolio including Experience, Footer, Header, Hero, Projects, Skills, and Scroll functionalities)
 }
