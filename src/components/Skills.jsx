@@ -122,37 +122,37 @@ const Skills = () => {
       skills: [
         {
           title: "HTML5",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+          icon: "https://cdn.svgporn.com/logos/html-5.svg",
           level: 95,
         },
         {
           title: "CSS3",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg",
+          icon: "https://cdn.svgporn.com/logos/css-3.svg",
           level: 90,
         },
         {
           title: "JavaScript",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
+          icon: "https://cdn.svgporn.com/logos/javascript.svg",
           level: 90,
         },
         {
           title: "React",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
+          icon: "https://cdn.svgporn.com/logos/react.svg",
           level: 90,
         },
         {
           title: "TypeScript",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
+          icon: "https://cdn.svgporn.com/logos/typescript-icon.svg",
           level: 60,
         },
         {
           title: "Tailwind",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg",
+          icon: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
           level: 85,
         },
         {
           title: "Bootstrap",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-original.svg",
+          icon: "https://cdn.svgporn.com/logos/bootstrap.svg",
           level: 88,
         },
         {
@@ -167,27 +167,27 @@ const Skills = () => {
       skills: [
         {
           title: "Node.js",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg",
+          icon: "https://cdn.svgporn.com/logos/nodejs-icon.svg",
           level: 85,
         },
         {
           title: "Express.js",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg",
+          icon: "https://cdn.svgporn.com/logos/express.svg",
           level: 85,
         },
         {
           title: "Python",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
+          icon: "https://cdn.svgporn.com/logos/python.svg",
           level: 75,
         },
         {
           title: "PHP",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg",
+          icon: "https://cdn.svgporn.com/logos/php.svg",
           level: 80,
         },
         {
           title: "Java",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg",
+          icon: "https://cdn.svgporn.com/logos/java.svg",
           level: 75,
         },
       ],
@@ -197,17 +197,17 @@ const Skills = () => {
       skills: [
         {
           title: "MongoDB",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg",
+          icon: "https://cdn.svgporn.com/logos/mongodb-icon.svg",
           level: 85,
         },
         {
           title: "MySQL",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg",
+          icon: "https://cdn.svgporn.com/logos/mysql-icon.svg",
           level: 80,
         },
         {
           title: "PostgreSQL",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg",
+          icon: "https://cdn.svgporn.com/logos/postgresql.svg",
           level: 75,
         },
       ],
@@ -217,22 +217,22 @@ const Skills = () => {
       skills: [
         {
           title: "Git",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg",
+          icon: "https://cdn.svgporn.com/logos/git-icon.svg",
           level: 85,
         },
         {
           title: "Figma",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/figma/figma-original.svg",
+          icon: "https://cdn.svgporn.com/logos/figma.svg",
           level: 85,
         },
         {
           title: "VS Code",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg",
+          icon: "https://cdn.svgporn.com/logos/visual-studio-code.svg",
           level: 90,
         },
         {
           title: "XAMPP",
-          icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/apache/apache-original.svg",
+          icon: "https://cdn.svgporn.com/logos/xampp.svg",
           level: 90,
         },
       ],
