@@ -5,7 +5,7 @@ import profileImg from '../assets/Screenshot from 2025-07-19 18-44-01.png';
 import Eco from '../assets/ec.png';
 import xml from '../assets/xml.webp';
 import comme from '../assets/ecommerce-online-shopping-vector-illustration_677179-93.webp';
-
+import back from '../assets/Gemini_Generated_Image_hfkfoghfkfoghfkf.png';
 
 const ProjectCard = ({ title, description, technologies, link, image }) => (
   <div className="group relative rounded-2xl overflow-hidden bg-primary/90 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-secondary/10 hover:-translate-y-2 hover:scale-[1.025] transform flex flex-col">
@@ -45,6 +45,13 @@ const ProjectCard = ({ title, description, technologies, link, image }) => (
 
 const Projects = () => {
   const projects = [
+    {
+      title: " Backend –   E-commerce API",
+      description: "A complete e-commerce backend API built with TypeScript.",
+      technologies: ["Node.js", "Typescript", "MongoDb"],
+      link: "https://github.com/medaminenasfi/E-commerce/tree/main/backend",
+      image: back
+    },
         {
       title: "Ecotourisme TN",
       description: "A Digital Platform for Eco-Tourism and Sustainable Travel in Tunisia",
@@ -62,7 +69,7 @@ const Projects = () => {
     {
       title: "Glooms E-Commerce",
       description: "A modern e-commerce platform for clothing across all age groups",
-      technologies: ["React.js", "Node.js", "MongoDB", "Express.js"],
+      technologies: ["React.js", "Node.js", "MongoDB"],
       link: "#",
       image: comme
     },
