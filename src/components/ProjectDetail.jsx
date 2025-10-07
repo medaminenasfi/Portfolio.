@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Github, CheckCircle, Calendar, Code, Lightbulb, Star } from 'lucide-react';
@@ -9,6 +9,11 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   
   const project = location.state?.project;
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   if (!project) {
     return (
