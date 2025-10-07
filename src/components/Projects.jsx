@@ -8,6 +8,11 @@ import Eco from '../assets/ec.png';
 import xml from '../assets/xml.webp';
 import comme from '../assets/ecommerce-online-shopping-vector-illustration_677179-93.webp';
 import back from '../assets/Gemini_Generated_Image_hfkfoghfkfoghfkf.png';
+import wallet from '../assets/wallet.png'
+import bmi from '../assets/bmi.png'
+import wea from '../assets/wea.png'
+
+ 
 
 const ProjectCard = ({ project, onClick }) => (
   <div 
@@ -167,66 +172,64 @@ const Projects = () => {
       github: "https://github.com/medaminenasfi/traducode"
     },
     // Mobile Projects
-    {
-      id: 'bmi-calculator',
-      title: "BMI Calculator",
-      description: "A sleek and intuitive Flutter mobile app for calculating Body Mass Index with health recommendations and progress tracking.",
-      technologies: ["Flutter", "Dart", "SQLite", "Provider", "Material Design", "Charts"],
-      link: "#",
-      image: "https://via.placeholder.com/400x300/1f2937/f59e0b?text=BMI+Calculator",
-      category: 'mobile',
-      features: [
-        "BMI Calculation with Visual Indicators",
-        "Health Status Classification",
-        "Progress Tracking & History",
-        "Weight Goal Setting",
-        "Health Tips & Recommendations",
-        "Dark/Light Theme Toggle",
-        "Metric & Imperial Units"
-      ],
-      challenges: "Creating smooth animations and implementing local data persistence",
-      github: "https://github.com/medaminenasfi/bmi-calculator-flutter"
-    },
-    {
-      id: 'flutter-ecommerce',
-      title: "Flutter E-Commerce",
-      description: "Cross-platform mobile e-commerce application with modern UI/UX design and comprehensive shopping features.",
-      technologies: ["Flutter", "Dart", "Firebase", "Provider", "Stripe API", "Cloud Firestore"],
-      link: "#",
-      image: "https://via.placeholder.com/400x300/1f2937/10b981?text=Flutter+Store",
-      category: 'mobile',
-      features: [
-        "Product Browsing & Search",
-        "Shopping Cart & Checkout",
-        "User Authentication",
-        "Order History & Tracking",
-        "Push Notifications",
-        "Offline Mode Support",
-        "Payment Gateway Integration"
-      ],
-      challenges: "Optimizing performance for large product catalogs and offline functionality",
-      github: "https://github.com/medaminenasfi/flutter-ecommerce"
-    },
-    {
-      id: 'weather-app',
-      title: "Weather Forecast App",
-      description: "Beautiful weather application built with Flutter featuring real-time weather data and 7-day forecasts.",
-      technologies: ["Flutter", "Dart", "REST API", "Geolocator", "Weather API", "Animations"],
-      link: "#",
-      image: "https://via.placeholder.com/400x300/1f2937/3b82f6?text=Weather+App",
-      category: 'mobile',
-      features: [
-        "Current Weather Conditions",
-        "7-Day Weather Forecast",
-        "Location-based Weather",
-        "Weather Maps & Radar",
-        "Severe Weather Alerts",
-        "Multiple City Support",
-        "Beautiful Animations"
-      ],
-      challenges: "Handling location permissions and creating smooth weather animations",
-      github: "https://github.com/medaminenasfi/flutter-weather"
-    }
+{
+  id: 'bmi-calculator',
+  title: "BMI Calculator",
+  description: "A simple and elegant Body Mass Index (BMI) Calculator built using Flutter and Dart. This app allows users to calculate their BMI based on height and weight, providing instant insights about their health category.",
+  technologies: ["Flutter", "Dart", "Material Design"],
+  link: "#",
+  image: bmi ,
+  category: 'mobile',
+  features: [
+    "Easy BMI Calculation",
+    "Supports Metric Units (kg, cm)",
+    "Displays Health Categories: Underweight, Normal, Overweight, Obese",
+    "Clean and Responsive UI"
+  ],
+  challenges: "Ensuring accuracy in BMI calculation and maintaining a clean responsive layout",
+  github: "https://github.com/medaminenasfi/BMI-Calculator"
+},
+{
+  id: 'portefeuille-flutter',
+  title: "Digital Wallet Flutter App",
+  description: "This Flutter application simulates a digital wallet with two main functionalities: a currency converter and a monthly budget simulator. It allows users to manage their finances in a simple and intuitive way.",
+  technologies: ["Flutter", "Dart", "Material Design"],
+  link: "#",
+  image: wallet,
+  category: 'mobile',
+  features: [
+    "Currency converter with fixed rates",
+    "Monthly budget simulator",
+    "Display remaining balance after expenses",
+    "Simple and smooth navigation",
+    "User-friendly interface without external API"
+  ],
+  challenges: "Designing a smooth and intuitive interface with reliable calculations",
+  github: "https://github.com/medaminenasfi/portefeuille-numerique"
+}
+,
+  {
+  id: 'weather-app',
+  title: "Weather Forecast App (Ongoing)",
+  description: "An elegant Flutter application currently under development, providing real-time weather updates and detailed forecasts with a focus on UI animations and performance.",
+  technologies: ["Flutter", "Dart", "REST API", "Geolocator", "Weather API", "Animations"],
+  link: "#",
+  image: wea,
+  category: 'mobile',
+  features: [
+    "Real-time Weather Data (in progress)",
+    "7-Day Forecast (in progress)",
+    "Location-based Weather Detection",
+    "Weather Maps & Radar (planned)",
+    "Severe Weather Alerts (planned)",
+    "Multiple City Support",
+    "Smooth UI Animations"
+  ],
+  status: "In Development",
+  challenges: "Integrating live APIs and optimizing animation performance while managing location permissions.",
+  github: "https://github.com/medaminenasfi/flutter-weather"
+}
+
   ];
 
   const categories = [
