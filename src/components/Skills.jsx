@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ScrollDown from "./ScrollDown";
-import { FaCode, FaServer, FaDatabase, FaTools } from "react-icons/fa";
+import { FaCode, FaServer, FaDatabase, FaTools, FaMobile } from "react-icons/fa";
 
 const SkillCard = ({ title, icon, level }) => {
   const [imageError, setImageError] = React.useState(false);
@@ -87,6 +87,11 @@ const categoryMeta = [
     icon: <FaDatabase className="w-5 h-5 mr-2" />,
     label: "Database",
     description: "Data modeling, storage, and management."
+  },
+  {
+    icon: <FaMobile className="w-5 h-5 mr-2" />,
+    label: "Mobile",
+    description: "Cross-platform mobile app development."
   },
   {
     icon: <FaTools className="w-5 h-5 mr-2" />,
@@ -208,6 +213,36 @@ const Skills = () => {
         {
           title: "PostgreSQL",
           icon: "https://cdn.svgporn.com/logos/postgresql.svg",
+          level: 75,
+        },
+      ],
+    },
+    {
+      category: "Mobile",
+      skills: [
+        {
+          title: "Flutter",
+          icon: "https://cdn.svgporn.com/logos/flutter.svg",
+          level: 85,
+        },
+        {
+          title: "Dart",
+          icon: "https://cdn.svgporn.com/logos/dart.svg",
+          level: 80,
+        },
+        {
+          title: "Firebase",
+          icon: "https://cdn.svgporn.com/logos/firebase.svg",
+          level: 75,
+        },
+        {
+          title: "Android Studio",
+          icon: "https://cdn.svgporn.com/logos/android-icon.svg",
+          level: 70,
+        },
+        {
+          title: "SQLite",
+          icon: "https://cdn.svgporn.com/logos/sqlite.svg",
           level: 75,
         },
       ],

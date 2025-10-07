@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { FaGlobe, FaMobile, FaCode } from 'react-icons/fa';
 import ScrollDown from './ScrollDown';
 import profileImg from '../assets/Screenshot from 2025-07-19 18-44-01.png';
 import Eco from '../assets/ec.png';
@@ -20,6 +21,17 @@ const ProjectCard = ({ project, onClick }) => (
         alt={project.title} 
         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
       />
+    </div>
+    {/* Category Badge */}
+    <div className="absolute top-4 right-4 z-10">
+      <span className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${
+        project.category === 'web' 
+          ? 'bg-blue-500/90 text-white' 
+          : 'bg-green-500/90 text-white'
+      }`}>
+        {project.category === 'web' ? <FaGlobe className="w-3 h-3" /> : <FaMobile className="w-3 h-3" />}
+        {project.category === 'web' ? 'Web' : 'Mobile'}
+      </span>
     </div>
     {/* Card Content */}
     <div className="flex flex-col flex-1 justify-between p-6">
@@ -50,8 +62,10 @@ const ProjectCard = ({ project, onClick }) => (
 const Projects = () => {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeCategory, setActiveCategory] = useState('all');
   
   const projects = [
+    // Web Projects
     {
       id: 'backend-ecommerce',
       title: "Backend – E-commerce API",
@@ -59,6 +73,7 @@ const Projects = () => {
       technologies: ["Node.js", "TypeScript", "MongoDB", "Express.js", "JWT", "Stripe API", "Bcrypt"],
       link: "https://github.com/medaminenasfi/E-commerce/tree/main/backend",
       image: back,
+      category: 'web',
       features: [
         "User Authentication & Authorization",
         "Product CRUD Operations",
@@ -78,6 +93,7 @@ const Projects = () => {
       technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "Leaflet", "Socket.io"],
       link: "https://ecotourisme.laghazala.tn/",
       image: Eco,
+      category: 'web',
       features: [
         "Interactive Tourism Maps",
         "Booking System",
@@ -97,6 +113,7 @@ const Projects = () => {
       technologies: ["React.js", "Node.js", "Excel API", "XML Parser", "Multer", "Joi"],
       link: "#",
       image: xml,
+      category: 'web',
       features: [
         "Excel to XML Conversion",
         "SQL Query to XML Export",
@@ -116,6 +133,7 @@ const Projects = () => {
       technologies: ["React.js", "Node.js", "MongoDB", "Redux", "Tailwind CSS", "Cloudinary"],
       link: "#",
       image: comme,
+      category: 'web',
       features: [
         "Product Catalog with Filters",
         "User Profiles & Wishlists",
@@ -135,6 +153,7 @@ const Projects = () => {
       technologies: ["HTML", "CSS", "JavaScript", "Prism.js", "Monaco Editor", "Regex"],
       link: "#",
       image: profileImg,
+      category: 'web',
       features: [
         "Multi-language Code Generation",
         "Syntax Highlighting",
@@ -146,11 +165,82 @@ const Projects = () => {
       ],
       challenges: "Parsing complex algorithms and generating syntactically correct code",
       github: "https://github.com/medaminenasfi/traducode"
+    },
+    // Mobile Projects
+    {
+      id: 'bmi-calculator',
+      title: "BMI Calculator",
+      description: "A sleek and intuitive Flutter mobile app for calculating Body Mass Index with health recommendations and progress tracking.",
+      technologies: ["Flutter", "Dart", "SQLite", "Provider", "Material Design", "Charts"],
+      link: "#",
+      image: "https://via.placeholder.com/400x300/1f2937/f59e0b?text=BMI+Calculator",
+      category: 'mobile',
+      features: [
+        "BMI Calculation with Visual Indicators",
+        "Health Status Classification",
+        "Progress Tracking & History",
+        "Weight Goal Setting",
+        "Health Tips & Recommendations",
+        "Dark/Light Theme Toggle",
+        "Metric & Imperial Units"
+      ],
+      challenges: "Creating smooth animations and implementing local data persistence",
+      github: "https://github.com/medaminenasfi/bmi-calculator-flutter"
+    },
+    {
+      id: 'flutter-ecommerce',
+      title: "Flutter E-Commerce",
+      description: "Cross-platform mobile e-commerce application with modern UI/UX design and comprehensive shopping features.",
+      technologies: ["Flutter", "Dart", "Firebase", "Provider", "Stripe API", "Cloud Firestore"],
+      link: "#",
+      image: "https://via.placeholder.com/400x300/1f2937/10b981?text=Flutter+Store",
+      category: 'mobile',
+      features: [
+        "Product Browsing & Search",
+        "Shopping Cart & Checkout",
+        "User Authentication",
+        "Order History & Tracking",
+        "Push Notifications",
+        "Offline Mode Support",
+        "Payment Gateway Integration"
+      ],
+      challenges: "Optimizing performance for large product catalogs and offline functionality",
+      github: "https://github.com/medaminenasfi/flutter-ecommerce"
+    },
+    {
+      id: 'weather-app',
+      title: "Weather Forecast App",
+      description: "Beautiful weather application built with Flutter featuring real-time weather data and 7-day forecasts.",
+      technologies: ["Flutter", "Dart", "REST API", "Geolocator", "Weather API", "Animations"],
+      link: "#",
+      image: "https://via.placeholder.com/400x300/1f2937/3b82f6?text=Weather+App",
+      category: 'mobile',
+      features: [
+        "Current Weather Conditions",
+        "7-Day Weather Forecast",
+        "Location-based Weather",
+        "Weather Maps & Radar",
+        "Severe Weather Alerts",
+        "Multiple City Support",
+        "Beautiful Animations"
+      ],
+      challenges: "Handling location permissions and creating smooth weather animations",
+      github: "https://github.com/medaminenasfi/flutter-weather"
     }
   ];
 
+  const categories = [
+    { id: 'all', label: 'All Projects', icon: <FaCode className="w-4 h-4" /> },
+    { id: 'web', label: 'Web Development', icon: <FaGlobe className="w-4 h-4" /> },
+    { id: 'mobile', label: 'Mobile Development', icon: <FaMobile className="w-4 h-4" /> }
+  ];
+
+  const filteredProjects = activeCategory === 'all' 
+    ? projects 
+    : projects.filter(project => project.category === activeCategory);
+
   const itemsPerPage = 3;
-  const totalPages = Math.ceil(projects.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
   
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % totalPages);
@@ -162,11 +252,16 @@ const Projects = () => {
 
   const getCurrentProjects = () => {
     const start = currentIndex * itemsPerPage;
-    return projects.slice(start, start + itemsPerPage);
+    return filteredProjects.slice(start, start + itemsPerPage);
   };
 
   const handleProjectClick = (project) => {
     navigate(`/project/${project.id}`, { state: { project } });
+  };
+
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category);
+    setCurrentIndex(0); // Reset to first page when changing category
   };
 
   const containerVariants = {
@@ -203,31 +298,66 @@ const Projects = () => {
           Featured Projects
         </motion.h2>
         
+        {/* Category Filter Buttons */}
+        <motion.div 
+          className="flex flex-wrap justify-center gap-4 mb-12"
+          variants={itemVariants}
+        >
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => handleCategoryChange(category.id)}
+              className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                activeCategory === category.id
+                  ? 'bg-secondary text-primary shadow-lg shadow-secondary/25 scale-105'
+                  : 'bg-primary/50 text-textSecondary hover:bg-secondary/20 hover:text-secondary'
+              }`}
+            >
+              {category.icon}
+              {category.label}
+              <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${
+                activeCategory === category.id
+                  ? 'bg-primary/20 text-primary'
+                  : 'bg-secondary/20 text-secondary'
+              }`}>
+                {category.id === 'all' 
+                  ? projects.length 
+                  : projects.filter(p => p.category === category.id).length
+                }
+              </span>
+            </button>
+          ))}
+        </motion.div>
+        
         {/* Carousel Container */}
         <div className="relative">
-          {/* Navigation Buttons */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-secondary/20 hover:bg-secondary/40 text-white p-3 rounded-full transition-colors duration-300"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-secondary/20 hover:bg-secondary/40 text-white p-3 rounded-full transition-colors duration-300"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+          {/* Navigation Buttons - Only show if there are multiple pages */}
+          {totalPages > 1 && (
+            <>
+              <button
+                onClick={prevSlide}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-secondary/20 hover:bg-secondary/40 text-white p-3 rounded-full transition-colors duration-300"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <button
+                onClick={nextSlide}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-secondary/20 hover:bg-secondary/40 text-white p-3 rounded-full transition-colors duration-300"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </>
+          )}
 
           {/* Projects Grid */}
           <AnimatePresence mode="wait">
             <motion.div 
-              key={currentIndex}
+              key={`${activeCategory}-${currentIndex}`}
               className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 px-12"
               variants={containerVariants}
               initial="hidden"
@@ -242,19 +372,40 @@ const Projects = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Pagination Dots */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                  index === currentIndex ? 'bg-secondary' : 'bg-secondary/30'
-                }`}
-              />
-            ))}
-          </div>
+          {/* Pagination Dots - Only show if there are multiple pages */}
+          {totalPages > 1 && (
+            <div className="flex justify-center mt-8 space-x-2">
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                    index === currentIndex ? 'bg-secondary' : 'bg-secondary/30'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
+        
+        {/* Empty State */}
+        {filteredProjects.length === 0 && (
+          <motion.div 
+            className="text-center py-20"
+            variants={itemVariants}
+          >
+            <div className="text-6xl mb-4">🚧</div>
+            <h3 className="text-xl font-semibold text-textSecondary mb-2">
+              Coming Soon!
+            </h3>
+            <p className="text-textSecondary">
+              {activeCategory === 'mobile' 
+                ? 'Mobile projects are currently in development.' 
+                : 'No projects found in this category.'
+              }
+            </p>
+          </motion.div>
+        )}
         
         {/* Decorative Background Elements */}
         <div className="absolute top-1/2 right-0 -z-10">

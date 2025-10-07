@@ -152,13 +152,13 @@ function buildWeb() {
               variants={itemVariants}
               className="text-2xl sm:text-4xl font-bold text-textSecondary mb-4 font-mono"
             >
-              I build things for the web.
+              I build things for web & mobile.
             </motion.h2>
             <motion.p 
               variants={itemVariants}
               className="max-w-xl text-textSecondary text-lg sm:text-xl mb-8 leading-relaxed font-mono"
             >
-              I'm a full-stack developer specializing in the <span className="text-secondary font-semibold">MERN stack</span>. Currently, I'm focused on building <span className="text-secondary font-semibold">responsive</span> and <span className="text-secondary font-semibold">user-friendly</span> web applications.
+              I'm a full-stack developer specializing in the <span className="text-secondary font-semibold">MERN stack</span> and <span className="text-secondary font-semibold">Flutter</span>. Currently, I'm focused on building <span className="text-secondary font-semibold">responsive web applications</span> and <span className="text-secondary font-semibold">cross-platform mobile apps</span>.
             </motion.p>
             <motion.div 
               variants={itemVariants}
