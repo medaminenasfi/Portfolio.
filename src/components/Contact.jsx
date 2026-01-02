@@ -157,81 +157,81 @@ const Contact = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="container mx-auto"
+        className="container mx-auto px-4 sm:px-6"
       >
         {/* Section Header */}
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center space-y-4 mb-16"
+          className="text-center space-y-4 mb-12 sm:mb-16"
         >
           <h2 className="heading">Get In Touch</h2>
-          <p className="text-textSecondary max-w-2xl mx-auto">
+          <p className="text-textSecondary max-w-2xl mx-auto text-sm sm:text-base">
             I'm currently looking for new opportunities. Whether you have a question or just want to say hi,
             I'll try my best to get back to you!
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Form */}
           <motion.div
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
-            className="bg-primary/30 p-8 rounded-lg border border-secondary/20"
+            className="bg-primary/30 p-6 sm:p-8 rounded-lg border border-secondary/20"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-textSecondary mb-2">Name *</label>
+                  <label htmlFor="name" className="block text-textSecondary mb-2 text-sm sm:text-base">Name *</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-primary/50 border border-secondary/20 rounded-lg 
-                             focus:outline-none focus:border-secondary text-textPrimary transition-colors"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border border-secondary/20 rounded-lg 
+                             focus:outline-none focus:border-secondary text-textPrimary transition-colors text-sm sm:text-base"
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-textSecondary mb-2">Email *</label>
+                  <label htmlFor="email" className="block text-textSecondary mb-2 text-sm sm:text-base">Email *</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-primary/50 border border-secondary/20 rounded-lg 
-                             focus:outline-none focus:border-secondary text-textPrimary transition-colors"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border border-secondary/20 rounded-lg 
+                             focus:outline-none focus:border-secondary text-textPrimary transition-colors text-sm sm:text-base"
                     required
                   />
                 </div>
               </div>
               <div>
-                <label htmlFor="subject" className="block text-textSecondary mb-2">Subject</label>
+                <label htmlFor="subject" className="block text-textSecondary mb-2 text-sm sm:text-base">Subject</label>
                 <input
                   type="text"
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-primary/50 border border-secondary/20 rounded-lg 
-                           focus:outline-none focus:border-secondary text-textPrimary transition-colors"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border border-secondary/20 rounded-lg 
+                           focus:outline-none focus:border-secondary text-textPrimary transition-colors text-sm sm:text-base"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-textSecondary mb-2">Message *</label>
+                <label htmlFor="message" className="block text-textSecondary mb-2 text-sm sm:text-base">Message *</label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows="6"
-                  className="w-full px-4 py-3 bg-primary/50 border border-secondary/20 rounded-lg 
-                           focus:outline-none focus:border-secondary text-textPrimary transition-colors"
+                  rows="5"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border border-secondary/20 rounded-lg 
+                           focus:outline-none focus:border-secondary text-textPrimary transition-colors text-sm sm:text-base resize-none"
                   required
                 ></textarea>
               </div>
@@ -240,8 +240,8 @@ const Contact = () => {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`w-full px-8 py-4 bg-secondary text-primary font-semibold rounded-lg
-                         transition-all duration-300 relative overflow-hidden group
+                className={`w-full px-6 sm:px-8 py-3 sm:py-4 bg-secondary text-primary font-semibold rounded-lg
+                         transition-all duration-300 relative overflow-hidden group text-sm sm:text-base
                          ${isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:bg-secondary/90'}`}
               >
                 <span className="relative z-10">
@@ -250,27 +250,27 @@ const Contact = () => {
                 <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 
                               transition-transform origin-left opacity-10"></div>
               </motion.button>
-            </form>
 
-            {/* Status Messages */}
-            {submitStatus === 'success' && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400 text-center"
-              >
-                Message sent successfully! I'll get back to you soon.
-              </motion.div>
-            )}
-            {submitStatus === 'error' && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-center"
-              >
-                {errorMessage}
-              </motion.div>
-            )}
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400 text-center"
+                >
+                  Message sent successfully! I'll get back to you soon.
+                </motion.div>
+              )}
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-center"
+                >
+                  {errorMessage}
+                </motion.div>
+              )}
+            </form>
           </motion.div>
 
           {/* Contact Info */}
@@ -278,10 +278,10 @@ const Contact = () => {
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
             {/* Contact Methods */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={index}
@@ -289,27 +289,27 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-primary/30 p-6 rounded-lg border border-secondary/20 hover:border-secondary/50 
+                  className="bg-primary/30 p-4 sm:p-6 rounded-lg border border-secondary/20 hover:border-secondary/50 
                            transition-all group"
                 >
                   {info.link ? (
-                    <a href={info.link} className="flex items-center space-x-4">
-                      <div className="text-secondary group-hover:text-secondary/80 transition-colors">
+                    <a href={info.link} className="flex items-center space-x-3 sm:space-x-4">
+                      <div className="text-secondary group-hover:text-secondary/80 transition-colors flex-shrink-0">
                         {info.icon}
                       </div>
-                      <div>
-                        <h3 className="text-textPrimary font-medium">{info.title}</h3>
-                        <p className="text-textSecondary group-hover:text-secondary transition-colors">
+                      <div className="min-w-0">
+                        <h3 className="text-textPrimary font-medium text-sm sm:text-base truncate">{info.title}</h3>
+                        <p className="text-textSecondary group-hover:text-secondary transition-colors text-xs sm:text-sm truncate">
                           {info.value}
                         </p>
                       </div>
                     </a>
                   ) : (
-                    <div className="flex items-center space-x-4">
-                      <div className="text-secondary">{info.icon}</div>
-                      <div>
-                        <h3 className="text-textPrimary font-medium">{info.title}</h3>
-                        <p className="text-textSecondary">{info.value}</p>
+                    <div className="flex items-center space-x-3 sm:space-x-4">
+                      <div className="text-secondary flex-shrink-0">{info.icon}</div>
+                      <div className="min-w-0">
+                        <h3 className="text-textPrimary font-medium text-sm sm:text-base truncate">{info.title}</h3>
+                        <p className="text-textSecondary text-xs sm:text-sm truncate">{info.value}</p>
                       </div>
                     </div>
                   )}
@@ -322,10 +322,10 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-primary/30 p-8 rounded-xl border border-secondary/20 backdrop-blur-sm"
+              className="bg-primary/30 p-6 sm:p-8 rounded-xl border border-secondary/20 backdrop-blur-sm"
             >
-              <h3 className="text-2xl font-bold text-secondary mb-8 text-center">Connect With Me</h3>
-              <div className="flex justify-center gap-6 mb-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-secondary mb-6 sm:mb-8 text-center">Connect With Me</h3>
+              <div className="flex justify-center gap-4 sm:gap-6 mb-4 sm:mb-6">
                 {socialLinks.map((social, index) => (
                   <motion.div key={index} className="relative group">
                     <motion.a
@@ -342,7 +342,7 @@ const Contact = () => {
                         transition: { duration: 0.3 }
                       }}
                       whileTap={{ scale: 0.9 }}
-                      className={`relative p-4 rounded-xl text-textSecondary transition-all duration-500 border-2
+                      className={`relative p-3 sm:p-4 rounded-xl text-textSecondary transition-all duration-500 border-2
                                overflow-hidden group-hover:border-transparent
                                ${social.isFreelance 
                                  ? `bg-gradient-to-br ${social.color}/20 border-green-400/50 ${social.hoverColor}` 
@@ -390,7 +390,7 @@ const Contact = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="p-6 bg-gradient-to-r from-green-500/15 via-emerald-500/15 to-blue-500/15 border-2 border-green-400/40 rounded-xl backdrop-blur-sm relative overflow-hidden"
+                className="p-4 sm:p-6 bg-gradient-to-r from-green-500/15 via-emerald-500/15 to-blue-500/15 border-2 border-green-400/40 rounded-xl backdrop-blur-sm relative overflow-hidden"
               >
                 {/* Animated background pattern */}
                 <div className="absolute inset-0 opacity-10">
@@ -398,23 +398,23 @@ const Contact = () => {
                 </div>
                 
                 <div className="relative z-10">
-                  <div className="flex items-center justify-center gap-4 mb-3">
+                  <div className="flex items-center justify-center gap-3 sm:gap-4 mb-3">
                     <motion.div 
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
-                      className="w-4 h-4 bg-green-400 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.6)]"
+                      className="w-3 h-3 sm:w-4 sm:h-4 bg-green-400 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.6)]"
                     ></motion.div>
-                    <p className="text-green-400 font-bold text-lg">Available for Freelance Projects</p>
+                    <p className="text-green-400 font-bold text-base sm:text-lg text-center">Available for Freelance Projects</p>
                     <motion.div 
                       animate={{ rotate: 360 }}
                       transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      className="text-green-400 text-xl"
+                      className="text-green-400 text-lg sm:text-xl"
                     >
                       ⚡
                     </motion.div>
                   </div>
                   <div className="text-center">
-                    <p className="text-textSecondary text-sm leading-relaxed">
+                    <p className="text-textSecondary text-xs sm:text-sm leading-relaxed">
                       🚀 Ready to bring your ideas to life with <span className="text-green-400 font-semibold">full-stack development expertise</span>
                     </p>
                     <p className="text-xs text-textSecondary/80 mt-2">

@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import { motion } from 'framer-motion';
 
 const ScrollDownButton = () => {
@@ -72,15 +72,18 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col md:flex-row items-center justify-center section-padding relative bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] overflow-hidden w-full" id="home">
+    <section className="min-h-screen flex items-center justify-center section-padding relative bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] overflow-hidden w-full" id="home">
       {/* Animated Coding Background */}
-      <div className="absolute inset-0 -z-10 pointer-events-none flex items-center justify-center w-full">
+      <div className="absolute inset-0 -z-10 pointer-events-none flex items-center justify-center w-full overflow-hidden">
         <motion.pre
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: [0.12, 0.18, 0.12], y: [40, 0, 40] }}
           transition={{ duration: 12, repeat: Infinity, repeatType: 'reverse' }}
-          className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-mono text-secondary/70 whitespace-pre leading-snug select-none max-w-4xl mx-auto px-2 opacity-20"
-          style={{ userSelect: 'none' }}
+          className="text-xs font-mono text-secondary/70 whitespace-pre leading-snug select-none opacity-20 px-2 sm:px-4 max-w-full sm:max-w-2xl md:max-w-4xl"
+          style={{ 
+            userSelect: 'none',
+            fontSize: 'clamp(0.5rem, 1.5vw, 0.75rem)'
+          }}
         >{`
 const hero = {
   name: "Mohamed Amine Nasfi",
@@ -92,23 +95,25 @@ const hero = {
 };
 
 function buildWeb() {
-  return hero.stack.map(tech => \`Building with \${tech}\`);
+  return hero.stack.map(tech => "Building with " + tech);
 }
+
+console.log("Building amazing web experiences...");
 `}</motion.pre>
       </div>
       <div className="flex flex-col md:flex-row-reverse items-center justify-center w-full gap-10 md:gap-20 px-4 z-10">
         {/* Premium Professional Photo Design - Right Side, Larger */}
-        <div className="relative flex flex-col items-center justify-center mb-8 md:mb-0 md:mt-0 mt-8">
+        <div className="relative flex flex-col items-center justify-center mb-8 md:mb-0 md:mt-0 mt-8 w-full max-w-sm">
           {/* Animated Blurred Gradient Accent */}
           <motion.div
-            className="absolute -z-10 top-1/2 left-1/2 w-96 h-96 md:w-[32rem] md:h-[32rem] rounded-full blur-2xl bg-gradient-to-br from-secondary/30 via-primary/30 to-secondary/10"
+            className="absolute -z-10 top-1/2 left-1/2 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[32rem] lg:h-[32rem] rounded-full blur-2xl bg-gradient-to-br from-secondary/30 via-primary/30 to-secondary/10"
             style={{ transform: 'translate(-50%, -50%)' }}
             animate={{ scale: [1, 1.08, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
           />
           {/* Animated Gradient Border Ring */}
           <motion.div
-            className="relative w-72 h-72 md:w-96 md:h-96 rounded-full p-1 bg-gradient-to-tr from-secondary via-primary to-secondary shadow-2xl"
+            className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full p-1 bg-gradient-to-tr from-secondary via-primary to-secondary shadow-2xl"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 6, repeat: Infinity, repeatType: 'reverse' }}
           >
@@ -162,12 +167,12 @@ function buildWeb() {
             </motion.p>
             <motion.div 
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start flex-wrap"
             >
               {/* Enhanced Get In Touch Button */}
               <motion.a
                 href="#contact"
-                className="group relative px-8 py-3 bg-gradient-to-r from-transparent to-transparent border-2 border-secondary text-secondary font-bold rounded-xl overflow-hidden transition-all duration-300 font-mono shadow-[0_0_20px_rgba(244,114,182,0.3)] hover:shadow-[0_0_30px_rgba(244,114,182,0.6)] hover:scale-105 focus:outline-none focus:ring-4 focus:ring-secondary/40"
+                className="group relative px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-transparent to-transparent border-2 border-secondary text-secondary font-bold rounded-xl overflow-hidden transition-all duration-300 font-mono shadow-[0_0_20px_rgba(244,114,182,0.3)] hover:shadow-[0_0_30px_rgba(244,114,182,0.6)] hover:scale-105 focus:outline-none focus:ring-4 focus:ring-secondary/40 text-sm sm:text-base"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -266,14 +271,56 @@ function buildWeb() {
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                 className="text-green-400"
               >
-                ⚡
+                
               </motion.span>
             </motion.div>
           </motion.div>
         </div>
       </div>
       {/* Scroll Down Button */}
-      <ScrollDownButton />
+      <div className="relative">
+        <ScrollDownButton />
+      </div>
+      {/* Scroll Down Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.5 }}
+          className="flex flex-col items-center space-y-2 cursor-pointer"
+          onClick={() => {
+            const nextSection = document.getElementById('about');
+            if (nextSection) {
+              nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+        >
+          <motion.div
+            animate={{
+              y: [0, 8, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+            className="w-6 h-10 border-2 border-secondary rounded-full flex justify-center p-1"
+          >
+            <motion.div
+              animate={{
+                y: [0, 12, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+              className="w-1.5 h-3 bg-secondary rounded-full"
+            />
+          </motion.div>
+          <span className="text-secondary text-xs tracking-wider animate-pulse">Scroll</span>
+        </motion.div>
+      </div>
       {/* Social Links */}
       <motion.div
         initial={{ opacity: 0 }}

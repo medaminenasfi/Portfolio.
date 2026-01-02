@@ -16,11 +16,11 @@ import wea from '../assets/wea.png'
 
 const ProjectCard = ({ project, onClick }) => (
   <div 
-    className="group relative rounded-2xl overflow-hidden bg-primary/90 shadow-lg hover:shadow-2xl transition-all duration-300 border border-secondary/10 hover:-translate-y-2 hover:scale-[1.025] transform flex flex-col cursor-pointer"
+    className="group relative rounded-2xl overflow-hidden bg-primary/90 shadow-lg hover:shadow-2xl transition-all duration-300 border border-secondary/10 hover:-translate-y-1 sm:hover:-translate-y-2 hover:scale-[1.02] sm:hover:scale-[1.025] transform flex flex-col cursor-pointer w-full"
     onClick={() => onClick(project)}
   >
     {/* Project Image */}
-    <div className="w-full h-64 overflow-hidden rounded-t-2xl">
+    <div className="w-full h-48 sm:h-56 md:h-64 overflow-hidden rounded-t-2xl">
       <img 
         src={project.image} 
         alt={project.title} 
@@ -28,8 +28,8 @@ const ProjectCard = ({ project, onClick }) => (
       />
     </div>
     {/* Category Badge */}
-    <div className="absolute top-4 right-4 z-10">
-      <span className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${
+    <div className="absolute top-3 right-3 z-10">
+      <span className={`px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${
         project.category === 'web' 
           ? 'bg-blue-500/90 text-white' 
           : 'bg-green-500/90 text-white'
@@ -39,25 +39,25 @@ const ProjectCard = ({ project, onClick }) => (
       </span>
     </div>
     {/* Card Content */}
-    <div className="flex flex-col flex-1 justify-between p-6">
-      <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-      <p className="text-textPrimary mb-4 line-clamp-3">{project.description}</p>
-      <div className="flex flex-wrap gap-2 mb-4">
+    <div className="flex flex-col flex-1 justify-between p-4 sm:p-6">
+      <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 line-clamp-2">{project.title}</h3>
+      <p className="text-textPrimary mb-4 line-clamp-2 sm:line-clamp-3 text-sm sm:text-base">{project.description}</p>
+      <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
         {project.technologies.slice(0, 3).map((tech, index) => (
           <span
             key={index}
-            className="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm"
+            className="px-2 py-1 sm:px-3 sm:py-1 bg-secondary/20 text-secondary rounded-full text-xs sm:text-sm"
           >
             {tech}
           </span>
         ))}
         {project.technologies.length > 3 && (
-          <span className="px-3 py-1 bg-secondary/10 text-secondary/70 rounded-full text-sm">
+          <span className="px-2 py-1 sm:px-3 sm:py-1 bg-secondary/10 text-secondary/70 rounded-full text-xs sm:text-sm">
             +{project.technologies.length - 3} more
           </span>
         )}
       </div>
-      <button className="inline-block px-6 py-2 bg-secondary text-primary rounded-lg hover:bg-secondary/90 transition-colors text-center font-semibold shadow-md">
+      <button className="inline-block px-4 py-2 sm:px-6 sm:py-2 bg-secondary text-primary rounded-lg hover:bg-secondary/90 transition-colors text-center font-semibold shadow-md text-sm sm:text-base">
         View Details
       </button>
     </div>
@@ -242,8 +242,20 @@ const Projects = () => {
     ? projects 
     : projects.filter(project => project.category === activeCategory);
 
-  const itemsPerPage = 3;
-  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+  const itemsPerPage = 1; // Mobile: 1 item
+  const itemsPerPageMd = 2; // Tablet: 2 items
+  const itemsPerPageLg = 3; // Desktop: 3 items
+  
+  const getItemsPerPage = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) return itemsPerPageLg;
+      if (window.innerWidth >= 768) return itemsPerPageMd;
+    }
+    return itemsPerPage;
+  };
+  
+  const currentItemsPerPage = getItemsPerPage();
+  const totalPages = Math.ceil(filteredProjects.length / currentItemsPerPage);
   
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % totalPages);
@@ -254,8 +266,8 @@ const Projects = () => {
   };
 
   const getCurrentProjects = () => {
-    const start = currentIndex * itemsPerPage;
-    return filteredProjects.slice(start, start + itemsPerPage);
+    const start = currentIndex * currentItemsPerPage;
+    return filteredProjects.slice(start, start + currentItemsPerPage);
   };
 
   const handleProjectClick = (project) => {
@@ -303,14 +315,14 @@ const Projects = () => {
         
         {/* Category Filter Buttons */}
         <motion.div 
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12"
           variants={itemVariants}
         >
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+              className={`flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base ${
                 activeCategory === category.id
                   ? 'bg-secondary text-primary shadow-lg shadow-secondary/25 scale-105'
                   : 'bg-primary/50 text-textSecondary hover:bg-secondary/20 hover:text-secondary'
@@ -333,24 +345,24 @@ const Projects = () => {
         </motion.div>
         
         {/* Carousel Container */}
-        <div className="relative">
+        <div className="relative px-4 sm:px-6 lg:px-12">
           {/* Navigation Buttons - Only show if there are multiple pages */}
           {totalPages > 1 && (
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-secondary/20 hover:bg-secondary/40 text-white p-3 rounded-full transition-colors duration-300"
+                className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 bg-secondary/20 hover:bg-secondary/40 text-white p-2 sm:p-3 rounded-full transition-colors duration-300"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
               
               <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-secondary/20 hover:bg-secondary/40 text-white p-3 rounded-full transition-colors duration-300"
+                className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 bg-secondary/20 hover:bg-secondary/40 text-white p-2 sm:p-3 rounded-full transition-colors duration-300"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
@@ -361,7 +373,7 @@ const Projects = () => {
           <AnimatePresence mode="wait">
             <motion.div 
               key={`${activeCategory}-${currentIndex}`}
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 px-12"
+              className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
               variants={containerVariants}
               initial="hidden"
               animate="visible"

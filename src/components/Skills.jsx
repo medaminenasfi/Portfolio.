@@ -17,22 +17,71 @@ const SkillCard = ({ title, icon, level }) => {
     setImageLoaded(true);
   };
 
+  // Generate fallback icon based on technology name
+  const getFallbackIcon = (title) => {
+    const iconMap = {
+      'RESTful API': '🔌',
+      'JWT Auth': '🔑',
+      'Nodemailer': '📧',
+      'JSON': '📄',
+      'API Integration': '🔗',
+      'AI APIs': '🤖',
+      'Meteo APIs': '🌤️',
+      'Webhooks': '🪝',
+      'Postman': '📮',
+      'VPS Deployment': '🖥️',
+      'Chrome DevTools': '🔧',
+      'React Native': '📱',
+      'Android Studio': '📲',
+      'Flutter': '🦋',
+      'Dart': '🎯',
+      'Firebase': '🔥',
+      'Docker': '🐳',
+      'Nginx': '🌐',
+      'AWS': '☁️',
+      'Git': '📦',
+      'Figma': '🎨',
+      'VS Code': '💻',
+      'XAMPP': '🔧',
+      'MongoDB': '🍃',
+      'MySQL': '🐬',
+      'PostgreSQL': '🐘',
+      'Redis': '⚡',
+      'Node.js': '🟢',
+      'Express.js': '🚂',
+      'Python': '🐍',
+      'PHP': '🐘',
+      'Java': '☕',
+      'HTML5': '🌐',
+      'CSS3': '🎨',
+      'JavaScript': '🟨',
+      'React': '⚛️',
+      'TypeScript': '📘',
+      'Next.js': '▲',
+      'Tailwind': '🌊',
+      'Bootstrap': '🅱️',
+      'Leaflet.js': '🗺️'
+    };
+    
+    return iconMap[title] || '⚡';
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       whileHover={{ y: -5 }}
-      className="bg-primary/30 p-4 rounded-lg border border-secondary/20 hover:border-secondary/50 
-                transition-all duration-300 hover:shadow-lg hover:shadow-secondary/10"
+      className="bg-primary/30 p-3 sm:p-4 rounded-lg border border-secondary/20 hover:border-secondary/50 
+                transition-all duration-300 hover:shadow-lg hover:shadow-secondary/10 w-full"
     >
-      <div className="flex flex-col items-center space-y-3">
-        <div className="relative group w-12 h-12 flex items-center justify-center">
+      <div className="flex flex-col items-center space-y-2 sm:space-y-3">
+        <div className="relative group w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
           {!imageError && (
             <img
               src={icon}
               alt={title}
-              className={`w-12 h-12 object-contain filter brightness-90 group-hover:brightness-100
+              className={`w-10 h-10 sm:w-12 sm:h-12 object-contain filter brightness-90 group-hover:brightness-100
                          transition-all duration-300 transform group-hover:scale-110 ${
                            imageLoaded ? 'opacity-100' : 'opacity-0'
                          }`}
@@ -43,9 +92,9 @@ const SkillCard = ({ title, icon, level }) => {
             />
           )}
           {(imageError || !imageLoaded) && (
-            <div className="w-12 h-12 bg-gradient-to-br from-secondary/20 to-secondary/30 rounded-lg flex items-center justify-center border border-secondary/40">
-              <span className="text-secondary font-bold text-xs uppercase">
-                {title.includes('.') ? title.split('.')[0].substring(0, 2) : title.substring(0, 2)}
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-secondary/20 to-secondary/30 rounded-lg flex items-center justify-center border border-secondary/40">
+              <span className="text-secondary font-bold text-lg sm:text-xl">
+                {getFallbackIcon(title)}
               </span>
             </div>
           )}
@@ -54,10 +103,10 @@ const SkillCard = ({ title, icon, level }) => {
                         group-hover:opacity-100 transition-opacity duration-300"
           ></div>
         </div>
-        <h3 className="text-base font-medium text-textPrimary group-hover:text-secondary transition-colors text-center">
+        <h3 className="text-sm sm:text-base font-medium text-textPrimary group-hover:text-secondary transition-colors text-center">
           {title}
         </h3>
-        <div className="w-full h-1.5 bg-primary/50 rounded-full overflow-hidden">
+        <div className="w-full h-1 sm:h-1.5 bg-primary/50 rounded-full overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: `${level}%` }}
@@ -66,7 +115,7 @@ const SkillCard = ({ title, icon, level }) => {
             className="h-full bg-secondary rounded-full"
           />
         </div>
-        <span className="text-sm text-textSecondary">{level}%</span>
+        <span className="text-xs sm:text-sm text-textSecondary">{level}%</span>
       </div>
     </motion.div>
   );
@@ -100,23 +149,28 @@ const categoryMeta = [
   },
 ];
 
-const SkillSection = ({ category, skills, description }) => (
-  <div className="space-y-6">
-    <div className="flex items-center space-x-4">
-      <h3 className="text-xl font-semibold text-secondary flex items-center">
-        {categoryMeta.find((c) => c.label === category)?.icon}
-        {category}
-      </h3>
-      <div className="h-px flex-grow bg-secondary/20"></div>
+const SkillSection = ({ category, skills, description }) => {
+  const getGridCols = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) return 'grid-cols-3 lg:grid-cols-4';
+      if (window.innerWidth >= 768) return 'grid-cols-2 md:grid-cols-3';
+    }
+    return 'grid-cols-2';
+  };
+
+  return (
+    <div className="space-y-6">
+      <p className="text-textSecondary text-center max-w-2xl mx-auto text-sm sm:text-base">
+        {description}
+      </p>
+      <div className={`grid ${getGridCols()} gap-3 sm:gap-4 md:gap-6`}>
+        {skills.map((skill, index) => (
+          <SkillCard key={index} {...skill} />
+        ))}
+      </div>
     </div>
-    <p className="text-textSecondary mb-2 text-sm">{description}</p>
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      {skills.map((skill, skillIndex) => (
-        <SkillCard key={skillIndex} {...skill} />
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
 const Skills = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -149,6 +203,11 @@ const Skills = () => {
           title: "TypeScript",
           icon: "https://cdn.svgporn.com/logos/typescript-icon.svg",
           level: 60,
+        },
+        {
+          title: "Next.js",
+          icon: "https://cdn.svgporn.com/logos/nextjs-icon.svg",
+          level: 85,
         },
         {
           title: "Tailwind",
@@ -195,6 +254,26 @@ const Skills = () => {
           icon: "https://cdn.svgporn.com/logos/java.svg",
           level: 75,
         },
+        {
+          title: "Next.js API",
+          icon: "https://cdn.svgporn.com/logos/nextjs-icon.svg",
+          level: 80,
+        },
+        {
+          title: "RESTful API",
+          icon: "https://cdn.svgporn.com/logos/api-icon.svg",
+          level: 90,
+        },
+        {
+          title: "JWT Auth",
+          icon: "https://jwt.io/img/logo.svg",
+          level: 85,
+        },
+        {
+          title: "Nodemailer",
+          icon: "https://nodemailer.com/nodemailer.svg",
+          level: 80,
+        },
       ],
     },
     {
@@ -214,6 +293,16 @@ const Skills = () => {
           title: "PostgreSQL",
           icon: "https://cdn.svgporn.com/logos/postgresql.svg",
           level: 75,
+        },
+        {
+          title: "Redis",
+          icon: "https://cdn.svgporn.com/logos/redis.svg",
+          level: 70,
+        },
+        {
+          title: "JSON",
+          icon: "https://www.json.org/img/json160.gif",
+          level: 95,
         },
       ],
     },
@@ -270,7 +359,57 @@ const Skills = () => {
           icon: "https://cdn.svgporn.com/logos/xampp.svg",
           level: 90,
         },
-            {
+        {
+          title: "Docker",
+          icon: "https://cdn.svgporn.com/logos/docker-icon.svg",
+          level: 80,
+        },
+        {
+          title: "Nginx",
+          icon: "https://cdn.svgporn.com/logos/nginx-icon.svg",
+          level: 75,
+        },
+        {
+          title: "AWS",
+          icon: "https://cdn.svgporn.com/logos/aws-2.svg",
+          level: 70,
+        },
+        {
+          title: "VPS Deployment",
+          icon: "https://cdn.svgporn.com/logos/linode-icon.svg",
+          level: 85,
+        },
+        {
+          title: "Chrome DevTools",
+          icon: "https://cdn.svgporn.com/logos/chrome-devtools-icon.svg",
+          level: 90,
+        },
+        {
+          title: "AI APIs",
+          icon: "https://cdn.svgporn.com/logos/openai-icon.svg",
+          level: 75,
+        },
+        {
+          title: "Meteo APIs",
+          icon: "https://cdn.svgporn.com/logos/openweathermap-logo.svg",
+          level: 80,
+        },
+        {
+          title: "Webhooks",
+          icon: "https://cdn.svgporn.com/logos/webhook-icon.svg",
+          level: 85,
+        },
+        {
+          title: "Postman",
+          icon: "https://www.postman.com/icon/postman-icon.svg",
+          level: 90,
+        },
+        {
+          title: "React Native",
+          icon: "https://cdn.svgporn.com/logos/react-native-icon.svg",
+          level: 75,
+        },
+        {
           title: "Android Studio",
           icon: "https://cdn.svgporn.com/logos/android-icon.svg",
           level: 70,
@@ -316,30 +455,29 @@ const Skills = () => {
           Skills & Technologies
         </motion.h2>
         <div className="w-full">
-          <div className="flex flex-col md:flex-row gap-8 w-full">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 w-full">
             {/* Tab Buttons */}
             <motion.div
-              className="md:w-56 flex md:flex-col overflow-x-auto md:overflow-x-visible scrollbar-hide"
+              className="lg:w-64 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible scrollbar-hide"
               variants={itemVariants}
             >
               {skillCategories.map((cat, index) => (
                 <button
                   key={cat.category}
                   onClick={() => setActiveTab(index)}
-                  className={`relative flex items-center px-4 py-3 text-sm font-medium text-left border-b-2 md:border-b-0 md:border-l-4 whitespace-nowrap transition-all duration-300 rounded-lg mb-2 md:mb-0 md:mr-0 mr-2
+                  className={`relative flex items-center px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-left border-b-2 lg:border-b-0 lg:border-l-4 whitespace-nowrap transition-all duration-300 rounded-lg mb-2 lg:mb-0 lg:mr-0 mr-2 sm:mr-3
                     ${
                       activeTab === index
                         ? "text-secondary border-secondary bg-secondary/10 shadow-md"
                         : "text-textSecondary border-transparent hover:text-secondary hover:bg-secondary/5"
                     }`}
-                  style={{ minWidth: "160px" }}
                 >
                   {/* Accent bar for active tab */}
                   {activeTab === index && (
-                    <span className="absolute left-0 top-0 h-full w-1 bg-secondary rounded-r-lg md:block hidden transition-all duration-300" />
+                    <span className="absolute left-0 top-0 h-full w-1 bg-secondary rounded-r-lg hidden lg:block transition-all duration-300" />
                   )}
-                  {categoryMeta[index].icon}
-                  {cat.category}
+                  <span className="mr-2">{categoryMeta[index].icon}</span>
+                  <span className="truncate">{cat.category}</span>
                 </button>
               ))}
             </motion.div>
@@ -379,7 +517,6 @@ const Skills = () => {
         
       </motion.div>
       {/* Scroll Down Button */} 
-      <br /><br />
       <ScrollDown targetId="education" />
     </section>
   );
