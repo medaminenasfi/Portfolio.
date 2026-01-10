@@ -457,11 +457,7 @@ const Skills = () => {
           icon: "https://cdn.svgporn.com/logos/firebase.svg",
           level: 75,
         },
-        {
-          title: "Android Studio",
-          icon: "https://cdn.svgporn.com/logos/android-icon.svg",
-          level: 70,
-        },
+  
   
       ],
     },
@@ -487,6 +483,11 @@ const Skills = () => {
           title: "VS Code",
           icon: "https://cdn.svgporn.com/logos/visual-studio-code.svg",
           level: 90,
+        },
+              {
+          title: "Android Studio",
+          icon: "https://cdn.svgporn.com/logos/android-icon.svg",
+          level: 70,
         },
         {
           title: "XAMPP",

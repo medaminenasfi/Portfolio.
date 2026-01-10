@@ -53,18 +53,7 @@ const Experience = () => {
         "Collaborated with design team on UI/UX improvements",
       ],
     },
-    {
-      company: "IDEAL CLUB ESSAT",
-      title: "Web Development Training",
-      date: "02/2023 - 02/2024",
-      location: "Gabes, Tunisia",
-      duties: [
-        "Participated in hands-on web development projects",
-        "Improved communication and teamwork skills",
-        "Engaged in leadership development activities",
-        "Learned modern web development practices",
-      ],
-    },
+
   ];
 
   const containerVariants = {
