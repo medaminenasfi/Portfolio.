@@ -2,6 +2,20 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ScrollDown from "./ScrollDown";
 import { FaCode, FaServer, FaDatabase, FaTools, FaMobile, FaCloud } from "react-icons/fa";
+import expressLogo from "../assets/expressjs.svg";
+import api from "../assets/apipng.png";
+import jwt from "../assets/jwt.png";
+import node from "../assets/n2-2.webp";
+import met from "../assets/met.png";
+import web from "../assets/web.png";
+import lite from "../assets/Sqlite-square-icon.svg.png";
+import dev from "../assets/dev-removebg-preview.png";
+import post from "../assets/postman-icon.svg";
+import action from "../assets/github-actions-logo-png_seeklogo-428028.png";
+import nginx from "../assets/3030173.webp";
+import AWS from "../assets/Amazon_Web_Services_Logo.svg.png";
+import VPS from "../assets/8047704.png";
+
 
 const SkillCard = ({ title, icon, level }) => {
   const [imageError, setImageError] = React.useState(false);
@@ -130,29 +144,6 @@ const SkillCard = ({ title, icon, level }) => {
         >
           {title}
         </motion.h3>
-        <div className="w-full h-1 sm:h-1.5 bg-primary/50 rounded-full overflow-hidden relative">
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: `${level}%` }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="h-full bg-secondary rounded-full relative"
-          >
-            {/* Animated shine effect */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-              animate={{ x: ['-100%', '100%'] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            />
-          </motion.div>
-        </div>
-        <motion.span 
-          className="text-xs sm:text-sm text-textSecondary font-medium"
-          whileHover={{ scale: 1.1, color: "#64ffda" }}
-          transition={{ duration: 0.2 }}
-        >
-          {level}%
-        </motion.span>
       </div>
     </motion.div>
   );
@@ -265,7 +256,7 @@ const Skills = () => {
         },
         {
           title: "Leaflet.js",
-          icon: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+          icon: "https://leafletjs.com/docs/images/logo.png",
           level: 90,
         },
       ],
@@ -280,7 +271,7 @@ const Skills = () => {
         },
         {
           title: "Express.js",
-          icon: "https://cdn.svgporn.com/logos/express.svg",
+          icon: expressLogo,
           level: 85,
         },
             {
@@ -306,32 +297,32 @@ const Skills = () => {
         },
         {
           title: "RESTful API",
-          icon: "https://cdn.svgporn.com/logos/api-icon.svg",
+          icon: api,
           level: 90,
         },
         {
           title: "JWT Auth",
-          icon: "https://jwt.io/img/logo.svg",
+          icon: jwt,
           level: 85,
         },
         {
           title: "Nodemailer",
-          icon: "https://nodemailer.com/nodemailer.svg",
+          icon: node ,
           level: 80,
         },
               {
           title: "AI API Integrations",
-          icon: "https://nodemailer.com/nodemailer.svg",
+          icon: "https://cdn.svgporn.com/logos/openai-icon.svg",
           level: 80,
         },
         {
           title: "Meteo / Weather APIs",
-          icon: "https://nodemailer.com/nodemailer.svg",
+          icon: met,
           level: 80,
         },
             {
           title: "Webhooks",
-          icon: "https://nodemailer.com/nodemailer.svg",
+          icon: web,
           level: 80,
         },
       ],
@@ -354,14 +345,9 @@ const Skills = () => {
           icon: "https://cdn.svgporn.com/logos/postgresql.svg",
           level: 75,
         },
-        {
-          title: "JSON",
-          icon: "https://www.json.org/img/json160.gif",
-          level: 95,
-        },
           {
           title: "SQLite",
-          icon: "https://www.json.org/img/json160.gif",
+          icon: lite,
           level: 95,
         },
       ],
@@ -402,7 +388,7 @@ const Skills = () => {
         },
               {
           title: "GitHub",
-          icon: "https://cdn.svgporn.com/logos/git-icon.svg",
+          icon: "https://cdn.svgporn.com/logos/github-icon.svg",
           level: 85,
         },
         {
@@ -422,7 +408,7 @@ const Skills = () => {
         },
         {
           title: "Chrome DevTools",
-          icon: "https://cdn.svgporn.com/logos/chrome-devtools-icon.svg",
+          icon: dev,
           level: 90,
         },
     
@@ -430,7 +416,7 @@ const Skills = () => {
 
         {
           title: "Postman",
-          icon: "https://www.postman.com/icon/postman-icon.svg",
+          icon: post,
           level: 90,
         },
     
@@ -448,12 +434,12 @@ const Skills = () => {
     
         {
           title: "GitHub Actions",
-          icon: "https://cdn.svgporn.com/logos/github-actions-icon.svg",
+          icon: action ,
           level: 80,
         },
         {
           title: "Nginx",
-          icon: "https://cdn.svgporn.com/logos/nginx-icon.svg",
+          icon: nginx,
           level: 75,
         },
         {
@@ -463,12 +449,12 @@ const Skills = () => {
         },
         {
           title: "AWS",
-          icon: "https://cdn.svgporn.com/logos/aws-2.svg",
+          icon: AWS,
           level: 70,
         },
         {
           title: "VPS Deployment",
-          icon: "https://cdn.svgporn.com/logos/linode-icon.svg",
+          icon: VPS,
           level: 85,
         },
       ],
