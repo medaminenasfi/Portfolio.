@@ -8,49 +8,61 @@ const Experience = () => {
   const experiences = [
     {
       company: "Freelance",
-      title: "Full-Stack Web Developer - Advanced Implant Services (AIS)",
-      date: "01/01/2026",
-      location: "Remote",
-      duties: [
-        "Designed and structured official website for AIS, exclusive OSSTEM Implant representative in Tunisia",
-        "Created high-credibility medical UX with complex product catalogs (implants, digital solutions, equipment)",
-        "Integrated scientific and technical content from OSSTEM France into clear digital experience",
-        "Designed conversion flows for quotes, contact, and product discovery for medical professionals",
-      ],
-    },
-    {
-      company: "Freelance",
-      title: "Full-Stack Web Developer - Club Rendement+",
-      date: "12/2025",
-      location: "Remote",
-      duties: [
-        "Designed and structured a real-estate investment platform for high-yield rental opportunities in Tunisia",
-        "Defined product vision and MVP roadmap (V1 → V2) with investor-focused user journeys",
-        "Built scalable frontend architecture (Landing, Investor Profile, Journal, Community)",
-        "Developed backend logic for roles, leads, and admin dashboard functionality",
+      positions: [
+            {
+          title: "Full-Stack Web Developer - Club Rendement+",
+          date: "01/2026 - Present ",
+          location: "Remote",
+          duties: [
+            "Designed and structured a real-estate investment platform for high-yield rental opportunities in Tunisia",
+            "Defined product vision and MVP roadmap (V1 → V2) with investor-focused user journeys",
+            "Built scalable frontend architecture (Landing, Investor Profile, Journal, Community)",
+            "Developed backend logic for roles, leads, and admin dashboard functionality",
+          ],
+        },
+        {
+          title: "Full-Stack Web Developer - Advanced Implant Services (AIS)",
+          date: "12/2025",
+          location: "Remote",
+          duties: [
+            "Designed and structured official website for AIS, exclusive OSSTEM Implant representative in Tunisia",
+            "Created high-credibility medical UX with complex product catalogs (implants, digital solutions, equipment)",
+            "Integrated scientific and technical content from OSSTEM France into clear digital experience",
+            "Designed conversion flows for quotes, contact, and product discovery for medical professionals",
+          ],
+        },
+    
       ],
     },
     {
       company: "Laghazala du Désert",
-      title: "Full-Stack Developer (PFE Internship)",
-      date: "02/2025 - 06/2025",
-      location: "Gabes, Tunisia",
-      duties: [
-        "Developed a web platform for managing eco-friendly hiking tours in Tunisia",
-        "Integrated interactive maps with Leaflet, weather filtering, reservations, and guide/artisan spaces",
-        "Built application using React.js, Node.js, Express.js, MongoDB, JWT, SSL, and Postman",
+      positions: [
+        {
+          title: "Full-Stack Developer (PFE Internship)",
+          date: "02/2025 - 06/2025",
+          location: "Gabes, Tunisia",
+          duties: [
+            "Developed a web platform for managing eco-friendly hiking tours in Tunisia",
+            "Integrated interactive maps with Leaflet, weather filtering, reservations, and guide/artisan spaces",
+            "Built application using React.js, Node.js, Express.js, MongoDB, JWT, SSL, and Postman",
+          ],
+        },
       ],
     },
     {
       company: "Tunisian Chemical Group",
-      title: "Web Developer",
-      date: "07/2024 - 08/2024",
-      location: "Tunisia",
-      duties: [
-        "Developed a modern e-commerce platform using React.js",
-        "Created an XML generator from Excel files, web forms, and SQL queries",
-        "Developed a user-friendly web interface for data entry and XML conversion",
-        "Collaborated with design team on UI/UX improvements",
+      positions: [
+        {
+          title: "Web Developer",
+          date: "07/2024 - 08/2024",
+          location: "Tunisia",
+          duties: [
+            "Developed a modern e-commerce platform using React.js",
+            "Created an XML generator from Excel files, web forms, and SQL queries",
+            "Developed a user-friendly web interface for data entry and XML conversion",
+            "Collaborated with design team on UI/UX improvements",
+          ],
+        },
       ],
     },
 
@@ -123,42 +135,45 @@ const Experience = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 key={activeTab}
-                className="space-y-4"
+                className="space-y-8"
               >
-                <h3 className="text-xl font-semibold text-textPrimary">
-                  {experiences[activeTab].title}{" "}
-                  <span className="text-secondary">
-                    @ {experiences[activeTab].company}
-                  </span>
-                </h3>
-                <p className="text-textSecondary">
-                  {experiences[activeTab].date} |{" "}
-                  {experiences[activeTab].location}
-                </p>
-                <ul className="space-y-4">
-                  {experiences[activeTab].duties.map((duty, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-start space-x-2 text-textSecondary"
-                    >
-                      <svg
-                        className="w-5 h-5 mt-1 text-secondary flex-shrink-0"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>{duty}</span>
-                    </motion.li>
-                  ))}
-                </ul>
+                {experiences[activeTab].positions.map((position, posIndex) => (
+                  <div key={posIndex} className={posIndex > 0 ? "pt-8 border-t border-textSecondary/20" : ""}>
+                    <h3 className="text-xl font-semibold text-textPrimary">
+                      {position.title}{" "}
+                      <span className="text-secondary">
+                        @ {experiences[activeTab].company}
+                      </span>
+                    </h3>
+                    <p className="text-textSecondary mt-2">
+                      {position.date} | {position.location}
+                    </p>
+                    <ul className="space-y-4 mt-4">
+                      {position.duties.map((duty, dutyIndex) => (
+                        <motion.li
+                          key={dutyIndex}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: dutyIndex * 0.1 }}
+                          className="flex items-start space-x-2 text-textSecondary"
+                        >
+                          <svg
+                            className="w-5 h-5 mt-1 text-secondary flex-shrink-0"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          <span>{duty}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </motion.div>
             </motion.div>
           </div>
