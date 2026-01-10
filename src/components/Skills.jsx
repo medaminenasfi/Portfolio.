@@ -90,18 +90,53 @@ const SkillCard = ({ title, icon, level }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       whileHover={{ 
-        y: -8,
-        scale: 1.02,
-        boxShadow: "0 10px 30px rgba(100, 255, 218, 0.3)"
+        y: -12,
+        scale: 1.05,
+        rotateX: 5,
+        rotateY: 5,
+        boxShadow: "0 20px 40px rgba(100, 255, 218, 0.4), 0 0 20px rgba(100, 255, 218, 0.2)"
       }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="bg-primary/30 p-3 sm:p-4 rounded-lg border border-secondary/20 hover:border-secondary/40 
-                transition-all duration-300 hover:shadow-lg hover:shadow-secondary/20 w-full cursor-pointer relative overflow-hidden"
+      className="bg-primary/30 p-3 sm:p-4 rounded-xl border border-secondary/20 hover:border-secondary/60 
+                transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/30 w-full cursor-pointer relative overflow-hidden
+                backdrop-blur-sm"
     >
+      {/* Animated background particles */}
+      <motion.div
+        className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"
+        initial={false}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+      >
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-secondary rounded-full"
+            initial={{ 
+              x: "50%", 
+              y: "50%",
+              scale: 0
+            }}
+            animate={{ 
+              x: ["50%", `${Math.random() * 80 + 10}%`],
+              y: ["50%", `${Math.random() * 80 + 10}%`],
+              scale: [0, 1, 0],
+              opacity: [0, 1, 0]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              repeatType: "reverse",
+              delay: i * 0.2,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+      </motion.div>
+      
       {/* Hover gradient overlay */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-primary/5 opacity-0 hover:opacity-100 transition-opacity duration-300"
+        className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-primary/10 opacity-0 hover:opacity-100 transition-opacity duration-500"
         initial={false}
         animate={{ opacity: isHovered ? 1 : 0 }}
       />
@@ -109,13 +144,18 @@ const SkillCard = ({ title, icon, level }) => {
       <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
         <div className="relative group w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
           {!imageError && (
-            <img
+            <motion.img
               src={icon}
               alt={title}
               className={`w-10 h-10 sm:w-12 sm:h-12 object-contain filter brightness-90 group-hover:brightness-100
-                         transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3 ${
+                         transition-all duration-500 transform group-hover:scale-125 group-hover:rotate-6 ${
                            imageLoaded ? 'opacity-100' : 'opacity-0'
                          }`}
+              whileHover={{ 
+                rotate: [0, -5, 5, 0],
+                scale: [1, 1.1, 1.05, 1.15]
+              }}
+              transition={{ duration: 0.6 }}
               onError={handleImageError}
               onLoad={handleImageLoad}
               loading="lazy"
@@ -124,23 +164,43 @@ const SkillCard = ({ title, icon, level }) => {
           )}
           {(imageError || !imageLoaded) && (
             <motion.div 
-              className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-secondary/20 to-secondary/30 rounded-lg flex items-center justify-center border border-secondary/40"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ duration: 0.3 }}
+              className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-secondary/20 to-secondary/40 rounded-xl flex items-center justify-center border border-secondary/60 shadow-lg"
+              whileHover={{ 
+                scale: 1.2, 
+                rotate: 8,
+                boxShadow: "0 10px 25px rgba(100, 255, 218, 0.3)"
+              }}
+              transition={{ duration: 0.4, type: "spring" }}
             >
-              <span className="text-secondary font-bold text-lg sm:text-xl">
+              <motion.span 
+                className="text-secondary font-bold text-lg sm:text-xl"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                transition={{ duration: 0.2 }}
+              >
                 {getFallbackIcon(title)}
-              </span>
+              </motion.span>
             </motion.div>
           )}
           <motion.div
-            className="absolute inset-0 bg-secondary/10 rounded-full blur-xl opacity-0 
-                        group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 bg-gradient-to-r from-secondary/20 via-primary/20 to-secondary/20 rounded-full blur-2xl opacity-0 
+                        group-hover:opacity-100 transition-all duration-500"
+            animate={{
+              scale: isHovered ? [1, 1.2, 1] : 1,
+            }}
+            transition={{
+              duration: 2,
+              repeat: isHovered ? Infinity : 0,
+              repeatType: "reverse"
+            }}
           />
         </div>
         <motion.h3 
-          className="text-sm sm:text-base font-medium text-textPrimary group-hover:text-secondary transition-colors text-center"
-          whileHover={{ scale: 1.05 }}
+          className="text-sm sm:text-base font-medium text-textPrimary group-hover:text-secondary transition-all duration-500 text-center"
+          whileHover={{ 
+            scale: 1.1,
+            textShadow: "0 0 10px rgba(100, 255, 218, 0.5)"
+          }}
+          transition={{ duration: 0.3 }}
         >
           {title}
         </motion.h3>
@@ -185,23 +245,50 @@ const categoryMeta = [
 const SkillSection = ({ category, skills, description }) => {
   const getGridCols = () => {
     if (typeof window !== 'undefined') {
-      if (window.innerWidth >= 1024) return 'grid-cols-3 lg:grid-cols-4';
+      if (window.innerWidth >= 1024) return 'grid-cols-3 lg:grid-cols-4 xl:grid-cols-5';
       if (window.innerWidth >= 768) return 'grid-cols-2 md:grid-cols-3';
     }
-    return 'grid-cols-2';
+    return 'grid-cols-1 sm:grid-cols-2';
   };
 
   return (
-    <div className="space-y-6">
-      <p className="text-textSecondary text-center max-w-2xl mx-auto text-sm sm:text-base">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+      className="space-y-8"
+    >
+      <motion.p 
+        className="text-textSecondary text-center max-w-2xl mx-auto text-sm sm:text-base leading-relaxed"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
         {description}
-      </p>
-      <div className={`grid ${getGridCols()} gap-3 sm:gap-4 md:gap-6`}>
+      </motion.p>
+      <motion.div 
+        className={`grid ${getGridCols()} gap-4 sm:gap-6 md:gap-8`}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+      >
         {skills.map((skill, index) => (
-          <SkillCard key={index} {...skill} />
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.6, 
+              delay: 0.8 + index * 0.1,
+              type: "spring",
+              stiffness: 100
+            }}
+          >
+            <SkillCard {...skill} />
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
@@ -508,19 +595,39 @@ const Skills = () => {
                 <button
                   key={cat.category}
                   onClick={() => setActiveTab(index)}
-                  className={`relative flex items-center px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-left border-b-2 lg:border-b-0 lg:border-l-4 whitespace-nowrap transition-all duration-300 rounded-lg mb-2 lg:mb-0 lg:mr-0 mr-2 sm:mr-3
+                  className={`relative flex items-center px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-left border-b-2 lg:border-b-0 lg:border-l-4 whitespace-nowrap transition-all duration-500 rounded-lg mb-2 lg:mb-0 lg:mr-0 mr-2 sm:mr-3
+                    overflow-hidden group
                     ${
                       activeTab === index
-                        ? "text-secondary border-secondary bg-secondary/10 shadow-md"
-                        : "text-textSecondary border-transparent hover:text-secondary hover:bg-secondary/5"
+                        ? "text-secondary border-secondary bg-secondary/10 shadow-lg shadow-secondary/20 transform scale-105"
+                        : "text-textSecondary border-transparent hover:text-secondary hover:bg-secondary/5 hover:scale-102"
                     }`}
                 >
+                  {/* Animated background gradient */}
+                  {activeTab === index && (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-transparent"
+                      initial={{ x: "-100%" }}
+                      animate={{ x: "100%" }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                    />
+                  )}
                   {/* Accent bar for active tab */}
                   {activeTab === index && (
-                    <span className="absolute left-0 top-0 h-full w-1 bg-secondary rounded-r-lg hidden lg:block transition-all duration-300" />
+                    <motion.span 
+                      className="absolute left-0 top-0 h-full w-1 bg-secondary rounded-r-lg hidden lg:block transition-all duration-500"
+                      initial={{ scaleY: 0 }}
+                      animate={{ scaleY: 1 }}
+                      transition={{ duration: 0.3, type: "spring" }}
+                    />
                   )}
-                  <span className="mr-2">{categoryMeta[index].icon}</span>
-                  <span className="truncate">{cat.category}</span>
+                  <motion.span 
+                    className="mr-2 transition-transform duration-300 group-hover:scale-110"
+                    whileHover={{ rotate: 15 }}
+                  >
+                    {categoryMeta[index].icon}
+                  </motion.span>
+                  <span className="truncate relative z-10">{cat.category}</span>
                 </button>
               ))}
             </motion.div>
@@ -533,18 +640,41 @@ const Skills = () => {
                 key={activeTab}
                 className="space-y-4"
               >
-                <div className="flex items-center mb-2">
-                  <span className="text-2xl text-secondary mr-3">
+                <motion.div 
+                  className="flex items-center mb-2"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <motion.span 
+                    className="text-2xl text-secondary mr-3"
+                    whileHover={{ scale: 1.2, rotate: 10 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     {categoryMeta[activeTab].icon}
-                  </span>
-                  <h3 className="text-2xl font-semibold text-secondary">
+                  </motion.span>
+                  <motion.h3 
+                    className="text-2xl font-semibold text-secondary"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     {skillCategories[activeTab].category}
-                  </h3>
-                  <div className="flex-1 ml-4 h-0.5 bg-secondary/60"></div>
-                </div>
-                <p className="text-textSecondary mb-6">
+                  </motion.h3>
+                  <motion.div 
+                    className="flex-1 ml-4 h-0.5 bg-secondary/60 origin-left"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
+                  />
+                </motion.div>
+                <motion.p 
+                  className="text-textSecondary mb-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                >
                   {categoryMeta[activeTab].description}
-                </p>
+                </motion.p>
                 <SkillSection
                   category={skillCategories[activeTab].category}
                   skills={skillCategories[activeTab].skills}
