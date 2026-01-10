@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   const [typedRole, setTypedRole] = useState('');
-  const roles = ['Full-Stack Developer', 'MERN Stack Expert', 'Flutter Developer', 'Problem Solver'];
+  const roles = ['Full-Stack Developer', 'Flutter Developer', 'Problem Solver'];
   const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
@@ -84,35 +84,44 @@ console.log("Building amazing web experiences...");
 `}</motion.pre>
       </div>
       <div className="flex flex-col md:flex-row-reverse items-center justify-center w-full gap-10 md:gap-20 px-4 z-10">
-        {/* Premium Professional Photo Design - Right Side, Larger */}
+        {/* Professional Photo with Cyan Border - Right Side */}
         <div className="relative flex flex-col items-center justify-center mb-8 md:mb-0 md:mt-0 mt-8 w-full max-w-sm">
-          {/* Animated Blurred Gradient Accent */}
+          {/* Subtle Background Glow */}
           <motion.div
-            className="absolute -z-10 top-1/2 left-1/2 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[32rem] lg:h-[32rem] rounded-full blur-2xl bg-gradient-to-br from-secondary/30 via-primary/30 to-secondary/10"
+            className="absolute -z-10 top-1/2 left-1/2 w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] rounded-full blur-3xl bg-gradient-to-br from-cyan-500/20 via-teal-500/20 to-emerald-500/10"
             style={{ transform: 'translate(-50%, -50%)' }}
-            animate={{ scale: [1, 1.08, 1], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
+            animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.6, 0.4] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
           />
-          {/* Animated Gradient Border Ring */}
+          
+          {/* Photo with Cyan/Teal Glowing Border */}
           <motion.div
-            className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full p-1 bg-gradient-to-tr from-secondary via-primary to-secondary shadow-2xl"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, repeatType: 'reverse' }}
+            className="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[22rem] lg:h-[22rem] rounded-full p-[3px] bg-gradient-to-br from-cyan-400 via-teal-400 to-cyan-500 shadow-[0_0_40px_rgba(34,211,238,0.6)]"
+            animate={{ 
+              y: [0, -8, 0],
+              boxShadow: [
+                '0 0 40px rgba(34,211,238,0.6)',
+                '0 0 60px rgba(20,184,166,0.8)',
+                '0 0 40px rgba(34,211,238,0.6)'
+              ]
+            }}
+            transition={{ 
+              y: { duration: 6, repeat: Infinity, repeatType: 'reverse' },
+              boxShadow: { duration: 4, repeat: Infinity, ease: 'easeInOut' }
+            }}
+            whileHover={{ scale: 1.02 }}
           >
-            <div className="w-full h-full rounded-full overflow-hidden bg-primary/80 flex items-center justify-center">
+            <div className="w-full h-full rounded-full overflow-hidden bg-white flex items-center justify-center">
               <img
                 src={require('../assets/photo.png')}
                 alt="Mohamed Amine Nasfi"
-                className="w-full h-full object-cover rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_32px_8px_rgba(236,72,153,0.3)]"
-                style={{ background: 'transparent' }}
+                className="w-full h-full object-cover rounded-full"
+                onError={(e) => {
+                  console.log('Image failed to load');
+                  e.target.style.display = 'none';
+                }}
               />
             </div>
-            {/* Animated Glow Effect */}
-            <motion.div
-              className="absolute inset-0 rounded-full border-2 border-secondary/30 pointer-events-none"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2.5, repeat: Infinity, repeatType: 'reverse' }}
-            />
           </motion.div>
         </div>
         {/* Hero Text Content - Left Side */}
@@ -156,89 +165,47 @@ console.log("Building amazing web experiences...");
             </motion.p>
             <motion.div 
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start flex-wrap"
+              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
             >
-              {/* Enhanced Get In Touch Button */}
+              {/* Get In Touch Button */}
               <motion.a
                 href="#contact"
-                className="group relative px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-transparent to-transparent border-2 border-secondary text-secondary font-bold rounded-xl overflow-hidden transition-all duration-300 font-mono shadow-[0_0_20px_rgba(244,114,182,0.3)] hover:shadow-[0_0_30px_rgba(244,114,182,0.6)] hover:scale-105 focus:outline-none focus:ring-4 focus:ring-secondary/40 text-sm sm:text-base"
+                className="px-6 py-3 border-2 border-cyan-400 text-cyan-400 font-semibold rounded-lg transition-all duration-300 hover:bg-cyan-400/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-secondary/10 via-secondary/5 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                {/* Shimmer effect */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-                
-                {/* Button text with icon */}
-                <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
-                  <svg className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  Get In Touch
-                </span>
-                
-                {/* Corner accents */}
-                <div className="absolute top-2 right-2 w-2 h-2 border-t-2 border-r-2 border-secondary/60 group-hover:border-white transition-colors duration-300" />
-                <div className="absolute bottom-2 left-2 w-2 h-2 border-b-2 border-l-2 border-secondary/60 group-hover:border-white transition-colors duration-300" />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Get In Touch
               </motion.a>
 
-              {/* Enhanced View Projects Button */}
+              {/* View Projects Button */}
               <motion.a
                 href="#projects"
-                className="group relative px-8 py-3 bg-gradient-to-r from-secondary via-secondary to-secondary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 font-mono shadow-[0_0_20px_rgba(244,114,182,0.4)] hover:shadow-[0_0_40px_rgba(244,114,182,0.8)] hover:scale-105 focus:outline-none focus:ring-4 focus:ring-secondary/40"
+                className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-teal-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] transition-all duration-300 flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {/* Animated background overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                {/* Pulse effect */}
-                <div className="absolute inset-0 bg-white/10 rounded-xl scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                
-                {/* Button text with icon */}
-                <span className="relative z-10 flex items-center gap-2 group-hover:text-primary transition-colors duration-300">
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0l-4 4m4-4l-4-4" />
-                  </svg>
-                  View Projects
-                </span>
-                
-                {/* Geometric decorations */}
-                <div className="absolute top-1 left-1 w-6 h-6 border-2 border-white/30 rounded-full group-hover:border-primary/60 group-hover:rotate-180 transition-all duration-500" />
-                <div className="absolute bottom-1 right-1 w-4 h-4 bg-white/20 rounded group-hover:bg-primary/40 group-hover:rotate-45 transition-all duration-500" />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+                View Projects
               </motion.a>
 
-              {/* Premium Upwork Hire Me Button */}
+              {/* Hire Me Button */}
               <motion.a
                 href="https://www.upwork.com/freelancers/~017cad0a2a355873b2?mp_source=share"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative px-8 py-3 bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 text-white font-bold rounded-xl overflow-hidden transition-all duration-500 font-mono shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.7)] hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-400/40"
-                whileHover={{ scale: 1.1, rotate: 1 }}
+                className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] transition-all duration-300 flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Pulsing ring effect */}
-                <div className="absolute inset-0 rounded-xl border-2 border-green-400/50 scale-100 group-hover:scale-110 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                
-                {/* Button text with icon */}
-                <span className="relative z-10 flex items-center gap-2 text-white">
-                  <svg className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3.002-2.439-5.453-5.439-5.453z"/>
-                  </svg>
-                  Hire Me
-                </span>
-                
-                {/* Sparkle effects */}
-                <div className="absolute top-1 right-1 w-2 h-2 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300" />
-                <div className="absolute bottom-1 left-1 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-300" />
-                
-                {/* Shimmer effect */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3.002-2.439-5.453-5.439-5.453z"/>
+                </svg>
+                Hire Me
               </motion.a>
             </motion.div>
             
