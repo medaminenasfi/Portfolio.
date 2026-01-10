@@ -507,7 +507,7 @@ const Contact = () => {
                       🚀 Ready to bring your ideas to life with <span className="text-green-400 font-semibold">full-stack development expertise</span>
                     </p>
                     <p className="text-xs text-textSecondary/80 mt-2">
-                      MERN Stack • React  • Node.js • Express.js
+                      MERN Stack • Next.js  • Node.js • Express.js
                     </p>
                   </div>
                 </div>

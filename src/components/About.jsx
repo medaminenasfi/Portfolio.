@@ -74,7 +74,7 @@ const About = () => {
               <div className="grid grid-cols-2 gap-4">
                 {[
                   "JavaScript (ES6+)",
-                  "React.js",
+                  "Next.js",
                   "Node.js",
                   "MongoDB",
                   "Express.js",
