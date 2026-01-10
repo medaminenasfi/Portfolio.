@@ -152,12 +152,12 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="min-h-screen flex items-center section-padding relative">
+    <section id="contact" className="min-h-screen flex items-center section-padding relative w-full max-w-full overflow-hidden">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="container mx-auto px-4 sm:px-6"
+        className="container mx-auto px-4 sm:px-6 w-full max-w-full"
       >
         {/* Section Header */}
         <motion.div
@@ -179,7 +179,7 @@ const Contact = () => {
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
-            className="bg-primary/30 p-6 sm:p-8 rounded-lg border border-secondary/20"
+            className="bg-primary/30 p-4 sm:p-6 md:p-8 rounded-lg border border-secondary/20"
           >
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">

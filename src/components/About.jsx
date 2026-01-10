@@ -25,9 +25,9 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="section-padding relative">
+    <section id="about" className="section-padding relative w-full max-w-full overflow-hidden">
       <motion.div
-        className="container mx-auto"
+        className="container mx-auto px-4 sm:px-6 max-w-full"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -71,7 +71,7 @@ const About = () => {
               
                 Key Technologies
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 {[
                   "JavaScript (ES6+)",
                   "Next.js",
@@ -91,7 +91,7 @@ const About = () => {
                     className="flex items-center space-x-2 group cursor-pointer"
                   >
                     <motion.svg
-                      className="w-4 h-4 text-secondary group-hover:text-secondary/80"
+                      className="w-3 h-3 sm:w-4 sm:h-4 text-secondary group-hover:text-secondary/80 flex-shrink-0"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       animate={{ x: [0, 3, 0] }}
@@ -103,7 +103,7 @@ const About = () => {
                         clipRule="evenodd"
                       />
                     </motion.svg>
-                    <span className="text-textSecondary group-hover:text-secondary transition-colors duration-300">{tech}</span>
+                    <span className="text-textSecondary group-hover:text-secondary transition-colors duration-300 text-xs sm:text-sm">{tech}</span>
                   </motion.div>
                 ))}
               </div>

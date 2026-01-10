@@ -65,7 +65,7 @@ const Header = () => {
 
   return (
     <header 
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full max-w-full z-50 transition-all duration-300 overflow-hidden ${
         scrolled ? 'shadow-lg shadow-secondary/10' : ''
       }`}
       style={{
@@ -73,15 +73,15 @@ const Header = () => {
         backdropFilter: `blur(${scrolled ? '12px' : '8px'})`,
       }}
     >
-      <nav className="container mx-auto px-4 sm:px-6 py-4">
+      <nav className="container mx-auto px-4 sm:px-6 py-4 max-w-full">
         <div className="flex items-center justify-between">
           <motion.a 
             href="#home" 
-            className="text-secondary font-bold text-lg sm:text-xl relative group"
+            className="text-secondary font-bold text-base sm:text-lg md:text-xl relative group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="relative z-10">Mohamed Amine</span>
+            <span className="relative z-10 whitespace-nowrap">Mohamed Amine</span>
             <div
               className="absolute -inset-2 bg-secondary/10 rounded-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             />

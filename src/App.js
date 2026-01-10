@@ -28,12 +28,12 @@ const HomePage = () => (
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-primary">
+      <div className="min-h-screen bg-primary overflow-x-hidden w-full max-w-full">
         <Routes>
           <Route path="/" element={
             <>
               <Header />
-              <main>
+              <main className="overflow-x-hidden w-full">
                 <HomePage />
               </main>
               <Footer />

@@ -22,8 +22,8 @@ const ProjectCard = ({ project, onClick }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     whileHover={{ 
-      y: -12,
-      scale: 1.03
+      y: -8,
+      scale: 1.02
     }}
     transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
   >
@@ -62,19 +62,19 @@ const ProjectCard = ({ project, onClick }) => (
     </motion.div>
     
     {/* Card Content */}
-    <div className="flex flex-col flex-1 justify-between p-4 sm:p-6 relative z-10">
+    <div className="flex flex-col flex-1 justify-between p-4 sm:p-5 md:p-6 relative z-10">
       <motion.h3 
-        className="text-lg sm:text-xl font-bold text-white mb-2 line-clamp-2 group-hover:text-secondary transition-colors duration-300"
+        className="text-base sm:text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 group-hover:text-secondary transition-colors duration-300"
         whileHover={{ x: 4 }}
       >
         {project.title}
       </motion.h3>
-      <p className="text-textPrimary mb-4 line-clamp-2 sm:line-clamp-3 text-sm sm:text-base leading-relaxed">{project.description}</p>
-      <div className="flex flex-wrap gap-2 mb-4">
+      <p className="text-textPrimary mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3 text-xs sm:text-sm leading-relaxed">{project.description}</p>
+      <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
         {project.technologies.slice(0, 3).map((tech, index) => (
           <motion.span
             key={index}
-            className="px-3 py-1.5 bg-secondary/20 text-secondary rounded-full text-xs sm:text-sm font-medium border border-secondary/30"
+            className="px-2 sm:px-3 py-1 sm:py-1.5 bg-secondary/20 text-secondary rounded-full text-xs font-medium border border-secondary/30"
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
@@ -82,13 +82,13 @@ const ProjectCard = ({ project, onClick }) => (
           </motion.span>
         ))}
         {project.technologies.length > 3 && (
-          <span className="px-3 py-1.5 bg-secondary/10 text-secondary/70 rounded-full text-xs sm:text-sm font-medium">
+          <span className="px-2 sm:px-3 py-1 sm:py-1.5 bg-secondary/10 text-secondary/70 rounded-full text-xs font-medium">
             +{project.technologies.length - 3} more
           </span>
         )}
       </div>
       <motion.button 
-        className="relative inline-block px-6 py-3 bg-gradient-to-r from-secondary to-secondary/80 text-white rounded-xl font-bold shadow-lg overflow-hidden group/btn"
+        className="relative inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-secondary to-secondary/80 text-white rounded-xl font-bold text-sm sm:text-base shadow-lg overflow-hidden group/btn"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >

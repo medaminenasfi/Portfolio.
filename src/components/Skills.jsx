@@ -144,7 +144,7 @@ const SkillCard = ({ title, icon, level }) => {
             <motion.img
               src={icon}
               alt={title}
-              className={`w-10 h-10 sm:w-12 sm:h-12 object-contain filter brightness-90 group-hover:brightness-100
+              className={`w-12 h-12 sm:w-14 sm:h-14 object-contain filter brightness-90 group-hover:brightness-100
                          transition-all duration-500 transform group-hover:scale-125 group-hover:rotate-6 ${
                            imageLoaded ? 'opacity-100' : 'opacity-0'
                          }`}
@@ -161,7 +161,7 @@ const SkillCard = ({ title, icon, level }) => {
           )}
           {(imageError || !imageLoaded) && (
             <motion.div 
-              className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-secondary/20 to-secondary/40 rounded-xl flex items-center justify-center border border-secondary/60 shadow-lg"
+              className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-secondary/20 to-secondary/40 rounded-xl flex items-center justify-center border border-secondary/60 shadow-lg"
               whileHover={{ 
                 scale: 1.2, 
                 rotate: 8
@@ -169,7 +169,7 @@ const SkillCard = ({ title, icon, level }) => {
               transition={{ duration: 0.4, type: "spring" }}
             >
               <motion.span 
-                className="text-secondary font-bold text-lg sm:text-xl"
+                className="text-secondary font-bold text-xl sm:text-2xl"
                 whileHover={{ scale: 1.2, rotate: 10 }}
                 transition={{ duration: 0.2 }}
               >
@@ -191,9 +191,9 @@ const SkillCard = ({ title, icon, level }) => {
           />
         </div>
         <motion.h3 
-          className="text-sm sm:text-base font-medium text-textPrimary group-hover:text-secondary transition-all duration-500 text-center"
+          className="text-xs sm:text-sm font-medium text-textPrimary group-hover:text-secondary transition-all duration-500 text-center leading-tight"
           whileHover={{ 
-            scale: 1.1,
+            scale: 1.05,
             textShadow: "0 0 10px rgba(100, 255, 218, 0.5)"
           }}
           transition={{ duration: 0.3 }}
@@ -240,11 +240,7 @@ const categoryMeta = [
 
 const SkillSection = ({ category, skills, description }) => {
   const getGridCols = () => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth >= 1024) return 'grid-cols-3 lg:grid-cols-4 xl:grid-cols-5';
-      if (window.innerWidth >= 768) return 'grid-cols-2 md:grid-cols-3';
-    }
-    return 'grid-cols-1 sm:grid-cols-2';
+    return 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5';
   };
 
   return (
@@ -567,9 +563,9 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="section-padding relative w-full pb-24">
+    <section id="skills" className="section-padding relative w-full max-w-full pb-24 overflow-hidden">
       <motion.div
-        className="w-full px-4 md:px-8 lg:px-16"
+        className="w-full max-w-full px-4 md:px-8 lg:px-16"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
