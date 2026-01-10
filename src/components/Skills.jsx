@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ScrollDown from "./ScrollDown";
-import { FaCode, FaServer, FaDatabase, FaTools, FaMobile } from "react-icons/fa";
+import { FaCode, FaServer, FaDatabase, FaTools, FaMobile, FaCloud } from "react-icons/fa";
 
 const SkillCard = ({ title, icon, level }) => {
   const [imageError, setImageError] = React.useState(false);
   const [imageLoaded, setImageLoaded] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState(false);
 
   const handleImageError = (e) => {
     console.warn(`Failed to load icon for ${title}: ${icon}`);
@@ -37,8 +38,11 @@ const SkillCard = ({ title, icon, level }) => {
       'Dart': '🎯',
       'Firebase': '🔥',
       'Docker': '🐳',
+      'GitHub Actions': '🔄',
       'Nginx': '🌐',
+      'Redis': '⚡',
       'AWS': '☁️',
+      'VPS Deployment': '🖥️',
       'Git': '📦',
       'Figma': '🎨',
       'VS Code': '💻',
@@ -71,18 +75,31 @@ const SkillCard = ({ title, icon, level }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      whileHover={{ y: -5 }}
-      className="bg-primary/30 p-3 sm:p-4 rounded-lg border border-secondary/20 hover:border-secondary/50 
-                transition-all duration-300 hover:shadow-lg hover:shadow-secondary/10 w-full"
+      whileHover={{ 
+        y: -8,
+        scale: 1.02,
+        boxShadow: "0 10px 30px rgba(100, 255, 218, 0.3)"
+      }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className="bg-primary/30 p-3 sm:p-4 rounded-lg border border-secondary/20 hover:border-secondary/40 
+                transition-all duration-300 hover:shadow-lg hover:shadow-secondary/20 w-full cursor-pointer relative overflow-hidden"
     >
-      <div className="flex flex-col items-center space-y-2 sm:space-y-3">
+      {/* Hover gradient overlay */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-primary/5 opacity-0 hover:opacity-100 transition-opacity duration-300"
+        initial={false}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+      />
+      
+      <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
         <div className="relative group w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
           {!imageError && (
             <img
               src={icon}
               alt={title}
               className={`w-10 h-10 sm:w-12 sm:h-12 object-contain filter brightness-90 group-hover:brightness-100
-                         transition-all duration-300 transform group-hover:scale-110 ${
+                         transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3 ${
                            imageLoaded ? 'opacity-100' : 'opacity-0'
                          }`}
               onError={handleImageError}
@@ -92,30 +109,50 @@ const SkillCard = ({ title, icon, level }) => {
             />
           )}
           {(imageError || !imageLoaded) && (
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-secondary/20 to-secondary/30 rounded-lg flex items-center justify-center border border-secondary/40">
+            <motion.div 
+              className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-secondary/20 to-secondary/30 rounded-lg flex items-center justify-center border border-secondary/40"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ duration: 0.3 }}
+            >
               <span className="text-secondary font-bold text-lg sm:text-xl">
                 {getFallbackIcon(title)}
               </span>
-            </div>
+            </motion.div>
           )}
-          <div
+          <motion.div
             className="absolute inset-0 bg-secondary/10 rounded-full blur-xl opacity-0 
                         group-hover:opacity-100 transition-opacity duration-300"
-          ></div>
+          />
         </div>
-        <h3 className="text-sm sm:text-base font-medium text-textPrimary group-hover:text-secondary transition-colors text-center">
+        <motion.h3 
+          className="text-sm sm:text-base font-medium text-textPrimary group-hover:text-secondary transition-colors text-center"
+          whileHover={{ scale: 1.05 }}
+        >
           {title}
-        </h3>
-        <div className="w-full h-1 sm:h-1.5 bg-primary/50 rounded-full overflow-hidden">
+        </motion.h3>
+        <div className="w-full h-1 sm:h-1.5 bg-primary/50 rounded-full overflow-hidden relative">
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: `${level}%` }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="h-full bg-secondary rounded-full"
-          />
+            className="h-full bg-secondary rounded-full relative"
+          >
+            {/* Animated shine effect */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+              animate={{ x: ['-100%', '100%'] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            />
+          </motion.div>
         </div>
-        <span className="text-xs sm:text-sm text-textSecondary">{level}%</span>
+        <motion.span 
+          className="text-xs sm:text-sm text-textSecondary font-medium"
+          whileHover={{ scale: 1.1, color: "#64ffda" }}
+          transition={{ duration: 0.2 }}
+        >
+          {level}%
+        </motion.span>
       </div>
     </motion.div>
   );
@@ -146,6 +183,11 @@ const categoryMeta = [
     icon: <FaTools className="w-5 h-5 mr-2" />,
     label: "Tools & Design",
     description: "Development tools and design systems."
+  },
+  {
+    icon: <FaCloud className="w-5 h-5 mr-2" />,
+    label: "DevOps & Cloud",
+    description: "Containerization, orchestration, and cloud infrastructure."
   },
 ];
 
@@ -295,11 +337,6 @@ const Skills = () => {
           level: 75,
         },
         {
-          title: "Redis",
-          icon: "https://cdn.svgporn.com/logos/redis.svg",
-          level: 70,
-        },
-        {
           title: "JSON",
           icon: "https://www.json.org/img/json160.gif",
           level: 95,
@@ -360,26 +397,6 @@ const Skills = () => {
           level: 90,
         },
         {
-          title: "Docker",
-          icon: "https://cdn.svgporn.com/logos/docker-icon.svg",
-          level: 80,
-        },
-        {
-          title: "Nginx",
-          icon: "https://cdn.svgporn.com/logos/nginx-icon.svg",
-          level: 75,
-        },
-        {
-          title: "AWS",
-          icon: "https://cdn.svgporn.com/logos/aws-2.svg",
-          level: 70,
-        },
-        {
-          title: "VPS Deployment",
-          icon: "https://cdn.svgporn.com/logos/linode-icon.svg",
-          level: 85,
-        },
-        {
           title: "Chrome DevTools",
           icon: "https://cdn.svgporn.com/logos/chrome-devtools-icon.svg",
           level: 90,
@@ -413,6 +430,46 @@ const Skills = () => {
           title: "Android Studio",
           icon: "https://cdn.svgporn.com/logos/android-icon.svg",
           level: 70,
+        },
+      ],
+    },
+    {
+      category: "DevOps & Cloud",
+      skills: [
+        {
+          title: "Docker",
+          icon: "https://cdn.svgporn.com/logos/docker-icon.svg",
+          level: 80,
+        },
+        {
+          title: "Kubernetes",
+          icon: "https://cdn.svgporn.com/logos/kubernetes-icon.svg",
+          level: 75,
+        },
+        {
+          title: "GitHub Actions",
+          icon: "https://cdn.svgporn.com/logos/github-actions-icon.svg",
+          level: 80,
+        },
+        {
+          title: "Nginx",
+          icon: "https://cdn.svgporn.com/logos/nginx-icon.svg",
+          level: 75,
+        },
+        {
+          title: "Redis",
+          icon: "https://cdn.svgporn.com/logos/redis.svg",
+          level: 70,
+        },
+        {
+          title: "AWS",
+          icon: "https://cdn.svgporn.com/logos/aws-2.svg",
+          level: 70,
+        },
+        {
+          title: "VPS Deployment",
+          icon: "https://cdn.svgporn.com/logos/linode-icon.svg",
+          level: 85,
         },
       ],
     },

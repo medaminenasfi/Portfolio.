@@ -40,6 +40,8 @@ const Education = () => {
   ];
 
   const certifications = [
+    "English Certification | TOEFL iBT (B2 Level)",
+    "French Certification | TCF TP (B2 Level)",
     "Web Development Training with HTML, CSS, JavaScript | Coursera",
     "Introduction to Java Training | Coursera",
     "Training in Design of User Interfaces and Experiences (UI/UX) | Coursera",

@@ -1,52 +1,5 @@
- import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-
-const ScrollDownButton = () => {
-  const scrollToNextSection = () => {
-    const heroHeight = window.innerHeight;
-    window.scrollTo({
-      top: heroHeight,
-      behavior: 'smooth'
-    });
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.5 }}
-      className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
-      onClick={scrollToNextSection}
-    >
-      <motion.div
-        animate={{
-          y: [0, 8, 0],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-        className="flex flex-col items-center space-y-2"
-      >
-        <span className="text-secondary text-sm tracking-wider">Scroll Down</span>
-        <div className="w-6 h-10 border-2 border-secondary rounded-full flex justify-center p-1">
-          <motion.div
-            animate={{
-              y: [0, 12, 0],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-            className="w-1.5 h-3 bg-secondary rounded-full"
-          ></motion.div>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
 
 const Hero = () => {
   const containerVariants = {
@@ -276,50 +229,6 @@ console.log("Building amazing web experiences...");
             </motion.div>
           </motion.div>
         </div>
-      </div>
-      {/* Scroll Down Button */}
-      <div className="relative">
-        <ScrollDownButton />
-      </div>
-      {/* Scroll Down Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-          className="flex flex-col items-center space-y-2 cursor-pointer"
-          onClick={() => {
-            const nextSection = document.getElementById('about');
-            if (nextSection) {
-              nextSection.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
-        >
-          <motion.div
-            animate={{
-              y: [0, 8, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-            className="w-6 h-10 border-2 border-secondary rounded-full flex justify-center p-1"
-          >
-            <motion.div
-              animate={{
-                y: [0, 12, 0],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-              className="w-1.5 h-3 bg-secondary rounded-full"
-            />
-          </motion.div>
-          <span className="text-secondary text-xs tracking-wider animate-pulse">Scroll</span>
-        </motion.div>
       </div>
       {/* Social Links */}
       <motion.div

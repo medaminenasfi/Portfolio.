@@ -49,7 +49,7 @@ const Footer = () => {
           </div>
         </div>
         <p className="text-textSecondary text-sm">
-  © 2025 Mohamed Amine Nasfi. All rights reserved.
+  © 2026 Mohamed Amine Nasfi. All rights reserved.
 
         </p>
       </div>
