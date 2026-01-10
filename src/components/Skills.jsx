@@ -91,10 +91,7 @@ const SkillCard = ({ title, icon, level }) => {
       viewport={{ once: true }}
       whileHover={{ 
         y: -12,
-        scale: 1.05,
-        rotateX: 5,
-        rotateY: 5,
-        boxShadow: "0 20px 40px rgba(100, 255, 218, 0.4), 0 0 20px rgba(100, 255, 218, 0.2)"
+        scale: 1.05
       }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
@@ -167,8 +164,7 @@ const SkillCard = ({ title, icon, level }) => {
               className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-secondary/20 to-secondary/40 rounded-xl flex items-center justify-center border border-secondary/60 shadow-lg"
               whileHover={{ 
                 scale: 1.2, 
-                rotate: 8,
-                boxShadow: "0 10px 25px rgba(100, 255, 218, 0.3)"
+                rotate: 8
               }}
               transition={{ duration: 0.4, type: "spring" }}
             >

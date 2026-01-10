@@ -183,72 +183,161 @@ const Contact = () => {
           >
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-textSecondary mb-2 text-sm sm:text-base">Name *</label>
-                  <input
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                >
+                  <label htmlFor="name" className="block text-textSecondary mb-2 text-sm sm:text-base font-medium flex items-center gap-2">
+                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    Name *
+                  </label>
+                  <motion.input
                     type="text"
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border border-secondary/20 rounded-lg 
-                             focus:outline-none focus:border-secondary text-textPrimary transition-colors text-sm sm:text-base"
+                    whileFocus={{ scale: 1.02 }}
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border-2 border-secondary/20 rounded-xl 
+                             focus:outline-none focus:border-secondary text-textPrimary transition-all duration-300 text-sm sm:text-base
+                             hover:border-secondary/40 focus:shadow-lg focus:shadow-secondary/20"
                     required
                   />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-textSecondary mb-2 text-sm sm:text-base">Email *</label>
-                  <input
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <label htmlFor="email" className="block text-textSecondary mb-2 text-sm sm:text-base font-medium flex items-center gap-2">
+                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Email *
+                  </label>
+                  <motion.input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border border-secondary/20 rounded-lg 
-                             focus:outline-none focus:border-secondary text-textPrimary transition-colors text-sm sm:text-base"
+                    whileFocus={{ scale: 1.02 }}
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border-2 border-secondary/20 rounded-xl 
+                             focus:outline-none focus:border-secondary text-textPrimary transition-all duration-300 text-sm sm:text-base
+                             hover:border-secondary/40 focus:shadow-lg focus:shadow-secondary/20"
                     required
                   />
-                </div>
+                </motion.div>
               </div>
-              <div>
-                <label htmlFor="subject" className="block text-textSecondary mb-2 text-sm sm:text-base">Subject</label>
-                <input
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                <label htmlFor="subject" className="block text-textSecondary mb-2 text-sm sm:text-base font-medium flex items-center gap-2">
+                  <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                  </svg>
+                  Subject
+                </label>
+                <motion.input
                   type="text"
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border border-secondary/20 rounded-lg 
-                           focus:outline-none focus:border-secondary text-textPrimary transition-colors text-sm sm:text-base"
+                  whileFocus={{ scale: 1.02 }}
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border-2 border-secondary/20 rounded-xl 
+                           focus:outline-none focus:border-secondary text-textPrimary transition-all duration-300 text-sm sm:text-base
+                           hover:border-secondary/40 focus:shadow-lg focus:shadow-secondary/20"
                 />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-textSecondary mb-2 text-sm sm:text-base">Message *</label>
-                <textarea
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+              >
+                <label htmlFor="message" className="block text-textSecondary mb-2 text-sm sm:text-base font-medium flex items-center gap-2">
+                  <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                  Message *
+                </label>
+                <motion.textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows="5"
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border border-secondary/20 rounded-lg 
-                           focus:outline-none focus:border-secondary text-textPrimary transition-colors text-sm sm:text-base resize-none"
+                  whileFocus={{ scale: 1.02 }}
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-primary/50 border-2 border-secondary/20 rounded-xl 
+                           focus:outline-none focus:border-secondary text-textPrimary transition-all duration-300 text-sm sm:text-base resize-none
+                           hover:border-secondary/40 focus:shadow-lg focus:shadow-secondary/20"
                   required
-                ></textarea>
-              </div>
+                ></motion.textarea>
+              </motion.div>
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`w-full px-6 sm:px-8 py-3 sm:py-4 bg-secondary text-primary font-semibold rounded-lg
-                         transition-all duration-300 relative overflow-hidden group text-sm sm:text-base
-                         ${isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:bg-secondary/90'}`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, type: "spring", stiffness: 300 }}
+                className={`w-full px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-secondary to-secondary/80 text-white font-bold rounded-xl
+                         transition-all duration-500 relative overflow-hidden group text-sm sm:text-base shadow-lg shadow-secondary/30
+                         ${isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:from-secondary/90 hover:to-secondary/70'}`}
               >
-                <span className="relative z-10">
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                {/* Animated background */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"
+                  initial={{ x: "-100%" }}
+                  animate={{ x: isSubmitting ? ["100%", "-100%"] : "100%" }}
+                  transition={{ duration: 1.5, repeat: isSubmitting ? Infinity : 0, ease: "linear" }}
+                />
+                
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  {isSubmitting ? (
+                    <>
+                      <motion.svg
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        className="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </motion.svg>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <motion.svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        animate={{ x: [0, 4, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </motion.svg>
+                    </>
+                  )}
                 </span>
-                <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 
-                              transition-transform origin-left opacity-10"></div>
+                
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
               </motion.button>
 
               {/* Status Messages */}

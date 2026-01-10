@@ -62,8 +62,13 @@ const About = () => {
 
           {/* Image/Skills Section */}
           <motion.div variants={itemVariants} className="relative">
-            <div className="bg-primary/30 p-6 rounded-lg border border-secondary/20">
-              <h3 className="text-xl font-semibold text-secondary mb-6">
+            <motion.div 
+              className="bg-gradient-to-br from-primary/40 to-primary/20 p-6 rounded-xl border border-secondary/30 hover:border-secondary/50 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-secondary/20"
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 className="text-xl font-semibold text-secondary mb-6 flex items-center gap-2">
+              
                 Key Technologies
               </h3>
               <div className="grid grid-cols-2 gap-4">
@@ -81,35 +86,51 @@ const About = () => {
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-center space-x-2"
+                    whileHover={{ x: 8, scale: 1.05 }}
+                    transition={{ delay: index * 0.1, type: "spring", stiffness: 300 }}
+                    className="flex items-center space-x-2 group cursor-pointer"
                   >
-                    <svg
-                      className="w-4 h-4 text-secondary"
+                    <motion.svg
+                      className="w-4 h-4 text-secondary group-hover:text-secondary/80"
                       viewBox="0 0 20 20"
                       fill="currentColor"
+                      animate={{ x: [0, 3, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.2 }}
                     >
                       <path
                         fillRule="evenodd"
                         d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                         clipRule="evenodd"
                       />
-                    </svg>
-                    <span className="text-textSecondary">{tech}</span>
+                    </motion.svg>
+                    <span className="text-textSecondary group-hover:text-secondary transition-colors duration-300">{tech}</span>
                   </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Decorative Elements */}
+            {/* Enhanced Decorative Elements */}
             <motion.div
-              className="absolute -z-10 top-[20%] -right-4 w-72 h-72 bg-secondary/5 rounded-full blur-3xl"
+              className="absolute -z-10 top-[20%] -right-8 w-80 h-80 bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.2, 0.4, 0.2],
+                rotate: [0, 180, 360],
+              }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+            <motion.div
+              className="absolute -z-10 bottom-[10%] -left-8 w-60 h-60 bg-gradient-to-tr from-primary/20 to-transparent rounded-full blur-2xl"
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.3, 0.5, 0.3],
               }}
               transition={{
-                duration: 8,
+                duration: 10,
                 repeat: Infinity,
                 repeatType: "reverse",
               }}

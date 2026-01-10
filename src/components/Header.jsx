@@ -3,8 +3,35 @@ import { motion } from 'framer-motion';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   const menuItems = ['About', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'];
+
+  // Detect scroll and active section
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+      
+      // Detect active section
+      const sections = ['home', ...menuItems.map(item => item.toLowerCase())];
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close menu when clicking on a link
   const handleMenuClick = () => {
@@ -37,32 +64,64 @@ const Header = () => {
   }, [isMenuOpen]);
 
   return (
-    <header className="fixed w-full bg-primary/90 backdrop-blur-sm z-50">
+    <header 
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        scrolled ? 'shadow-lg shadow-secondary/10' : ''
+      }`}
+      style={{
+        backgroundColor: scrolled ? 'rgba(10, 25, 47, 0.95)' : 'rgba(10, 25, 47, 0.9)',
+        backdropFilter: `blur(${scrolled ? '12px' : '8px'})`,
+      }}
+    >
       <nav className="container mx-auto px-4 sm:px-6 py-4">
         <div className="flex items-center justify-between">
-
-          <a href="#" className="text-secondary font-bold text-lg sm:text-xl">
-            Mohamed Amine
-          </a>
+          <motion.a 
+            href="#home" 
+            className="text-secondary font-bold text-lg sm:text-xl relative group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="relative z-10">Mohamed Amine</span>
+            <div
+              className="absolute -inset-2 bg-secondary/10 rounded-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            />
+          </motion.a>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-8">
-            {menuItems.map((item, index) => (
-              <a
-                key={index}
-                href={`#${item.toLowerCase()}`}
-                className="text-textSecondary hover:text-secondary transition-colors font-medium"
-              >
-                {item}
-              </a>
-            ))}
+          <div className="hidden lg:flex items-center space-x-1">
+            {menuItems.map((item, index) => {
+              const isActive = activeSection === item.toLowerCase();
+              return (
+                <motion.a
+                  key={index}
+                  href={`#${item.toLowerCase()}`}
+                  className={`relative px-4 py-2 font-medium transition-colors duration-300 ${
+                    isActive ? 'text-secondary' : 'text-textSecondary hover:text-secondary'
+                  }`}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeSection"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </motion.a>
+              );
+            })}
             
             {/* Upwork Hire Me Button */}
-            <a
+            <motion.a
               href="https://www.upwork.com/freelancers/~017cad0a2a355873b2?mp_source=share"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-6 py-2.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] ml-4"
+              className="group relative px-6 py-2.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl overflow-hidden ml-4"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {/* Animated background */}
               <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -78,16 +137,17 @@ const Header = () => {
               
               {/* Shimmer effect */}
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-            </a>
+            </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden text-textSecondary p-2"
+          <motion.button
+            className="lg:hidden text-textSecondary p-2 relative z-50"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
+            whileTap={{ scale: 0.9 }}
           >
-            <svg
+            <motion.svg
               className="w-6 h-6"
               fill="none"
               strokeLinecap="round"
@@ -95,14 +155,18 @@ const Header = () => {
               strokeWidth="2"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              animate={isMenuOpen ? "open" : "closed"}
             >
-              {isMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+              <motion.path
+                variants={{
+                  closed: { d: "M4 6h16M4 12h16M4 18h16" },
+                  open: { d: "M6 18L18 6M6 6l12 12" }
+                }}
+                transition={{ duration: 0.3 }}
+                d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+              />
+            </motion.svg>
+          </motion.button>
         </div>
 
         {/* Mobile Menu Overlay */}

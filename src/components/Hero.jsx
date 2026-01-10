@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
+  const [typedRole, setTypedRole] = useState('');
+  const roles = ['Full-Stack Developer', 'MERN Stack Expert', 'Flutter Developer', 'Problem Solver'];
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= currentRole.length) {
+        setTypedRole(currentRole.substring(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+        setTimeout(() => {
+          const deletingInterval = setInterval(() => {
+            if (currentIndex > 0) {
+              currentIndex--;
+              setTypedRole(currentRole.substring(0, currentIndex));
+            } else {
+              clearInterval(deletingInterval);
+              setRoleIndex((prev) => (prev + 1) % roles.length);
+            }
+          }, 50);
+        }, 2000);
+      }
+    }, 100);
+    return () => clearInterval(typingInterval);
+  }, [roleIndex]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -108,9 +137,16 @@ console.log("Building amazing web experiences...");
             </motion.h1>
             <motion.h2 
               variants={itemVariants}
-              className="text-2xl sm:text-4xl font-bold text-textSecondary mb-4 font-mono"
+              className="text-2xl sm:text-4xl font-bold text-secondary mb-4 font-mono flex items-center gap-2"
             >
-              I build things for web & mobile.
+              <span>{typedRole}</span>
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                className="text-secondary"
+              >
+                |  
+              </motion.span>
             </motion.h2>
             <motion.p 
               variants={itemVariants}

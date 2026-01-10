@@ -15,53 +15,101 @@ import wea from '../assets/wea.png'
  
 
 const ProjectCard = ({ project, onClick }) => (
-  <div 
-    className="group relative rounded-2xl overflow-hidden bg-primary/90 shadow-lg hover:shadow-2xl transition-all duration-300 border border-secondary/10 hover:-translate-y-1 sm:hover:-translate-y-2 hover:scale-[1.02] sm:hover:scale-[1.025] transform flex flex-col cursor-pointer w-full"
+  <motion.div 
+    className="group relative rounded-2xl overflow-hidden bg-gradient-to-br from-primary/90 to-primary/70 shadow-xl hover:shadow-2xl transition-all duration-500 border border-secondary/20 hover:border-secondary/50 transform flex flex-col cursor-pointer w-full"
     onClick={() => onClick(project)}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    whileHover={{ 
+      y: -12,
+      scale: 1.03
+    }}
+    transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
   >
+    {/* Animated gradient overlay */}
+    <motion.div 
+      className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10"
+    />
+    
     {/* Project Image */}
-    <div className="w-full h-48 sm:h-56 md:h-64 overflow-hidden rounded-t-2xl">
-      <img 
+    <div className="w-full h-48 sm:h-56 md:h-64 overflow-hidden rounded-t-2xl relative">
+      <motion.img 
         src={project.image} 
         alt={project.title} 
-        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
+        className="w-full h-full object-cover"
+        whileHover={{ scale: 1.1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       />
+      {/* Image overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </div>
+    
     {/* Category Badge */}
-    <div className="absolute top-3 right-3 z-10">
-      <span className={`px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${
+    <motion.div 
+      className="absolute top-3 right-3 z-20"
+      whileHover={{ scale: 1.1, rotate: 5 }}
+      transition={{ type: "spring", stiffness: 400 }}
+    >
+      <span className={`px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg backdrop-blur-sm ${
         project.category === 'web' 
-          ? 'bg-blue-500/90 text-white' 
-          : 'bg-green-500/90 text-white'
+          ? 'bg-blue-500/90 text-white ring-2 ring-blue-300/50' 
+          : 'bg-green-500/90 text-white ring-2 ring-green-300/50'
       }`}>
         {project.category === 'web' ? <FaGlobe className="w-3 h-3" /> : <FaMobile className="w-3 h-3" />}
         {project.category === 'web' ? 'Web' : 'Mobile'}
       </span>
-    </div>
+    </motion.div>
+    
     {/* Card Content */}
-    <div className="flex flex-col flex-1 justify-between p-4 sm:p-6">
-      <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 line-clamp-2">{project.title}</h3>
-      <p className="text-textPrimary mb-4 line-clamp-2 sm:line-clamp-3 text-sm sm:text-base">{project.description}</p>
-      <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
+    <div className="flex flex-col flex-1 justify-between p-4 sm:p-6 relative z-10">
+      <motion.h3 
+        className="text-lg sm:text-xl font-bold text-white mb-2 line-clamp-2 group-hover:text-secondary transition-colors duration-300"
+        whileHover={{ x: 4 }}
+      >
+        {project.title}
+      </motion.h3>
+      <p className="text-textPrimary mb-4 line-clamp-2 sm:line-clamp-3 text-sm sm:text-base leading-relaxed">{project.description}</p>
+      <div className="flex flex-wrap gap-2 mb-4">
         {project.technologies.slice(0, 3).map((tech, index) => (
-          <span
+          <motion.span
             key={index}
-            className="px-2 py-1 sm:px-3 sm:py-1 bg-secondary/20 text-secondary rounded-full text-xs sm:text-sm"
+            className="px-3 py-1.5 bg-secondary/20 text-secondary rounded-full text-xs sm:text-sm font-medium border border-secondary/30"
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 400 }}
           >
             {tech}
-          </span>
+          </motion.span>
         ))}
         {project.technologies.length > 3 && (
-          <span className="px-2 py-1 sm:px-3 sm:py-1 bg-secondary/10 text-secondary/70 rounded-full text-xs sm:text-sm">
+          <span className="px-3 py-1.5 bg-secondary/10 text-secondary/70 rounded-full text-xs sm:text-sm font-medium">
             +{project.technologies.length - 3} more
           </span>
         )}
       </div>
-      <button className="inline-block px-4 py-2 sm:px-6 sm:py-2 bg-secondary text-primary rounded-lg hover:bg-secondary/90 transition-colors text-center font-semibold shadow-md text-sm sm:text-base">
-        View Details
-      </button>
+      <motion.button 
+        className="relative inline-block px-6 py-3 bg-gradient-to-r from-secondary to-secondary/80 text-white rounded-xl font-bold shadow-lg overflow-hidden group/btn"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <span className="relative z-10 flex items-center justify-center gap-2">
+          View Details
+          <motion.svg 
+            className="w-4 h-4" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+            animate={{ x: [0, 4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </motion.svg>
+        </span>
+        {/* Button shimmer effect */}
+        <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      </motion.button>
     </div>
-  </div>
+  </motion.div>
 );
 
 const Projects = () => {

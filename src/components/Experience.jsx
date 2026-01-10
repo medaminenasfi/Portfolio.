@@ -10,7 +10,7 @@ const Experience = () => {
       company: "Freelance",
       positions: [
             {
-          title: "Full-Stack Web Developer - Club Rendement+",
+          title: "Full Stack Web Developer - Club Rendement+",
           date: "01/2026 - Present ",
           location: "Remote",
           duties: [
@@ -21,7 +21,7 @@ const Experience = () => {
           ],
         },
         {
-          title: "Full-Stack Web Developer - Advanced Implant Services (AIS)",
+          title: "Full Stack Web Developer - Advanced Implant Services (AIS)",
           date: "12/2025",
           location: "Remote",
           duties: [
@@ -38,7 +38,7 @@ const Experience = () => {
       company: "Laghazala du Désert",
       positions: [
         {
-          title: "Full-Stack Developer (PFE Internship)",
+          title: "Full Stack Developer (PFE Internship)",
           date: "02/2025 - 06/2025",
           location: "Gabes, Tunisia",
           duties: [
@@ -138,41 +138,75 @@ const Experience = () => {
                 className="space-y-8"
               >
                 {experiences[activeTab].positions.map((position, posIndex) => (
-                  <div key={posIndex} className={posIndex > 0 ? "pt-8 border-t border-textSecondary/20" : ""}>
-                    <h3 className="text-xl font-semibold text-textPrimary">
+                  <motion.div 
+                    key={posIndex} 
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: posIndex * 0.1 }}
+                    className={`${posIndex > 0 ? "pt-8 mt-8 border-t-2 border-secondary/20" : ""} relative`}
+                  >
+                    <motion.h3 
+                      className="text-xl font-semibold text-textPrimary mb-2"
+                      whileHover={{ x: 4 }}
+                    >
                       {position.title}{" "}
-                      <span className="text-secondary">
+                      <motion.span 
+                        className="text-secondary"
+                        whileHover={{ scale: 1.05 }}
+                        style={{ display: "inline-block" }}
+                      >
                         @ {experiences[activeTab].company}
+                      </motion.span>
+                    </motion.h3>
+                    <motion.p 
+                      className="text-textSecondary/80 mt-2 flex items-center gap-3"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <span className="flex items-center gap-1">
+                        <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        {position.date}
                       </span>
-                    </h3>
-                    <p className="text-textSecondary mt-2">
-                      {position.date} | {position.location}
-                    </p>
+                      <span className="text-secondary">|</span>
+                      <span className="flex items-center gap-1">
+                        <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        {position.location}
+                      </span>
+                    </motion.p>
                     <ul className="space-y-4 mt-4">
                       {position.duties.map((duty, dutyIndex) => (
                         <motion.li
                           key={dutyIndex}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
+                          whileHover={{ x: 8 }}
                           transition={{ delay: dutyIndex * 0.1 }}
-                          className="flex items-start space-x-2 text-textSecondary"
+                          className="flex items-start space-x-3 text-textSecondary p-2 rounded-lg group cursor-default"
                         >
-                          <svg
-                            className="w-5 h-5 mt-1 text-secondary flex-shrink-0"
+                          <motion.svg
+                            className="w-5 h-5 mt-1 text-secondary flex-shrink-0 group-hover:scale-110"
                             viewBox="0 0 20 20"
                             fill="currentColor"
+                            whileHover={{ rotate: 90 }}
+                            transition={{ type: "spring", stiffness: 300 }}
                           >
                             <path
                               fillRule="evenodd"
                               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                               clipRule="evenodd"
                             />
-                          </svg>
-                          <span>{duty}</span>
+                          </motion.svg>
+                          <span className="group-hover:text-textPrimary transition-colors duration-300">{duty}</span>
                         </motion.li>
                       ))}
                     </ul>
-                  </div>
+                  </motion.div>
                 ))}
               </motion.div>
             </motion.div>
