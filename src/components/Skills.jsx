@@ -231,14 +231,20 @@ const Skills = () => {
           icon: "https://cdn.svgporn.com/logos/css-3.svg",
           level: 90,
         },
-        {
-          title: "JavaScript",
-          icon: "https://cdn.svgporn.com/logos/javascript.svg",
-          level: 90,
-        },
+      
         {
           title: "React",
           icon: "https://cdn.svgporn.com/logos/react.svg",
+          level: 90,
+        },
+              {
+          title: "Next.js",
+          icon: "https://cdn.svgporn.com/logos/nextjs-icon.svg",
+          level: 85,
+        },
+          {
+          title: "JavaScript",
+          icon: "https://cdn.svgporn.com/logos/javascript.svg",
           level: 90,
         },
         {
@@ -246,11 +252,7 @@ const Skills = () => {
           icon: "https://cdn.svgporn.com/logos/typescript-icon.svg",
           level: 60,
         },
-        {
-          title: "Next.js",
-          icon: "https://cdn.svgporn.com/logos/nextjs-icon.svg",
-          level: 85,
-        },
+  
         {
           title: "Tailwind",
           icon: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
@@ -281,16 +283,17 @@ const Skills = () => {
           icon: "https://cdn.svgporn.com/logos/express.svg",
           level: 85,
         },
+            {
+          title: "PHP",
+          icon: "https://cdn.svgporn.com/logos/php.svg",
+          level: 80,
+        },
         {
           title: "Python",
           icon: "https://cdn.svgporn.com/logos/python.svg",
           level: 75,
         },
-        {
-          title: "PHP",
-          icon: "https://cdn.svgporn.com/logos/php.svg",
-          level: 80,
-        },
+    
         {
           title: "Java",
           icon: "https://cdn.svgporn.com/logos/java.svg",
@@ -313,6 +316,21 @@ const Skills = () => {
         },
         {
           title: "Nodemailer",
+          icon: "https://nodemailer.com/nodemailer.svg",
+          level: 80,
+        },
+              {
+          title: "AI API Integrations",
+          icon: "https://nodemailer.com/nodemailer.svg",
+          level: 80,
+        },
+        {
+          title: "Meteo / Weather APIs",
+          icon: "https://nodemailer.com/nodemailer.svg",
+          level: 80,
+        },
+            {
+          title: "Webhooks",
           icon: "https://nodemailer.com/nodemailer.svg",
           level: 80,
         },
@@ -341,6 +359,11 @@ const Skills = () => {
           icon: "https://www.json.org/img/json160.gif",
           level: 95,
         },
+          {
+          title: "SQLite",
+          icon: "https://www.json.org/img/json160.gif",
+          level: 95,
+        },
       ],
     },
     {
@@ -366,11 +389,7 @@ const Skills = () => {
           icon: "https://cdn.svgporn.com/logos/android-icon.svg",
           level: 70,
         },
-        {
-          title: "SQLite",
-          icon: "https://cdn.svgporn.com/logos/sqlite.svg",
-          level: 75,
-        },
+  
       ],
     },
     {
@@ -378,6 +397,11 @@ const Skills = () => {
       skills: [
         {
           title: "Git",
+          icon: "https://cdn.svgporn.com/logos/git-icon.svg",
+          level: 85,
+        },
+              {
+          title: "GitHub",
           icon: "https://cdn.svgporn.com/logos/git-icon.svg",
           level: 85,
         },
@@ -401,36 +425,16 @@ const Skills = () => {
           icon: "https://cdn.svgporn.com/logos/chrome-devtools-icon.svg",
           level: 90,
         },
-        {
-          title: "AI APIs",
-          icon: "https://cdn.svgporn.com/logos/openai-icon.svg",
-          level: 75,
-        },
-        {
-          title: "Meteo APIs",
-          icon: "https://cdn.svgporn.com/logos/openweathermap-logo.svg",
-          level: 80,
-        },
-        {
-          title: "Webhooks",
-          icon: "https://cdn.svgporn.com/logos/webhook-icon.svg",
-          level: 85,
-        },
+    
+    
+
         {
           title: "Postman",
           icon: "https://www.postman.com/icon/postman-icon.svg",
           level: 90,
         },
-        {
-          title: "React Native",
-          icon: "https://cdn.svgporn.com/logos/react-native-icon.svg",
-          level: 75,
-        },
-        {
-          title: "Android Studio",
-          icon: "https://cdn.svgporn.com/logos/android-icon.svg",
-          level: 70,
-        },
+    
+
       ],
     },
     {
@@ -441,11 +445,7 @@ const Skills = () => {
           icon: "https://cdn.svgporn.com/logos/docker-icon.svg",
           level: 80,
         },
-        {
-          title: "Kubernetes",
-          icon: "https://cdn.svgporn.com/logos/kubernetes-icon.svg",
-          level: 75,
-        },
+    
         {
           title: "GitHub Actions",
           icon: "https://cdn.svgporn.com/logos/github-actions-icon.svg",
