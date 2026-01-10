@@ -483,7 +483,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="section-padding relative w-full">
+    <section id="skills" className="section-padding relative w-full pb-24">
       <motion.div
         className="w-full px-4 md:px-8 lg:px-16"
         variants={containerVariants}
@@ -525,7 +525,7 @@ const Skills = () => {
               ))}
             </motion.div>
             {/* Tab Content */}
-            <motion.div className="flex-1" variants={itemVariants}>
+            <motion.div className="flex-1 lg:pl-4" variants={itemVariants}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -533,10 +533,21 @@ const Skills = () => {
                 key={activeTab}
                 className="space-y-4"
               >
+                <div className="flex items-center mb-2">
+                  <span className="text-2xl text-secondary mr-3">
+                    {categoryMeta[activeTab].icon}
+                  </span>
+                  <h3 className="text-2xl font-semibold text-secondary">
+                    {skillCategories[activeTab].category}
+                  </h3>
+                  <div className="flex-1 ml-4 h-0.5 bg-secondary/60"></div>
+                </div>
+                <p className="text-textSecondary mb-6">
+                  {categoryMeta[activeTab].description}
+                </p>
                 <SkillSection
                   category={skillCategories[activeTab].category}
                   skills={skillCategories[activeTab].skills}
-                  description={categoryMeta[activeTab].description}
                 />
               </motion.div>
             </motion.div>
@@ -559,7 +570,7 @@ const Skills = () => {
         </div>
         
       </motion.div>
-      {/* Scroll Down Button */} 
+      {/* Scroll Down Button - Positioned outside main content */} 
       <ScrollDown targetId="education" />
     </section>
   );

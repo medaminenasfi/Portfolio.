@@ -14,7 +14,7 @@ const ScrollDown = ({ targetId }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1 }}
-      className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+      className="absolute bottom-4 left-1/2 transform -translate-x-1/2 cursor-pointer z-50"
       onClick={scrollToNext}
     >
       <motion.div
