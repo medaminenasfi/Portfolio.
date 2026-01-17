@@ -184,14 +184,57 @@ console.log("Building amazing web experiences...");
               <motion.a
                 href={require('../assets/Mohamed_Amine_Nasfi_CV_FullStackDeveloper.pdf')}
                 download="Mohamed_Amine_Nasfi_CV_FullStackDeveloper.pdf"
-                className="px-3 sm:px-4 md:px-5 py-2.5 bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold text-xs sm:text-sm md:text-base rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap"
+                className="relative px-3 sm:px-4 md:px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold text-xs sm:text-sm md:text-base rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap overflow-hidden group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Download CV
+                {/* Animated background overlay */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-teal-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
+                />
+                
+                {/* Shimmer effect */}
+                <motion.div 
+                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 rounded-lg"
+                />
+                
+                {/* Icon with subtle animation */}
+                <motion.svg 
+                  className="relative z-10 w-4 h-4 sm:w-5 sm:h-5" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                  animate={{
+                    y: [0, -2, 0]
+                  }}
+                  transition={{ 
+                    duration: 2, 
+                    repeat: Infinity, 
+                    ease: 'easeInOut'
+                  }}
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
+                  />
+                </motion.svg>
+                
+                {/* Text */}
+                <span className="relative z-10 font-bold tracking-wide">Download CV</span>
+                
+                {/* Success indicator on hover */}
+                <motion.div
+                  className="absolute -top-1 -right-1 w-5 h-5 bg-green-400 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileHover={{ scale: 1, rotate: 0 }}
+                  transition={{ type: 'spring', stiffness: 500 }}
+                >
+                  <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </motion.div>
               </motion.a>
 
               {/* Hire Me Button */}
@@ -199,11 +242,11 @@ console.log("Building amazing web experiences...");
                 href="https://www.upwork.com/freelancers/~017cad0a2a355873b2?mp_source=share"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 sm:px-4 md:px-5 py-2.5 border-2 border-green-400 text-green-400 font-semibold text-xs sm:text-sm md:text-base rounded-lg transition-all duration-300 hover:bg-green-400/10 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2 whitespace-nowrap"
+                className="px-3 sm:px-4 md:px-5 py-3 border-2 border-green-400 text-green-400 font-semibold text-xs sm:text-sm md:text-base rounded-lg transition-all duration-300 hover:bg-green-400/10 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2 whitespace-nowrap overflow-visible min-h-[44px] flex-shrink-0"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3.002-2.439-5.453-5.439-5.453z"/>
                 </svg>
                 Hire Me
