@@ -198,7 +198,7 @@ const Header = () => {
                 href="https://www.upwork.com/freelancers/~017cad0a2a355873b2?mp_source=share"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block mt-6 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg text-center hover:from-green-600 hover:to-emerald-700 transition-all duration-300"
+                className="block mt-4 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg text-center hover:from-green-600 hover:to-emerald-700 transition-all duration-300"
                 onClick={handleMenuClick}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

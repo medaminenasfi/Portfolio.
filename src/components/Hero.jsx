@@ -180,17 +180,18 @@ console.log("Building amazing web experiences...");
                 Get In Touch
               </motion.a>
 
-              {/* View Projects Button */}
+              {/* Download CV Button */}
               <motion.a
-                href="#projects"
-                className="px-3 sm:px-4 md:px-5 py-2.5 bg-gradient-to-r from-cyan-400 to-teal-500 text-white font-semibold text-xs sm:text-sm md:text-base rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap"
+                href={require('../assets/Mohamed_Amine_Nasfi_CV_FullStackDeveloper.pdf')}
+                download="Mohamed_Amine_Nasfi_CV_FullStackDeveloper.pdf"
+                className="px-3 sm:px-4 md:px-5 py-2.5 bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold text-xs sm:text-sm md:text-base rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                View Projects
+                Download CV
               </motion.a>
 
               {/* Hire Me Button */}
@@ -198,7 +199,7 @@ console.log("Building amazing web experiences...");
                 href="https://www.upwork.com/freelancers/~017cad0a2a355873b2?mp_source=share"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 sm:px-4 md:px-5 py-2.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold text-xs sm:text-sm md:text-base rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap sm:col-span-2 lg:col-span-1"
+                className="px-3 sm:px-4 md:px-5 py-2.5 border-2 border-green-400 text-green-400 font-semibold text-xs sm:text-sm md:text-base rounded-lg transition-all duration-300 hover:bg-green-400/10 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] flex items-center justify-center gap-2 whitespace-nowrap"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
