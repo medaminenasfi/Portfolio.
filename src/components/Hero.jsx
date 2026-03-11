@@ -54,7 +54,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center section-padding relative bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] overflow-hidden w-full max-w-full" id="home">
+    <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] overflow-hidden w-full max-w-full" id="home">
       {/* Animated Coding Background */}
       <div className="absolute inset-0 -z-10 pointer-events-none hidden md:flex items-center justify-center w-full max-w-full overflow-hidden">
         <motion.pre
@@ -83,7 +83,7 @@ function buildWeb() {
 console.log("Building amazing web experiences...");
 `}</motion.pre>
       </div>
-      <div className="flex flex-col md:flex-row-reverse items-center justify-center w-full max-w-full gap-6 md:gap-8 lg:gap-16 px-4 sm:px-6 md:px-8 z-10">
+      <div className="flex flex-col md:flex-row-reverse items-center justify-center w-full max-w-full gap-4 sm:gap-6 md:gap-8 lg:gap-12 px-3 sm:px-4 md:px-6 lg:px-8 z-10">
         {/* Professional Photo with Cyan Border - Right Side */}
         <div className="relative flex flex-col items-center justify-center mb-4 md:mb-0 w-full max-w-[280px] sm:max-w-xs md:max-w-sm flex-shrink-0">
           {/* Subtle Background Glow */}
@@ -125,7 +125,7 @@ console.log("Building amazing web experiences...");
           </motion.div>
         </div>
         {/* Hero Text Content - Left Side */}
-        <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left w-full max-w-full md:max-w-2xl overflow-hidden">
+        <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left w-full max-w-full md:max-w-2xl overflow-hidden px-2 sm:px-0">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -140,7 +140,7 @@ console.log("Building amazing web experiences...");
             </motion.p>
             <motion.h1 
               variants={itemVariants}
-              className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold mb-1 sm:mb-2 drop-shadow-lg font-mono leading-tight break-words w-full"
+              className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold mb-1 sm:mb-2 drop-shadow-lg font-mono leading-tight break-words w-full"
             >
               Mohamed Amine Nasfi
             </motion.h1>
@@ -182,8 +182,8 @@ console.log("Building amazing web experiences...");
 
               {/* Download CV Button */}
               <motion.a
-                href={require('../assets/Mohamed_Amine_Nasfi_CV_FullStackDeveloper.pdf')}
-                download="Mohamed_Amine_Nasfi_CV_FullStackDeveloper.pdf"
+                href={require('../assets/Mohamed_Amine_Nasfi_CV_EN.pdf')}
+                download="Mohamed_Amine_Nasfi_CV_EN.pdf"
                 className="relative px-3 sm:px-4 md:px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold text-xs sm:text-sm md:text-base rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap overflow-hidden group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
