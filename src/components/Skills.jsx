@@ -15,21 +15,23 @@ import action from "../assets/github-actions-logo-png_seeklogo-428028.png";
 import nginx from "../assets/3030173.webp";
 import AWS from "../assets/Amazon_Web_Services_Logo.svg.png";
 import VPS from "../assets/8047704.png";
-
+import css3Logo from "../assets/pngegg.png";
 
 const SkillCard = ({ title, icon, level }) => {
   const [imageError, setImageError] = React.useState(false);
-  const [imageLoaded, setImageLoaded] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
+
+  const isStringIcon = typeof icon === 'string';
+  const isElementIcon = React.isValidElement(icon);
 
   const handleImageError = (e) => {
     console.warn(`Failed to load icon for ${title}: ${icon}`);
     setImageError(true);
-    e.target.style.display = 'none';
   };
 
   const handleImageLoad = () => {
-    setImageLoaded(true);
+    // If image loads successfully, clear any previous error state
+    setImageError(false);
   };
 
   // Generate fallback icon based on technology name
@@ -140,14 +142,12 @@ const SkillCard = ({ title, icon, level }) => {
       
       <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
         <div className="relative group w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
-          {!imageError && (
+          {isStringIcon && !imageError && (
             <motion.img
               src={icon}
               alt={title}
               className={`w-12 h-12 sm:w-14 sm:h-14 object-contain filter brightness-90 group-hover:brightness-100
-                         transition-all duration-500 transform group-hover:scale-125 group-hover:rotate-6 ${
-                           imageLoaded ? 'opacity-100' : 'opacity-0'
-                         }`}
+                         transition-all duration-500 transform group-hover:scale-125 group-hover:rotate-6 opacity-100`}
               whileHover={{ 
                 rotate: [0, -5, 5, 0],
                 scale: [1, 1.1, 1.05, 1.15]
@@ -155,11 +155,22 @@ const SkillCard = ({ title, icon, level }) => {
               transition={{ duration: 0.6 }}
               onError={handleImageError}
               onLoad={handleImageLoad}
-              loading="lazy"
+              decoding="async"
               crossOrigin="anonymous"
+              referrerPolicy="no-referrer"
             />
           )}
-          {(imageError || !imageLoaded) && (
+
+          {/* If icon is a React element (e.g. inline SVG or react-icon), render it inside a logo wrapper */}
+          {isElementIcon && (
+            <motion.div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-secondary"
+                        whileHover={{ rotate: 6, scale: 1.15 }}
+                        transition={{ duration: 0.3 }}>
+              {icon}
+            </motion.div>
+          )}
+
+          {imageError && (
             <motion.div 
               className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-secondary/20 to-secondary/40 rounded-xl flex items-center justify-center border border-secondary/60 shadow-lg"
               whileHover={{ 
@@ -298,7 +309,7 @@ const Skills = () => {
         },
         {
           title: "CSS3",
-          icon: "https://cdn.svgporn.com/logos/css-3.svg",
+          icon: css3Logo,
           level: 90,
         },
       
