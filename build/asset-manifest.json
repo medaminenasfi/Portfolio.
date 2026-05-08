@@ -1,16 +1,36 @@
 {
   "files": {
-    "main.css": "/static/css/main.1588aa8a.css",
-    "main.js": "/static/js/main.c95a9f2a.js",
-    "static/js/453.1407b060.chunk.js": "/static/js/453.1407b060.chunk.js",
-    "static/media/profile.png": "/static/media/profile.94f655ac08a3ad47f189.png",
+    "main.css": "/static/css/main.b7fe9fe0.css",
+    "main.js": "/static/js/main.f7e62587.js",
+    "static/media/ec.png": "/static/media/ec.339a20da7d1fa20c779c.png",
+    "static/media/photo.png": "/static/media/photo.39f63ea9cdf035ac568a.png",
+    "static/media/wallet.png": "/static/media/wallet.50e8d8cc5dfb8385da89.png",
+    "static/media/Gemini_Generated_Image_hfkfoghfkfoghfkf.png": "/static/media/Gemini_Generated_Image_hfkfoghfkfoghfkf.b6b16c5c38737c2d3d07.png",
+    "static/media/bmi.png": "/static/media/bmi.7b6bcc182854ab922f80.png",
+    "static/media/wea.png": "/static/media/wea.99b2a6057c46afeed72e.png",
+    "static/media/dev-removebg-preview.png": "/static/media/dev-removebg-preview.67a2e87f37e9d7eef867.png",
+    "static/media/Mohamed_Amine_Nasfi_CV_EN.pdf": "/static/media/Mohamed_Amine_Nasfi_CV_EN.e39eb92a3b76c1617006.pdf",
+    "static/media/Screenshot from 2025-07-19 18-44-01.png": "/static/media/Screenshot from 2025-07-19 18-44-01.51bf9cfa503ecced93b0.png",
+    "static/media/web.png": "/static/media/web.7ffcae908c20601ad287.png",
+    "static/media/jwt.png": "/static/media/jwt.649c4a73f8b834c40ef7.png",
+    "static/media/Amazon_Web_Services_Logo.svg.png": "/static/media/Amazon_Web_Services_Logo.svg.1237dcb96fe43a664269.png",
+    "static/media/met.png": "/static/media/met.ff914e985020ca5cb287.png",
+    "static/media/Sqlite-square-icon.svg.png": "/static/media/Sqlite-square-icon.svg.500516d6ff861b3a6139.png",
+    "static/media/8047704.png": "/static/media/8047704.af97db494370e917b69a.png",
+    "static/media/apipng.png": "/static/media/apipng.2cc58e67af011ace1520.png",
+    "static/media/ecommerce-online-shopping-vector-illustration_677179-93.webp": "/static/media/ecommerce-online-shopping-vector-illustration_677179-93.edeaf7b0611dc0ccd5a0.webp",
+    "static/media/xml.webp": "/static/media/xml.1362e75916f07997f7b9.webp",
+    "static/media/postman-icon.svg": "/static/media/postman-icon.c74cd48d00339ba03ff2e6ed3f9d0c4d.svg",
+    "static/media/github-actions-logo-png_seeklogo-428028.png": "/static/media/github-actions-logo-png_seeklogo-428028.691055e8ceefd6bd9d12.png",
+    "static/media/3030173.webp": "/static/media/3030173.250b3417c93d5cd8dce3.webp",
+    "static/media/n2-2.webp": "/static/media/n2-2.c3c350a57b8de980542d.webp",
     "index.html": "/index.html",
-    "main.1588aa8a.css.map": "/static/css/main.1588aa8a.css.map",
-    "main.c95a9f2a.js.map": "/static/js/main.c95a9f2a.js.map",
-    "453.1407b060.chunk.js.map": "/static/js/453.1407b060.chunk.js.map"
+    "static/media/expressjs.svg": "/static/media/expressjs.cde296a36e08ca5b214678d4f2edfc8c.svg",
+    "main.b7fe9fe0.css.map": "/static/css/main.b7fe9fe0.css.map",
+    "main.f7e62587.js.map": "/static/js/main.f7e62587.js.map"
   },
   "entrypoints": [
-    "static/css/main.1588aa8a.css",
-    "static/js/main.c95a9f2a.js"
+    "static/css/main.b7fe9fe0.css",
+    "static/js/main.f7e62587.js"
   ]
 }

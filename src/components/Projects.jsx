@@ -11,8 +11,10 @@ import back from '../assets/Gemini_Generated_Image_hfkfoghfkfoghfkf.png';
 import wallet from '../assets/wallet.png'
 import bmi from '../assets/bmi.png'
 import wea from '../assets/wea.png'
-
- 
+import cr from '../assets/cr.png'
+import ais from '../assets/ais.png'
+import mara from '../assets/mara.png'
+import scr from '../assets/scr.png'
 
 const ProjectCard = ({ project, onClick }) => (
   <motion.div 
@@ -119,26 +121,116 @@ const Projects = () => {
   
   const projects = [
     // Web Projects
-    {
-      id: 'backend-ecommerce',
-      title: "Backend – E-commerce API",
-      description: "A complete e-commerce backend API built with TypeScript, featuring user authentication, product management, order processing, and payment integration.",
-      technologies: ["Node.js", "TypeScript", "MongoDB", "Express.js", "JWT", "Stripe API", "Bcrypt"],
-      link: "https://github.com/medaminenasfi/E-commerce/tree/main/backend",
-      image: back,
-      category: 'web',
-      features: [
-        "User Authentication & Authorization",
-        "Product CRUD Operations",
-        "Shopping Cart Management",
-        "Order Processing System",
-        "Payment Integration with Stripe",
-        "Admin Dashboard",
-        "RESTful API Design"
-      ],
-      challenges: "Implementing secure payment processing and scalable database design",
-      github: "https://github.com/medaminenasfi/E-commerce/tree/main/backend"
-    },
+{
+  id: 'real-estate-saas',
+  title: "SaaS Platform for Real Estate Investors",
+  description: "A scalable real estate investment platform connecting investors with high-return opportunities. Features investor onboarding, dynamic forms, lead management, and an admin dashboard for tracking interactions and managing workflows.",
+  technologies: ["Next.js", "React", "Node.js", "PostgreSQL", "Tailwind CSS"],
+  link: "https://github.com/yourusername/real-estate-saas",
+  image: cr,
+  category: 'web',
+  features: [
+    "Investor Onboarding Flow",
+    "Admin Dashboard",
+    "Lead Management System",
+    "Dynamic Forms & Data Collection",
+    "Responsive UI/UX",
+    "Scalable SaaS Architecture",
+    "CRM-Ready Structure"
+  ],
+  challenges: "Designing a scalable architecture and building flexible lead management workflows",
+  github: "https://github.com/yourusername/real-estate-saas"
+},
+
+{
+  id: 'medical-platform',
+  title: "Medical Website with Product Catalog & Quote System",
+  description: "A full-stack medical implant platform featuring a responsive landing page, advanced product catalog, dynamic quote request system, and scalable admin-ready architecture.",
+  technologies: ["Next.js", "React", "Node.js", "PostgreSQL", "Tailwind CSS"],
+  link: "https://github.com/yourusername/medical-platform",
+  image: ais,
+  category: 'web',
+  features: [
+    "Dynamic Product Catalog",
+    "Quote Request System",
+    "Technical Product Pages",
+    "Responsive Design",
+    "Structured Navigation",
+    "Modern UI/UX",
+    "Admin-Ready Architecture"
+  ],
+  challenges: "Building scalable product management and creating an intuitive quote request workflow",
+  github: "https://github.com/yourusername/medical-platform"
+},
+
+{
+  id: 'real-estate-landing',
+  title: "Modern SaaS Landing Page for Real Estate Management",
+  description: "A modern SaaS landing page focused on conversion, clean UI/UX, reusable components, and responsive design for a real estate management platform.",
+  technologies: ["Next.js", "React", "Tailwind CSS", "Express.js", "PostgreSQL"],
+  link: "https://github.com/yourusername/real-estate-landing",
+  image: mara,
+  category: 'web',
+  features: [
+    "Modern SaaS UI",
+    "Responsive Design",
+    "Reusable Components",
+    "Smooth Animations",
+    "Optimized Conversion Flow",
+    "CTA-Focused Layout",
+    "Clean User Experience"
+  ],
+  challenges: "Creating a high-converting layout while maintaining performance and scalability",
+  github: "https://github.com/yourusername/real-estate-landing"
+},
+
+{
+  id: 'universal-web-scraper',
+  title: "Universal Web Scraper – Automated Data Extraction System",
+  description: "A powerful automated web scraping system capable of extracting structured data from static and dynamic websites using only a URL.",
+  technologies: ["Python", "Requests", "BeautifulSoup", "Selenium", "JSON"],
+  link: "https://github.com/yourusername/universal-web-scraper",
+  image: scr,
+  category: 'web',
+  features: [
+    "Static & Dynamic Website Support",
+    "Automated Data Extraction",
+    "Image & Media Collection",
+    "Table & Link Extraction",
+    "Document Download Detection",
+    "Structured JSON Output",
+    "Scalable Scraping Workflow"
+  ],
+  challenges: "Handling dynamic websites and building a universal extraction logic adaptable to multiple site structures",
+  github: "https://github.com/yourusername/universal-web-scraper"
+},
+
+
+
+
+
+
+
+      {
+        id: 'backend-ecommerce',
+        title: "Backend – E-commerce API",
+        description: "A complete e-commerce backend API built with TypeScript, featuring user authentication, product management, order processing, and payment integration.",
+        technologies: ["Node.js", "TypeScript", "MongoDB", "Express.js", "JWT", "Stripe API", "Bcrypt"],
+        link: "https://github.com/medaminenasfi/E-commerce/tree/main/backend",
+        image: back,
+        category: 'web',
+        features: [
+          "User Authentication & Authorization",
+          "Product CRUD Operations",
+          "Shopping Cart Management",
+          "Order Processing System",
+          "Payment Integration with Stripe",
+          "Admin Dashboard",
+          "RESTful API Design"
+        ],
+        challenges: "Implementing secure payment processing and scalable database design",
+        github: "https://github.com/medaminenasfi/E-commerce/tree/main/backend"
+      },
     {
       id: 'ecotourisme',
       title: "Ecotourisme TN",
