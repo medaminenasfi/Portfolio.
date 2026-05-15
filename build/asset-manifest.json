@@ -1,8 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.b7fe9fe0.css",
-    "main.js": "/static/js/main.f7e62587.js",
+    "main.css": "/static/css/main.e83957d7.css",
+    "main.js": "/static/js/main.2c0e5870.js",
     "static/media/ec.png": "/static/media/ec.339a20da7d1fa20c779c.png",
+    "static/media/scr.png": "/static/media/scr.cab0819b21967ad81d15.png",
+    "static/media/mara.png": "/static/media/mara.6cd61ed6e6c057b4788a.png",
+    "static/media/cr.png": "/static/media/cr.b5bb93dbf959b0f060da.png",
+    "static/media/ais.png": "/static/media/ais.9a42e3a27108e4d05ec5.png",
     "static/media/photo.png": "/static/media/photo.39f63ea9cdf035ac568a.png",
     "static/media/wallet.png": "/static/media/wallet.50e8d8cc5dfb8385da89.png",
     "static/media/Gemini_Generated_Image_hfkfoghfkfoghfkf.png": "/static/media/Gemini_Generated_Image_hfkfoghfkfoghfkf.b6b16c5c38737c2d3d07.png",
@@ -20,17 +24,18 @@
     "static/media/apipng.png": "/static/media/apipng.2cc58e67af011ace1520.png",
     "static/media/ecommerce-online-shopping-vector-illustration_677179-93.webp": "/static/media/ecommerce-online-shopping-vector-illustration_677179-93.edeaf7b0611dc0ccd5a0.webp",
     "static/media/xml.webp": "/static/media/xml.1362e75916f07997f7b9.webp",
+    "static/media/pngegg.png": "/static/media/pngegg.99426a611bd5b768e71d.png",
     "static/media/postman-icon.svg": "/static/media/postman-icon.c74cd48d00339ba03ff2e6ed3f9d0c4d.svg",
     "static/media/github-actions-logo-png_seeklogo-428028.png": "/static/media/github-actions-logo-png_seeklogo-428028.691055e8ceefd6bd9d12.png",
     "static/media/3030173.webp": "/static/media/3030173.250b3417c93d5cd8dce3.webp",
     "static/media/n2-2.webp": "/static/media/n2-2.c3c350a57b8de980542d.webp",
     "index.html": "/index.html",
     "static/media/expressjs.svg": "/static/media/expressjs.cde296a36e08ca5b214678d4f2edfc8c.svg",
-    "main.b7fe9fe0.css.map": "/static/css/main.b7fe9fe0.css.map",
-    "main.f7e62587.js.map": "/static/js/main.f7e62587.js.map"
+    "main.e83957d7.css.map": "/static/css/main.e83957d7.css.map",
+    "main.2c0e5870.js.map": "/static/js/main.2c0e5870.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7fe9fe0.css",
-    "static/js/main.f7e62587.js"
+    "static/css/main.e83957d7.css",
+    "static/js/main.2c0e5870.js"
   ]
 }

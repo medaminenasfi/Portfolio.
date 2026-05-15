@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Github, CheckCircle, Calendar, Code, Lightbulb, Star } from 'lucide-react';
+import { projects } from '../data/projectsData';
 
 const ProjectDetail = () => {
-  useParams();
+  const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   
-  const project = location.state?.project;
+  const project = location.state?.project || projects.find((item) => item.id === id);
+
+  const shouldReduceMotion = useReducedMotion();
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -89,14 +92,14 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white overflow-x-hidden">
       {/* Animated Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none hidden md:block">
         <motion.div
           className="absolute -top-40 -right-40 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"
-          animate={{
+          animate={shouldReduceMotion ? {} : {
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
           }}
-          transition={{
+          transition={shouldReduceMotion ? {} : {
             duration: 8,
             repeat: Infinity,
             repeatType: "reverse",
@@ -104,11 +107,11 @@ const ProjectDetail = () => {
         />
         <motion.div
           className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/3 rounded-full blur-3xl"
-          animate={{
+          animate={shouldReduceMotion ? {} : {
             scale: [1.2, 1, 1.2],
             opacity: [0.2, 0.4, 0.2],
           }}
-          transition={{
+          transition={shouldReduceMotion ? {} : {
             duration: 10,
             repeat: Infinity,
             repeatType: "reverse",
@@ -127,9 +130,10 @@ const ProjectDetail = () => {
           <div className="flex items-center justify-between">
             <motion.button
               onClick={() => navigate('/')}
-              className="group flex items-center space-x-3 text-secondary hover:text-white transition-all duration-300 p-2 rounded-xl hover:bg-secondary/10"
-              whileHover={{ x: -5 }}
+              className="group flex items-center space-x-3 text-secondary hover:text-white transition-all duration-300 p-2 rounded-xl hover:bg-secondary/10 focus-ring"
+              whileHover={shouldReduceMotion ? {} : { x: -5 }}
               whileTap={{ scale: 0.95 }}
+              aria-label="Back to portfolio"
             >
               <ArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" size={20} />
               <span className="font-medium">Back to Portfolio</span>
@@ -190,10 +194,17 @@ const ProjectDetail = () => {
                     <span>Featured Project</span>
                   </motion.div>
                   
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                    <span className="bg-gradient-to-r from-white via-white to-secondary bg-clip-text text-transparent">
-                      {project.title}
-                    </span>
+                  <h1 
+                    className="hero-title break-word"
+                    style={{
+                      background: 'linear-gradient(to right, #8fa0a8 0%, #64ffda 60%, #3fe6c1 100%)',
+                      backgroundClip: 'text',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      textShadow: 'none'
+                    }}
+                  >
+                    {project.title}
                   </h1>
                   
                   <p className="text-xl lg:text-2xl text-textPrimary leading-relaxed">
@@ -261,14 +272,16 @@ const ProjectDetail = () => {
               >
                 <motion.div 
                   className="relative group"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.4 }}
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.4 }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-secondary/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-secondary/20">
                     <img
                       src={project.image}
                       alt={project.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-64 sm:h-80 lg:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent"></div>

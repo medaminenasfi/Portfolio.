@@ -1,47 +1,49 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { FaGlobe, FaMobile, FaCode } from 'react-icons/fa';
 import ScrollDown from './ScrollDown';
-import profileImg from '../assets/Screenshot from 2025-07-19 18-44-01.png';
-import Eco from '../assets/ec.png';
-import xml from '../assets/xml.webp';
-import comme from '../assets/ecommerce-online-shopping-vector-illustration_677179-93.webp';
-import back from '../assets/Gemini_Generated_Image_hfkfoghfkfoghfkf.png';
-import wallet from '../assets/wallet.png'
-import bmi from '../assets/bmi.png'
-import wea from '../assets/wea.png'
-import cr from '../assets/cr.png'
-import ais from '../assets/ais.png'
-import mara from '../assets/mara.png'
-import scr from '../assets/scr.png'
+import { projects } from '../data/projectsData';
 
-const ProjectCard = ({ project, onClick }) => (
-  <motion.div 
-    className="group relative rounded-2xl overflow-hidden bg-gradient-to-br from-primary/90 to-primary/70 shadow-xl hover:shadow-2xl transition-all duration-500 border border-secondary/20 hover:border-secondary/50 transform flex flex-col cursor-pointer w-full"
-    onClick={() => onClick(project)}
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    whileHover={{ 
-      y: -8,
-      scale: 1.02
-    }}
-    transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
-  >
+const ProjectCard = ({ project, onClick }) => {
+  const shouldReduceMotion = useReducedMotion();
+
+  const handleKey = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick(project);
+    }
+  };
+
+  return (
+    <motion.div 
+      className="group relative flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-3xl bg-[#071827] border border-[#0e2933] shadow-[inset_0_6px_18px_rgba(2,6,23,0.85),0_20px_60px_rgba(2,6,23,0.6)] text-white"
+      onClick={() => onClick(project)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={handleKey}
+      aria-label={`Open project ${project.title} details`}
+      initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+      whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.01 }}
+      transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.35, type: "spring", stiffness: 300 }}
+    >
     {/* Animated gradient overlay */}
     <motion.div 
       className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10"
     />
     
     {/* Project Image */}
-    <div className="w-full h-48 sm:h-56 md:h-64 overflow-hidden rounded-t-2xl relative">
+    <div className="relative h-56 w-full overflow-hidden sm:h-64 md:h-72 lg:h-80">
       <motion.img 
         src={project.image} 
         alt={project.title} 
-        className="w-full h-full object-cover"
-        whileHover={{ scale: 1.1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="h-full w-full object-cover"
+        loading="lazy"
+        decoding="async"
+        whileHover={shouldReduceMotion ? {} : { scale: 1.06 }}
+        transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, ease: "easeOut" }}
       />
       {/* Image overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -49,11 +51,11 @@ const ProjectCard = ({ project, onClick }) => (
     
     {/* Category Badge */}
     <motion.div 
-      className="absolute top-3 right-3 z-20"
+      className="absolute right-3 top-3 z-20"
       whileHover={{ scale: 1.1, rotate: 5 }}
       transition={{ type: "spring", stiffness: 400 }}
     >
-      <span className={`px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg backdrop-blur-sm ${
+      <span className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] shadow-lg backdrop-blur-md ${
         project.category === 'web' 
           ? 'bg-blue-500/90 text-white ring-2 ring-blue-300/50' 
           : 'bg-green-500/90 text-white ring-2 ring-green-300/50'
@@ -64,19 +66,21 @@ const ProjectCard = ({ project, onClick }) => (
     </motion.div>
     
     {/* Card Content */}
-    <div className="flex flex-col flex-1 justify-between p-4 sm:p-5 md:p-6 relative z-10">
+    <div className="relative z-10 flex flex-1 flex-col justify-between p-5 sm:p-6 lg:p-8">
       <motion.h3 
-        className="text-base sm:text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 group-hover:text-secondary transition-colors duration-300"
+        className="mb-3 text-lg font-semibold leading-tight text-[#64ffda] transition-colors duration-300 line-clamp-2 group-hover:text-[#7ef3d3] sm:text-xl lg:text-2xl"
         whileHover={{ x: 4 }}
       >
         {project.title}
       </motion.h3>
-      <p className="text-textPrimary mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3 text-xs sm:text-sm leading-relaxed">{project.description}</p>
-      <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
+      <p className="mb-4 text-sm leading-relaxed text-[#a8b3bd] line-clamp-3 sm:mb-5 sm:text-base lg:text-[15px]">
+        {project.description}
+      </p>
+      <div className="mb-4 flex flex-wrap gap-2 sm:mb-5 lg:mb-6">
         {project.technologies.slice(0, 3).map((tech, index) => (
           <motion.span
             key={index}
-            className="px-2 sm:px-3 py-1 sm:py-1.5 bg-secondary/20 text-secondary rounded-full text-xs font-medium border border-secondary/30"
+            className="rounded-full border border-secondary/25 bg-secondary/15 px-2.5 py-1 text-[11px] font-medium text-secondary sm:px-3 sm:py-1.5 sm:text-xs"
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
@@ -84,15 +88,16 @@ const ProjectCard = ({ project, onClick }) => (
           </motion.span>
         ))}
         {project.technologies.length > 3 && (
-          <span className="px-2 sm:px-3 py-1 sm:py-1.5 bg-secondary/10 text-secondary/70 rounded-full text-xs font-medium">
+          <span className="rounded-full bg-secondary/10 px-2.5 py-1 text-[11px] font-medium text-secondary/70 sm:px-3 sm:py-1.5 sm:text-xs">
             +{project.technologies.length - 3} more
           </span>
         )}
       </div>
       <motion.button 
-        className="relative inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-secondary to-secondary/80 text-white rounded-xl font-bold text-sm sm:text-base shadow-lg overflow-hidden group/btn"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        className="group/btn relative inline-flex w-full items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-r from-[#63f7d0] to-[#3fe6c1] px-4 py-3 text-sm font-semibold text-[#042422] shadow-2xl transition-transform duration-300 sm:px-6 sm:py-3.5 sm:text-base touch-target focus-ring border border-[#0d3a35]"
+        whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        aria-label={`View details for ${project.title}`}
       >
         <span className="relative z-10 flex items-center justify-center gap-2">
           View Details
@@ -101,8 +106,8 @@ const ProjectCard = ({ project, onClick }) => (
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
-            animate={{ x: [0, 4, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
+            animate={shouldReduceMotion ? {} : { x: [0, 4, 0] }}
+            transition={shouldReduceMotion ? {} : { duration: 1.5, repeat: Infinity }}
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </motion.svg>
@@ -112,265 +117,16 @@ const ProjectCard = ({ project, onClick }) => (
       </motion.button>
     </div>
   </motion.div>
-);
+
+  );
+};
 
 const Projects = () => {
   const navigate = useNavigate();
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState('all');
-  
-  const projects = [
-    // Web Projects
-{
-  id: 'real-estate-saas',
-  title: "SaaS Platform for Real Estate Investors",
-  description: "A scalable real estate investment platform connecting investors with high-return opportunities. Features investor onboarding, dynamic forms, lead management, and an admin dashboard for tracking interactions and managing workflows.",
-  technologies: ["Next.js", "React", "Node.js", "PostgreSQL", "Tailwind CSS"],
-  link: "https://github.com/yourusername/real-estate-saas",
-  image: cr,
-  category: 'web',
-  features: [
-    "Investor Onboarding Flow",
-    "Admin Dashboard",
-    "Lead Management System",
-    "Dynamic Forms & Data Collection",
-    "Responsive UI/UX",
-    "Scalable SaaS Architecture",
-    "CRM-Ready Structure"
-  ],
-  challenges: "Designing a scalable architecture and building flexible lead management workflows",
-  github: "https://github.com/yourusername/real-estate-saas"
-},
-
-{
-  id: 'medical-platform',
-  title: "Medical Website with Product Catalog & Quote System",
-  description: "A full-stack medical implant platform featuring a responsive landing page, advanced product catalog, dynamic quote request system, and scalable admin-ready architecture.",
-  technologies: ["Next.js", "React", "Node.js", "PostgreSQL", "Tailwind CSS"],
-  link: "https://github.com/yourusername/medical-platform",
-  image: ais,
-  category: 'web',
-  features: [
-    "Dynamic Product Catalog",
-    "Quote Request System",
-    "Technical Product Pages",
-    "Responsive Design",
-    "Structured Navigation",
-    "Modern UI/UX",
-    "Admin-Ready Architecture"
-  ],
-  challenges: "Building scalable product management and creating an intuitive quote request workflow",
-  github: "https://github.com/yourusername/medical-platform"
-},
-
-{
-  id: 'real-estate-landing',
-  title: "Modern SaaS Landing Page for Real Estate Management",
-  description: "A modern SaaS landing page focused on conversion, clean UI/UX, reusable components, and responsive design for a real estate management platform.",
-  technologies: ["Next.js", "React", "Tailwind CSS", "Express.js", "PostgreSQL"],
-  link: "https://github.com/yourusername/real-estate-landing",
-  image: mara,
-  category: 'web',
-  features: [
-    "Modern SaaS UI",
-    "Responsive Design",
-    "Reusable Components",
-    "Smooth Animations",
-    "Optimized Conversion Flow",
-    "CTA-Focused Layout",
-    "Clean User Experience"
-  ],
-  challenges: "Creating a high-converting layout while maintaining performance and scalability",
-  github: "https://github.com/yourusername/real-estate-landing"
-},
-
-{
-  id: 'universal-web-scraper',
-  title: "Universal Web Scraper – Automated Data Extraction System",
-  description: "A powerful automated web scraping system capable of extracting structured data from static and dynamic websites using only a URL.",
-  technologies: ["Python", "Requests", "BeautifulSoup", "Selenium", "JSON"],
-  link: "https://github.com/yourusername/universal-web-scraper",
-  image: scr,
-  category: 'web',
-  features: [
-    "Static & Dynamic Website Support",
-    "Automated Data Extraction",
-    "Image & Media Collection",
-    "Table & Link Extraction",
-    "Document Download Detection",
-    "Structured JSON Output",
-    "Scalable Scraping Workflow"
-  ],
-  challenges: "Handling dynamic websites and building a universal extraction logic adaptable to multiple site structures",
-  github: "https://github.com/yourusername/universal-web-scraper"
-},
-
-
-
-
-
-
-
-      {
-        id: 'backend-ecommerce',
-        title: "Backend – E-commerce API",
-        description: "A complete e-commerce backend API built with TypeScript, featuring user authentication, product management, order processing, and payment integration.",
-        technologies: ["Node.js", "TypeScript", "MongoDB", "Express.js", "JWT", "Stripe API", "Bcrypt"],
-        link: "https://github.com/medaminenasfi/E-commerce/tree/main/backend",
-        image: back,
-        category: 'web',
-        features: [
-          "User Authentication & Authorization",
-          "Product CRUD Operations",
-          "Shopping Cart Management",
-          "Order Processing System",
-          "Payment Integration with Stripe",
-          "Admin Dashboard",
-          "RESTful API Design"
-        ],
-        challenges: "Implementing secure payment processing and scalable database design",
-        github: "https://github.com/medaminenasfi/E-commerce/tree/main/backend"
-      },
-    {
-      id: 'ecotourisme',
-      title: "Ecotourisme TN",
-      description: "A comprehensive digital platform promoting eco-tourism and sustainable travel experiences in Tunisia with booking system and interactive maps.",
-      technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "Leaflet", "Socket.io"],
-      link: "https://ecotourisme.laghazala.tn/",
-      image: Eco,
-      category: 'web',
-      features: [
-        "Interactive Tourism Maps",
-        "Booking System",
-        "Real-time Chat Support",
-        "Multi-language Support",
-        "Mobile Responsive Design",
-        "Payment Gateway Integration",
-        "Review & Rating System"
-      ],
-      challenges: "Integrating real-time features and optimizing for mobile performance",
-      github: "https://github.com/medaminenasfi/ecotourisme"
-    },
-    {
-      id: 'xml-generator',
-      title: "XML Generator",
-      description: "Advanced application for converting Excel files and SQL queries to XML format with custom schema validation and batch processing.",
-      technologies: ["React.js", "Node.js", "Excel API", "XML Parser", "Multer", "Joi"],
-      link: "#",
-      image: xml,
-      category: 'web',
-      features: [
-        "Excel to XML Conversion",
-        "SQL Query to XML Export",
-        "Custom Schema Validation",
-        "Batch File Processing",
-        "Download Management",
-        "Error Handling & Logging",
-        "Preview Before Export"
-      ],
-      challenges: "Handling large file uploads and complex XML schema validation",
-      github: "https://github.com/medaminenasfi/xml-generator"
-    },
-    {
-      id: 'glooms-ecommerce',
-      title: "Glooms E-Commerce",
-      description: "Modern full-stack e-commerce platform specializing in clothing for all age groups with advanced filtering and recommendation system.",
-      technologies: ["React.js", "Node.js", "MongoDB", "Redux", "Tailwind CSS", "Cloudinary"],
-      link: "#",
-      image: comme,
-      category: 'web',
-      features: [
-        "Product Catalog with Filters",
-        "User Profiles & Wishlists",
-        "Shopping Cart & Checkout",
-        "Order Tracking",
-        "Admin Panel",
-        "Image Upload & Management",
-        "Responsive Design"
-      ],
-      challenges: "Implementing complex product filtering and optimizing image loading",
-      github: "https://github.com/medaminenasfi/glooms-ecommerce"
-    },
-    {
-      id: 'traducode',
-      title: "TraduCode",
-      description: "Innovative web application that converts algorithmic pseudocode into actual programming code across multiple languages.",
-      technologies: ["HTML", "CSS", "JavaScript", "Prism.js", "Monaco Editor", "Regex"],
-      link: "#",
-      image: profileImg,
-      category: 'web',
-      features: [
-        "Multi-language Code Generation",
-        "Syntax Highlighting",
-        "Code Editor Integration",
-        "Algorithm Visualization",
-        "Export Functionality",
-        "Code Validation",
-        "Interactive Examples"
-      ],
-      challenges: "Parsing complex algorithms and generating syntactically correct code",
-      github: "https://github.com/medaminenasfi/traducode"
-    },
-    // Mobile Projects
-{
-  id: 'bmi-calculator',
-  title: "BMI Calculator",
-  description: "A simple and elegant Body Mass Index (BMI) Calculator built using Flutter and Dart. This app allows users to calculate their BMI based on height and weight, providing instant insights about their health category.",
-  technologies: ["Flutter", "Dart", "Material Design"],
-  link: "#",
-  image: bmi ,
-  category: 'mobile',
-  features: [
-    "Easy BMI Calculation",
-    "Supports Metric Units (kg, cm)",
-    "Displays Health Categories: Underweight, Normal, Overweight, Obese",
-    "Clean and Responsive UI"
-  ],
-  challenges: "Ensuring accuracy in BMI calculation and maintaining a clean responsive layout",
-  github: "https://github.com/medaminenasfi/BMI-Calculator"
-},
-{
-  id: 'portefeuille-flutter',
-  title: "Digital Wallet Flutter App",
-  description: "This Flutter application simulates a digital wallet with two main functionalities: a currency converter and a monthly budget simulator. It allows users to manage their finances in a simple and intuitive way.",
-  technologies: ["Flutter", "Dart", "Material Design"],
-  link: "#",
-  image: wallet,
-  category: 'mobile',
-  features: [
-    "Currency converter with fixed rates",
-    "Monthly budget simulator",
-    "Display remaining balance after expenses",
-    "Simple and smooth navigation",
-    "User-friendly interface without external API"
-  ],
-  challenges: "Designing a smooth and intuitive interface with reliable calculations",
-  github: "https://github.com/medaminenasfi/portefeuille-numerique"
-}
-,
-  {
-  id: 'weather-app',
-  title: "Weather Forecast App (Ongoing)",
-  description: "An elegant Flutter application currently under development, providing real-time weather updates and detailed forecasts with a focus on UI animations and performance.",
-  technologies: ["Flutter", "Dart", "REST API", "Geolocator", "Weather API", "Animations"],
-  link: "#",
-  image: wea,
-  category: 'mobile',
-  features: [
-    "Real-time Weather Data (in progress)",
-    "7-Day Forecast (in progress)",
-    "Location-based Weather Detection",
-    "Weather Maps & Radar (planned)",
-    "Severe Weather Alerts (planned)",
-    "Multiple City Support",
-    "Smooth UI Animations"
-  ],
-  status: "In Development",
-  challenges: "Integrating live APIs and optimizing animation performance while managing location permissions.",
-  github: "https://github.com/medaminenasfi/flutter-weather"
-}
-
-  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(1);
+  const containerRef = useRef(null);
 
   const categories = [
     { id: 'all', label: 'All Projects', icon: <FaCode className="w-4 h-4" /> },
@@ -378,37 +134,44 @@ const Projects = () => {
     { id: 'mobile', label: 'Mobile Development', icon: <FaMobile className="w-4 h-4" /> }
   ];
 
-  const filteredProjects = activeCategory === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
+  const filteredProjects = activeCategory === 'all'
+    ? projects
+    : projects.filter((project) => project.category === activeCategory);
 
-  const itemsPerPage = 1; // Mobile: 1 item
-  const itemsPerPageMd = 2; // Tablet: 2 items
-  const itemsPerPageLg = 3; // Desktop: 3 items
-  
-  const getItemsPerPage = () => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth >= 1024) return itemsPerPageLg;
-      if (window.innerWidth >= 768) return itemsPerPageMd;
-    }
-    return itemsPerPage;
-  };
-  
-  const currentItemsPerPage = getItemsPerPage();
-  const totalPages = Math.ceil(filteredProjects.length / currentItemsPerPage);
-  
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalPages);
-  };
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth >= 1280) {
+        setItemsPerView(3);
+        return;
+      }
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
-  };
+      if (window.innerWidth >= 768) {
+        setItemsPerView(2);
+        return;
+      }
 
-  const getCurrentProjects = () => {
-    const start = currentIndex * currentItemsPerPage;
-    return filteredProjects.slice(start, start + currentItemsPerPage);
-  };
+      setItemsPerView(1);
+    };
+
+    updateItemsPerView();
+    window.addEventListener('resize', updateItemsPerView);
+
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
+
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [activeCategory]);
+
+  useEffect(() => {
+    if (filteredProjects.length <= itemsPerView) return undefined;
+
+    const interval = window.setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
+    }, 4000);
+
+    return () => window.clearInterval(interval);
+  }, [filteredProjects.length, activeCategory, itemsPerView]);
 
   const handleProjectClick = (project) => {
     navigate(`/project/${project.id}`, { state: { project } });
@@ -416,8 +179,39 @@ const Projects = () => {
 
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
-    setCurrentIndex(0); // Reset to first page when changing category
   };
+
+  useEffect(() => {
+    if (currentIndex > filteredProjects.length - 1) {
+      setCurrentIndex(0);
+    }
+  }, [currentIndex, filteredProjects.length]);
+
+  const handleKeyNav = (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
+    }
+
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
+    }
+  };
+
+  const getVisibleProjects = () => {
+    if (filteredProjects.length === 0) return [];
+
+    return Array.from({ length: itemsPerView }).map((_, offset) => {
+      const projectIndex = (currentIndex + offset) % filteredProjects.length;
+      return filteredProjects[projectIndex];
+    });
+  };
+
+  const visibleProjects = getVisibleProjects();
+  const totalPages = filteredProjects.length > 0
+    ? Math.ceil(filteredProjects.length / itemsPerView)
+    : 0;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -441,28 +235,34 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="section-padding relative">
+    <section id="projects" className="section-padding relative overflow-hidden pb-16 sm:pb-20 lg:pb-24">
       <motion.div
-        className="container mx-auto"
+        className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <motion.h2 className="heading" variants={itemVariants}>
+        <motion.h2 className="heading" variants={itemVariants} id="projects-heading">
           Featured Projects
         </motion.h2>
-        
-        {/* Category Filter Buttons */}
-        <motion.div 
-          className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12"
+
+        <motion.p
+          className="mx-auto mb-8 max-w-3xl text-center text-sm leading-relaxed text-textSecondary sm:mb-12 sm:text-base lg:text-lg"
+          variants={itemVariants}
+        >
+          A selected set of projects with responsive layouts, live demos, and route-based detail pages.
+        </motion.p>
+
+        <motion.div
+          className="mb-8 flex flex-nowrap gap-2 overflow-x-auto pb-2 sm:mb-10 sm:flex-wrap sm:justify-center sm:gap-4 sm:overflow-visible lg:mb-12"
           variants={itemVariants}
         >
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
-              className={`flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base ${
+              className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 sm:px-6 sm:py-3 sm:text-base ${
                 activeCategory === category.id
                   ? 'bg-secondary text-primary shadow-lg shadow-secondary/25 scale-105'
                   : 'bg-primary/50 text-textSecondary hover:bg-secondary/20 hover:text-secondary'
@@ -470,117 +270,100 @@ const Projects = () => {
             >
               {category.icon}
               {category.label}
-              <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${
+              <span className={`ml-1 rounded-full px-2 py-0.5 text-xs ${
                 activeCategory === category.id
                   ? 'bg-primary/20 text-primary'
                   : 'bg-secondary/20 text-secondary'
               }`}>
-                {category.id === 'all' 
-                  ? projects.length 
-                  : projects.filter(p => p.category === category.id).length
-                }
+                {category.id === 'all'
+                  ? projects.length
+                  : projects.filter((project) => project.category === category.id).length}
               </span>
             </button>
           ))}
         </motion.div>
-        
-        {/* Carousel Container */}
-        <div className="relative px-4 sm:px-6 lg:px-12">
-          {/* Navigation Buttons - Only show if there are multiple pages */}
-          {totalPages > 1 && (
+
+        <div className="relative mx-auto w-full overflow-visible px-0 sm:px-2 lg:px-10">
+          {filteredProjects.length > itemsPerView && (
             <>
               <button
-                onClick={prevSlide}
-                className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 bg-secondary/20 hover:bg-secondary/40 text-white p-2 sm:p-3 rounded-full transition-colors duration-300"
+                onClick={() => setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length)}
+                className="absolute left-0 top-1/2 z-20 hidden -translate-x-2 -translate-y-1/2 rounded-full bg-secondary/20 p-3 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1/2 hover:bg-secondary/35 hover:shadow-secondary/20 sm:-translate-x-3 md:block touch-target focus-ring"
+                aria-label="Previous project"
               >
-                <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-4 w-4 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              
+
               <button
-                onClick={nextSlide}
-                className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 bg-secondary/20 hover:bg-secondary/40 text-white p-2 sm:p-3 rounded-full transition-colors duration-300"
+                onClick={() => setCurrentIndex((prev) => (prev + 1) % filteredProjects.length)}
+                className="absolute right-0 top-1/2 z-20 hidden translate-x-2 -translate-y-1/2 rounded-full bg-secondary/20 p-3 text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1/2 hover:bg-secondary/35 hover:shadow-secondary/20 sm:translate-x-3 md:block touch-target focus-ring"
+                aria-label="Next project"
               >
-                <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-4 w-4 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             </>
           )}
 
-          {/* Projects Grid */}
+          {/* ARIA live region for screen readers */}
+          <div className="sr-only" aria-live="polite">Showing {Math.min(filteredProjects.length, currentIndex + 1)} of {filteredProjects.length} projects</div>
+
           <AnimatePresence mode="wait">
-            <motion.div 
-              key={`${activeCategory}-${currentIndex}`}
-              className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            <motion.div
+              key={`${activeCategory}-${currentIndex}-${itemsPerView}`}
+              ref={containerRef}
+              tabIndex={0}
+              onKeyDown={handleKeyNav}
+              aria-labelledby="projects-heading"
+              className={`grid gap-4 sm:gap-5 lg:gap-6 ${itemsPerView === 1 ? 'grid-cols-1' : itemsPerView === 2 ? 'md:grid-cols-2' : 'lg:grid-cols-3'}`}
               variants={containerVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
             >
-              {getCurrentProjects().map((project, index) => (
-                <motion.div key={`${currentIndex}-${index}`} variants={itemVariants}>
+              {visibleProjects.map((project) => (
+                <motion.div key={project.id} variants={itemVariants} className="w-full">
                   <ProjectCard project={project} onClick={handleProjectClick} />
                 </motion.div>
               ))}
             </motion.div>
           </AnimatePresence>
 
-          {/* Pagination Dots - Only show if there are multiple pages */}
-          {totalPages > 1 && (
-            <div className="flex justify-center mt-8 space-x-2">
-              {Array.from({ length: totalPages }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                    index === currentIndex ? 'bg-secondary' : 'bg-secondary/30'
-                  }`}
-                />
-              ))}
-            </div>
-          )}
         </div>
-        
-        {/* Empty State */}
+
         {filteredProjects.length === 0 && (
-          <motion.div 
-            className="text-center py-20"
-            variants={itemVariants}
-          >
-            <div className="text-6xl mb-4">🚧</div>
-            <h3 className="text-xl font-semibold text-textSecondary mb-2">
+          <motion.div className="py-20 text-center" variants={itemVariants}>
+            <div className="mb-4 text-6xl">🚧</div>
+            <h3 className="mb-2 text-xl font-semibold text-textSecondary">
               Coming Soon!
             </h3>
             <p className="text-textSecondary">
-              {activeCategory === 'mobile' 
-                ? 'Mobile projects are currently in development.' 
-                : 'No projects found in this category.'
-              }
+              {activeCategory === 'mobile'
+                ? 'Mobile projects are currently in development.'
+                : 'No projects found in this category.'}
             </p>
           </motion.div>
         )}
-        
-        {/* Decorative Background Elements */}
-        <div className="absolute top-1/2 right-0 -z-10">
+
+        <div className="absolute right-0 top-1/2 -z-10 hidden md:block">
           <motion.div
-            className="w-96 h-96 bg-secondary/5 rounded-full blur-3xl"
+            className="h-96 w-96 rounded-full bg-secondary/5 blur-3xl"
             animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.3, 0.1],
+              scale: [1, 1.08, 1],
+              opacity: [0.08, 0.22, 0.08],
             }}
             transition={{
-              duration: 10,
+              duration: 12,
               repeat: Infinity,
-              repeatType: "reverse",
+              repeatType: 'reverse',
             }}
           />
         </div>
       </motion.div>
-      
-      {/* Scroll Down Button */}
-      <br/><br/>
+
       <ScrollDown targetId="skills" />
     </section>
   );

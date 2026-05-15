@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import ScrollDown from "./ScrollDown";
 import { FaCode, FaServer, FaDatabase, FaTools, FaMobile, FaCloud } from "react-icons/fa";
 import expressLogo from "../assets/expressjs.svg";
@@ -20,6 +20,7 @@ import css3Logo from "../assets/pngegg.png";
 const SkillCard = ({ title, icon, level }) => {
   const [imageError, setImageError] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   const isStringIcon = typeof icon === 'string';
   const isElementIcon = React.isValidElement(icon);
@@ -102,36 +103,38 @@ const SkillCard = ({ title, icon, level }) => {
                 backdrop-blur-sm"
     >
       {/* Animated background particles */}
-      <motion.div
-        className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"
-        initial={false}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-      >
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-secondary rounded-full"
-            initial={{ 
-              x: "50%", 
-              y: "50%",
-              scale: 0
-            }}
-            animate={{ 
-              x: ["50%", `${Math.random() * 80 + 10}%`],
-              y: ["50%", `${Math.random() * 80 + 10}%`],
-              scale: [0, 1, 0],
-              opacity: [0, 1, 0]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "reverse",
-              delay: i * 0.2,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </motion.div>
+      {!shouldReduceMotion && (
+        <motion.div
+          className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"
+          initial={false}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+        >
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-secondary rounded-full"
+              initial={{ 
+                x: "50%", 
+                y: "50%",
+                scale: 0
+              }}
+              animate={{ 
+                x: ["50%", `${Math.random() * 80 + 10}%`],
+                y: ["50%", `${Math.random() * 80 + 10}%`],
+                scale: [0, 1, 0],
+                opacity: [0, 1, 0]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "reverse",
+                delay: i * 0.2,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </motion.div>
+      )}
       
       {/* Hover gradient overlay */}
       <motion.div
@@ -148,11 +151,11 @@ const SkillCard = ({ title, icon, level }) => {
               alt={title}
               className={`w-12 h-12 sm:w-14 sm:h-14 object-contain filter brightness-90 group-hover:brightness-100
                          transition-all duration-500 transform group-hover:scale-125 group-hover:rotate-6 opacity-100`}
-              whileHover={{ 
+              whileHover={shouldReduceMotion ? {} : { 
                 rotate: [0, -5, 5, 0],
-                scale: [1, 1.1, 1.05, 1.15]
+                scale: [1, 1.08, 1.04, 1.12]
               }}
-              transition={{ duration: 0.6 }}
+              transition={shouldReduceMotion ? {} : { duration: 0.6 }}
               onError={handleImageError}
               onLoad={handleImageLoad}
               decoding="async"
@@ -188,18 +191,20 @@ const SkillCard = ({ title, icon, level }) => {
               </motion.span>
             </motion.div>
           )}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-secondary/20 via-primary/20 to-secondary/20 rounded-full blur-2xl opacity-0 
-                        group-hover:opacity-100 transition-all duration-500"
-            animate={{
-              scale: isHovered ? [1, 1.2, 1] : 1,
-            }}
-            transition={{
-              duration: 2,
-              repeat: isHovered ? Infinity : 0,
-              repeatType: "reverse"
-            }}
-          />
+          {!shouldReduceMotion && (
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-secondary/20 via-primary/20 to-secondary/20 rounded-full blur-2xl opacity-0 
+                          group-hover:opacity-100 transition-all duration-500"
+              animate={{
+                scale: isHovered ? [1, 1.2, 1] : 1,
+              }}
+              transition={{
+                duration: 2,
+                repeat: isHovered ? Infinity : 0,
+                repeatType: "reverse"
+              }}
+            />
+          )}
         </div>
         <motion.h3 
           className="text-xs sm:text-sm font-medium text-textPrimary group-hover:text-secondary transition-all duration-500 text-center leading-tight"
@@ -251,7 +256,8 @@ const categoryMeta = [
 
 const SkillSection = ({ category, skills, description }) => {
   const getGridCols = () => {
-    return 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5';
+    // More readable columns on small devices
+    return 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4';
   };
 
   return (
@@ -688,15 +694,15 @@ const Skills = () => {
           </div>
         </div>
         {/* Decorative Elements */}
-        <div className="absolute top-1/2 right-0 -z-10">
+        <div className="absolute top-1/2 right-0 -z-10 hidden md:block">
           <motion.div
             className="w-96 h-96 bg-secondary/5 rounded-full blur-3xl"
             animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.3, 0.1],
+              scale: [1, 1.08, 1],
+              opacity: [0.08, 0.22, 0.08],
             }}
             transition={{
-              duration: 10,
+              duration: 12,
               repeat: Infinity,
               repeatType: "reverse",
             }}
